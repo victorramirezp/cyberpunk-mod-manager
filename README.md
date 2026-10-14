@@ -4,35 +4,38 @@
 
 ---
 
-## ⚡ Novedades de la Arquitectura Modular v3.0
+## ⚡ Base de Datos Predeterminada (26 Mods Esenciales)
 
-### 1. Hub Modular & Navegación por Secciones:
-- **📊 Dashboard General**: Métricas en vivo (mods críticos, tiendas Atelier, estado del load order y accesos directos).
-- **⚡ [CORE] Frameworks & Engine Essentials**: CET, Redscript, ArchiveXL, TweakXL, Codeware, RED4ext, Equipment-EX. Etiquetados como **"Crítico / No Desinstalar"** con bloqueo de seguridad ante desactivaciones accidentales.
-- **🖥️ [GRÁFICOS & RENDIMIENTO]**:
-  - Subcategorías: `LUTs / Color Grading`, `Texturas / Reshades`, `Optimizaciones / Rendimiento`.
-  - Selector de **Impacto en Rendimiento** (Bajo / Medio / Alto) para planear actualizaciones de hardware o caídas de FPS.
-- **🌸 [PERFIL: FEM V] y ⚡ [PERFIL: MAS V]**:
-  - Filtrado por subcategorías: `Cuerpo & Mallas (Angel / Hyst / Solo)`, `Ropa & Outfits`, `Pelo & Cabello`, `Tatuajes / Piel / Cyberware visual`.
-  - Integración nativa con **Virtual Atelier**: cada prenda se asocia a su tienda virtual con un solo clic.
-- **🛍️ VIRTUAL ATELIER HUB (Módulo Exclusivo)**:
-  - Agrupación por tienda holográfica (*Nola Dreamer Atelier*, *Viki Shop*, *Monsterkerg*, etc.).
-  - Enlace directo a la tienda en NexusMods y catálogo de todas las prendas que dependen de ella.
-  - Sección de prendas sin tienda para reasignación rápida.
-- **💬 [HISTORIA, MISIONES & INMERSIÓN]**:
-  - Subcategorías: `Misiones & Contenido Extra`, `Romance & Mensajes (Panam, Judy, etc.)`, `Comportamiento de NPCs / Ciudad`.
-- **⚔️ [GAMEPLAY & COMBATE]**:
-  - Subcategorías: `Skills / Stealth / Perks`, `Cyberware Tweaks (Sandevistan / Ciberpsicosis)`, `Armas & Vehículos`.
+La aplicación viene preconfigurada con la suite oficial de **26 mods de Cyberpunk 2077**:
 
----
-
-## 🛡️ Persistencia & Sistema de Backup Inteligente
-
-- **`localStorage` Automático**: Todos los cambios se guardan al instante sin necesidad de backend.
-- **Exportación en JSON**: Descarga un respaldo con metadata y timestamp (`cp2077_modular_backup_[fecha].json`).
-- **Importación con Prevención de Sobreescrituras**:
-  - **Modo Fusión (Recomendado)**: Integra los mods del archivo JSON agregando los faltantes sin borrar tus mods locales actuales.
-  - **Modo Reemplazo Total**: Sobreescritura completa con confirmación explícita.
+| ID | Mod | Categoría Principal | Subcategoría | Origen | Prescindible |
+|---|---|---|---|---|:---:|
+| **MOD_001** | Cyber Engine Tweaks (CET) | Core | Framework | NexusMods | ❌ (Crítico) |
+| **MOD_002** | RED4ext | Core | Framework | NexusMods | ❌ (Crítico) |
+| **MOD_003** | ArchiveXL | Core | Framework | NexusMods | ❌ (Crítico) |
+| **MOD_004** | TweakXL | Core | Framework | NexusMods | ❌ (Crítico) |
+| **MOD_005** | Redscript | Core | Framework | NexusMods | ❌ (Crítico) |
+| **MOD_006** | Codeware | Core | Framework | NexusMods | ❌ (Crítico) |
+| **MOD_007** | Mod Settings | Core | UI / Config | NexusMods | ❌ (Crítico) |
+| **MOD_008** | Native Settings UI | Core | UI / Config | NexusMods | ❌ (Crítico) |
+| **MOD_009** | Native Interactions Framework | Core | Framework | NexusMods | ❌ (Crítico) |
+| **MOD_010** | Equipment EX | Core | Framework / Outfits | NexusMods | ❌ (Crítico) |
+| **MOD_011** | Virtual Atelier | Core | Tiendas / Framework | NexusMods | ❌ (Crítico) |
+| **MOD_012** | Browser Extension | Core | Framework | NexusMods | ❌ (Crítico) |
+| **MOD_013** | Virtual Car Dealer | Core | Tiendas / Vehículos | NexusMods | ❌ (Crítico) |
+| **MOD_014** | Cyberware EX | Gameplay | Cyberware | NexusMods | ✔️ Sí |
+| **MOD_015** | Reset Attributes Always Available | Gameplay | Calidad de Vida | NexusMods | ✔️ Sí |
+| **MOD_016** | Always First Equip | Gameplay | Animación / Inmersión | NexusMods | ✔️ Sí |
+| **MOD_017** | Unlock Me Mods | Gameplay | Mecánicas / Armas | NexusMods | ✔️ Sí |
+| **MOD_018** | Faster Elevators | Gameplay | Calidad de Vida | NexusMods | ✔️ Sí |
+| **MOD_019** | Nova LUT 4.0 | Gráficos | LUTs / Color Grading | NexusMods | ✔️ Sí |
+| **MOD_020** | High Resolution Meshes and Textures | Gráficos | Texturas / Modelos | NexusMods | ✔️ Sí |
+| **MOD_021** | Material and Texture Override | Core | Framework Texturas | NexusMods | ❌ (Crítico) |
+| **MOD_022** | Panam Romance Enhanced | Historia | Romance / Mensajes | NexusMods | ✔️ Sí |
+| **MOD_023** | Judy Romance Enhanced | Historia | Romance / Mensajes | NexusMods | ✔️ Sí |
+| **MOD_024** | Romance Hangouts Enhanced | Historia | Romance / Inmersión | NexusMods | ✔️ Sí |
+| **MOD_025** | BtkVanillaHDBody4FemV | Fem V | Cuerpo | Archivo local | ✔️ Sí |
+| **MOD_026** | BtkAngel Body (Angel Boy & Dependencias) | Mas V | Cuerpo | Archivo local | ✔️ Sí |
 
 ---
 

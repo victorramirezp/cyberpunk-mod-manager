@@ -190,6 +190,14 @@
             <span>REGISTRAR MOD</span>
           </button>
 
+          <!-- Load Starter Presets Button -->
+          <button id="btn-seed-presets" class="cp-btn-outline px-3 py-2 text-xs font-mono uppercase text-gray-200 flex items-center space-x-1.5 cp-cut-sm hover:border-cp-green hover:text-cp-green" title="Cargar o restaurar los 26 presets oficiales de Cyberpunk 2077">
+            <svg class="w-3.5 h-3.5 text-cp-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+            <span class="hidden md:inline">PRESETS INICIALES</span>
+          </button>
+
           <!-- Export JSON Button -->
           <button id="btn-export-backup" class="cp-btn-outline px-3 py-2 text-xs font-mono uppercase text-gray-200 flex items-center space-x-1 cp-cut-sm hover:border-cp-cyan" title="Descargar copia de seguridad en JSON">
             <svg class="w-3.5 h-3.5 text-cp-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -283,7 +291,7 @@
         <input 
           type="text" 
           id="global-search" 
-          placeholder="Escanear mods por nombre, archivo (.archive/.reds), tienda Atelier o dependencias..." 
+          placeholder="Escanear mods por nombre, archivo (.archive/.reds), subcategoría o dependencias..." 
           class="w-full pl-9 pr-8 py-2 bg-cp-dark border border-cp-border text-white text-xs font-mono focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow cp-cut-sm placeholder-cp-muted tracking-wide"
         >
         <button id="btn-clear-search" class="absolute inset-y-0 right-0 pr-3 flex items-center text-cp-muted hover:text-cp-yellow hidden">
@@ -358,6 +366,31 @@
 
       </div>
 
+      <!-- QUICK PRESETS INJECTION BANNER -->
+      <div class="bg-gradient-to-r from-cp-card via-cp-panel to-cp-card border border-cp-yellow/50 p-4 cp-cut flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-[0_0_15px_rgba(252,238,10,0.1)]">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 bg-cp-yellow/20 border border-cp-yellow text-cp-yellow flex items-center justify-center cp-cut-sm shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+          </div>
+          <div>
+            <h4 class="text-xs sm:text-sm font-title font-bold text-white tracking-wide">
+              BASE DE DATOS OFICIAL NIGHT CITY (26 MODS PRECONFIGURADOS)
+            </h4>
+            <p class="text-[11px] font-mono text-gray-300">
+              Incluye CET, RED4ext, ArchiveXL, TweakXL, Equipment EX, Virtual Atelier, Cyberware EX, Nova LUT 4.0, Panam & Judy Romance y refits anatómicos.
+            </p>
+          </div>
+        </div>
+        <button id="btn-seed-presets-banner" class="cp-btn-yellow px-4 py-2 text-xs font-title uppercase tracking-wider cp-cut-sm shrink-0 flex items-center space-x-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          <span>RECARGAR 26 PRESETS</span>
+        </button>
+      </div>
+
       <!-- CATEGORY HUBS GRID -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         
@@ -372,7 +405,7 @@
             </div>
             <h3 class="text-base font-title font-bold text-white">⚡ [CORE] Frameworks & Engine Essentials</h3>
             <p class="text-xs font-mono text-gray-400 mt-1">
-              CET, Redscript, ArchiveXL, TweakXL, Codeware, RED4ext. Base fundamental sin la cual el juego no compila scripts ni carga archivos custom.
+              CET, Redscript, ArchiveXL, TweakXL, Codeware, RED4ext, Equipment EX, Virtual Atelier, Virtual Car Dealer y Material Override.
             </p>
           </div>
           <div class="mt-4 pt-3 border-t border-cp-border flex items-center justify-between">
@@ -394,11 +427,11 @@
             </div>
             <h3 class="text-base font-title font-bold text-white">🖥️ [GRÁFICOS & RENDIMIENTO]</h3>
             <p class="text-xs font-mono text-gray-400 mt-1">
-              LUTs de corrección de color (Nova LUT), texturas 4K, presets ReShade fotorealistas y optimizaciones de memoria e iluminación.
+              LUTs de corrección de color (Nova LUT 4.0), mallas HD y texturas de alta resolución para personajes y Night City.
             </p>
           </div>
           <div class="mt-4 pt-3 border-t border-cp-border flex items-center justify-between">
-            <span class="text-[10px] font-mono text-cp-cyan" id="hub-graficos-perf-tag">Impacto medio / alto</span>
+            <span class="text-[10px] font-mono text-cp-cyan">Impacto equilibrado</span>
             <button data-target-tab="graficos" class="cp-btn-outline px-3 py-1 text-xs font-mono text-cp-cyan hover:border-cp-cyan jump-tab cp-cut-sm">
               ACCEDER →
             </button>
@@ -416,12 +449,12 @@
             </div>
             <h3 class="text-base font-title font-bold text-white">🌸 [PERFIL: FEM V]</h3>
             <p class="text-xs font-mono text-gray-400 mt-1">
-              Cuerpos Angel/Hyst/EBBP, trajes, peinados KS Hairdos, pieles 4K, tatuajes y brazos cibernéticos exclusivos de Valerie.
+              Malla anatómica HD BtkVanillaHDBody4FemV, outfits, peinados, texturas dérmicas y cyberware visual exclusivo de Valerie.
             </p>
           </div>
           <div class="mt-4 pt-3 border-t border-cp-border flex items-center justify-between">
-            <span class="text-[10px] font-mono text-pink-400">Atelier vinculado activo</span>
-            <button data-target-tab="fem_v" class="cp-btn-outline px-3 py-1 text-xs font-mono text-pink-400 hover:border-pink-400 jump-tab cp-cut-sm">
+            <span class="text-[10px] font-mono text-pink-400">Atelier compatible</span>
+            <button data-target-tab="fem_v" class="cp-btn-outline px-3 py-1 text-xs font-mono text-pink-400 hover:border-pink-500 jump-tab cp-cut-sm">
               ACCEDER →
             </button>
           </div>
@@ -438,11 +471,11 @@
             </div>
             <h3 class="text-base font-title font-bold text-white">⚡ [PERFIL: MAS V]</h3>
             <p class="text-xs font-mono text-gray-400 mt-1">
-              Cuerpos Solo Body, ropa militar, barbas, peinados y cyberware exclusivo para Vincent.
+              Cuerpo BtkAngel Body (Angel Boy & dependencias), ropa ajustada al refit muscular, barbas y cyberware exclusivo para Vincent.
             </p>
           </div>
           <div class="mt-4 pt-3 border-t border-cp-border flex items-center justify-between">
-            <span class="text-[10px] font-mono text-cp-cyan">Atelier vinculado activo</span>
+            <span class="text-[10px] font-mono text-cp-cyan">Angel Boy refit activo</span>
             <button data-target-tab="mas_v" class="cp-btn-outline px-3 py-1 text-xs font-mono text-cp-cyan hover:border-cp-cyan jump-tab cp-cut-sm">
               ACCEDER →
             </button>
@@ -460,7 +493,7 @@
             </div>
             <h3 class="text-base font-title font-bold text-white">💬 [HISTORIA & INMERSIÓN]</h3>
             <p class="text-xs font-mono text-gray-400 mt-1">
-              Misiones expandidas, mensajes de texto y citas románticas de Panam, Judy, Kerry y River, reactividad de NPCs y supervivencia.
+              Panam Romance Enhanced, Judy Romance Enhanced y Romance Hangouts Enhanced con citas continuas en apartamentos.
             </p>
           </div>
           <div class="mt-4 pt-3 border-t border-cp-border flex items-center justify-between">
@@ -482,11 +515,11 @@
             </div>
             <h3 class="text-base font-title font-bold text-white">⚔️ [GAMEPLAY & COMBATE]</h3>
             <p class="text-xs font-mono text-gray-400 mt-1">
-              Sandevistan tweaks, stealth rebalance, árboles de ventajas desbloqueados, armas exóticas y conducción mejorada.
+              Cyberware EX, reseteo ilimitado de atributos, Always First Equip, Unlock Me Mods (desmontar mods) y Faster Elevators.
             </p>
           </div>
           <div class="mt-4 pt-3 border-t border-cp-border flex items-center justify-between">
-            <span class="text-[10px] font-mono text-cp-green">Overhauls de combate</span>
+            <span class="text-[10px] font-mono text-cp-green">Calidad de vida & combate</span>
             <button data-target-tab="gameplay" class="cp-btn-outline px-3 py-1 text-xs font-mono text-cp-green hover:border-cp-green jump-tab cp-cut-sm">
               ACCEDER →
             </button>
@@ -510,7 +543,7 @@
         <div class="flex items-center space-x-2 text-xs font-mono">
           <span class="text-cp-muted hidden md:inline">ORDENAR:</span>
           <select id="select-category-sort" class="bg-cp-dark border border-cp-border text-gray-300 py-1 px-2 text-xs focus:outline-none focus:border-cp-cyan cp-cut-sm cursor-pointer">
-            <option value="recent">Más recientes</option>
+            <option value="recent">Orden predeterminado</option>
             <option value="name-asc">Nombre (A - Z)</option>
             <option value="name-desc">Nombre (Z - A)</option>
             <option value="essential">Críticos primero</option>
@@ -569,6 +602,34 @@
         </div>
       </div>
 
+      <!-- Atelier Framework Core Card -->
+      <div class="bg-cp-card border border-cp-purple/60 p-4 cp-cut space-y-3 shadow-[0_0_15px_rgba(181,55,242,0.15)]">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-cp-border pb-3">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 bg-cp-purple/20 border border-cp-purple text-cp-purple flex items-center justify-center cp-cut-sm">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-base font-title font-black text-white tracking-wider flex items-center space-x-2">
+                <span>VIRTUAL ATELIER FRAMEWORK (MOD_011)</span>
+                <span class="text-[10px] font-mono px-1.5 py-0.2 bg-cp-red/20 text-cp-red border border-cp-red/40 rounded font-bold">
+                  CORE MOTOR
+                </span>
+              </h3>
+              <div class="text-[11px] font-mono text-cp-muted">Tienda central obligatoria para que todas las boutiques funcionen</div>
+            </div>
+          </div>
+          <a href="https://www.nexusmods.com/cyberpunk2077/mods/2987" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-cp-dark border border-cp-cyan text-cp-cyan hover:bg-cp-cyan hover:text-black transition text-xs font-mono font-bold flex items-center space-x-1.5 cp-cut-sm">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+            <span>DESCARGAR FRAMEWORK EN NEXUS</span>
+          </a>
+        </div>
+      </div>
+
       <!-- Atelier Shops Container -->
       <div id="atelier-shops-container" class="space-y-6">
         <!-- Rendered dynamically -->
@@ -596,13 +657,13 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2">
       <div class="flex items-center space-x-2">
         <span class="w-2 h-2 bg-cp-yellow inline-block"></span>
-        <span class="text-gray-400 font-bold">CYBERMOD 2077 // ARCHITECTURE V3</span>
+        <span class="text-gray-400 font-bold">CYBERMOD 2077 // ARCHITECTURE V4</span>
         <span>— AUTOCONTENIDO PARA GITHUB PAGES</span>
       </div>
       <div class="flex items-center space-x-4">
         <span>ESTADO: <strong class="text-cp-green">ONLINE</strong></span>
-        <span>ATELIER ENGINE: <strong class="text-cp-purple">LINKED</strong></span>
-        <span>BRANCH: <strong class="text-cp-yellow">main</strong></span>
+        <span>PRESETS CARGADOS: <strong class="text-cp-yellow" id="footer-preset-count">26</strong></span>
+        <span>BRANCH: <strong class="text-cp-cyan">main</strong></span>
       </div>
     </div>
   </footer>
@@ -637,7 +698,7 @@
             type="text" 
             id="form-mod-nombre" 
             required 
-            placeholder="Ej. Nova City LUT / Equipment-EX / Nola Dreamer CyberSuit"
+            placeholder="Ej. Nova LUT 4.0 / Cyber Engine Tweaks / Equipment EX"
             class="w-full px-3 py-2 bg-cp-dark border border-cp-border text-white focus:outline-none focus:border-cp-yellow cp-cut-sm tracking-wide"
           >
         </div>
@@ -658,9 +719,17 @@
 
           <div>
             <label class="block uppercase font-bold text-gray-300 mb-1">SUBCATEGORÍA MODULAR *</label>
-            <select id="form-mod-subcategoria" required class="w-full px-3 py-2 bg-cp-dark border border-cp-border text-white focus:outline-none focus:border-cp-cyan cp-cut-sm cursor-pointer">
-              <!-- Dynamically populated according to main category -->
-            </select>
+            <input 
+              type="text" 
+              id="form-mod-subcategoria" 
+              list="subcategories-datalist" 
+              required 
+              placeholder="Ej. Framework / UI / Config / Cuerpo"
+              class="w-full px-3 py-2 bg-cp-dark border border-cp-border text-white focus:outline-none focus:border-cp-cyan cp-cut-sm"
+            >
+            <datalist id="subcategories-datalist">
+              <!-- Dynamically populated -->
+            </datalist>
           </div>
         </div>
 
@@ -694,7 +763,7 @@
           </div>
         </div>
 
-        <!-- Conditional: Virtual Atelier Shop Integration (Shows for Fem V / Mas V) -->
+        <!-- Conditional: Virtual Atelier Shop Integration -->
         <div id="atelier-fields-group" class="p-3 bg-cp-purple/10 border border-cp-purple/40 cp-cut-sm space-y-2.5">
           <div class="flex items-center space-x-2 text-purple-300 font-bold">
             <svg class="w-4 h-4 text-cp-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -709,7 +778,7 @@
                 type="text" 
                 id="form-mod-atelier-shop" 
                 list="atelier-shops-datalist" 
-                placeholder="Ej. Nola Dreamer Atelier Store / Viki Shop" 
+                placeholder="Ej. Nola Dreamer Atelier / Viki Shop 4" 
                 class="w-full px-2.5 py-1.5 bg-cp-dark border border-cp-border text-white focus:outline-none focus:border-cp-purple cp-cut-sm"
               >
               <datalist id="atelier-shops-datalist">
@@ -758,7 +827,7 @@
           <textarea 
             id="form-mod-notas" 
             rows="2" 
-            placeholder="Ej. Requiere ArchiveXL v1.14 y RED4ext. Cargar antes del overhaul corporal." 
+            placeholder="Ej. Requiere ArchiveXL y RED4ext. Cargar antes del overhaul corporal." 
             class="w-full px-3 py-2 bg-cp-dark border border-cp-border text-white focus:outline-none focus:border-cp-yellow cp-cut-sm"
           ></textarea>
           <!-- Quick Dependency Badges -->
@@ -876,7 +945,8 @@
   <!-- JAVASCRIPT ES6 LOGIC -->
   <script>
     /**
-     * CYBERMOD 2077 // MODULAR CATALOG & LOAD ORDER ARCHITECTURE
+     * CYBERMOD 2077 // MODULAR CATALOG & LOAD ORDER ARCHITECTURE V4
+     * 26 Mods Official Database Injection
      */
 
     // --- Audio Synthesizer (Web Audio API) ---
@@ -921,336 +991,449 @@
     }
     const sound = new CyberAudio();
 
-    // --- Subcategory Master Mapping ---
+    // --- Subcategory Master Mapping & Defaults ---
     const SUBCATEGORIES_CONFIG = {
       core: [
         { id: 'all', label: 'Todos los Core' },
-        { id: 'script_loader', label: 'Script Loaders & Hooks' },
-        { id: 'engine_extender', label: 'Engine Extenders' },
-        { id: 'tweak_db', label: 'TweakDB & DB Inyectors' },
-        { id: 'wardrobe_core', label: 'Wardrobe Frameworks' }
+        { id: 'Framework', label: 'Framework' },
+        { id: 'UI / Config', label: 'UI / Config' },
+        { id: 'Framework / Outfits', label: 'Framework / Outfits' },
+        { id: 'Tiendas / Framework', label: 'Tiendas / Framework' },
+        { id: 'Tiendas / Vehículos', label: 'Tiendas / Vehículos' },
+        { id: 'Framework Texturas', label: 'Framework Texturas' }
       ],
       graficos: [
         { id: 'all', label: 'Todos Gráficos' },
-        { id: 'lut', label: 'LUTs / Color Grading' },
-        { id: 'texturas_reshade', label: 'Texturas & Reshades' },
-        { id: 'optimizacion', label: 'Optimizaciones & Rendimiento' }
+        { id: 'LUTs / Color Grading', label: 'LUTs / Color Grading' },
+        { id: 'Texturas / Modelos', label: 'Texturas / Modelos' },
+        { id: 'Optimizaciones & Rendimiento', label: 'Optimizaciones & Rendimiento' }
       ],
       fem_v: [
         { id: 'all', label: 'Todo Fem V' },
-        { id: 'cuerpo', label: 'Cuerpo & Mallas (Angel/Hyst)' },
-        { id: 'ropa', label: 'Ropa & Outfits' },
-        { id: 'pelo', label: 'Pelo & Cabello' },
-        { id: 'tatuajes_piel', label: 'Tatuajes / Piel / Cyberware' }
+        { id: 'Cuerpo', label: 'Cuerpo & Mallas' },
+        { id: 'Ropa & Outfits', label: 'Ropa & Outfits' },
+        { id: 'Pelo & Cabello', label: 'Pelo & Cabello' },
+        { id: 'Tatuajes / Piel / Cyberware', label: 'Tatuajes / Piel / Cyberware' }
       ],
       mas_v: [
         { id: 'all', label: 'Todo Mas V' },
-        { id: 'cuerpo', label: 'Cuerpo & Mallas (Solo Body)' },
-        { id: 'ropa', label: 'Ropa & Outfits' },
-        { id: 'pelo', label: 'Pelo & Cabello' },
-        { id: 'tatuajes_piel', label: 'Tatuajes / Piel / Cyberware' }
+        { id: 'Cuerpo', label: 'Cuerpo & Mallas' },
+        { id: 'Ropa & Outfits', label: 'Ropa & Outfits' },
+        { id: 'Pelo & Cabello', label: 'Pelo & Cabello' },
+        { id: 'Tatuajes / Piel / Cyberware', label: 'Tatuajes / Piel / Cyberware' }
       ],
       historia: [
         { id: 'all', label: 'Toda Historia' },
-        { id: 'misiones', label: 'Misiones & Contenido Extra' },
-        { id: 'romance', label: 'Romance & Mensajes (Panam/Judy)' },
-        { id: 'npc_ciudad', label: 'Comportamiento NPCs & Ciudad' }
+        { id: 'Romance / Mensajes', label: 'Romance / Mensajes' },
+        { id: 'Romance / Inmersión', label: 'Romance / Inmersión' },
+        { id: 'Misiones & Contenido Extra', label: 'Misiones & Contenido Extra' }
       ],
       gameplay: [
         { id: 'all', label: 'Todo Gameplay' },
-        { id: 'skills_stealth', label: 'Skills / Stealth / Perks' },
-        { id: 'cyberware_tweaks', label: 'Cyberware Tweaks' },
-        { id: 'armas_vehiculos', label: 'Armas & Vehículos' }
+        { id: 'Cyberware', label: 'Cyberware' },
+        { id: 'Calidad de Vida', label: 'Calidad de Vida' },
+        { id: 'Animación / Inmersión', label: 'Animación / Inmersión' },
+        { id: 'Mecánicas / Armas', label: 'Mecánicas / Armas' }
       ]
     };
 
-    // --- Starter Modular Database (Seed Data) ---
+    // --- Official 26 Mods Master Dataset ---
     const STARTER_DATABASE = [
-      // CORE ESSENTIALS
       {
-        id: 'cp-mod-cet',
-        nombre: 'Cyber Engine Tweaks (CET)',
-        categoria_principal: 'core',
-        subcategoria: 'script_loader',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/107',
-        atelier_shop_ref: '',
-        atelier_shop_url: '',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Framework LUA y consola debug fundamental para el 90% de mods.',
+        id: "MOD_001",
+        nombre: "Cyber Engine Tweaks (CET)",
+        categoria_principal: "core",
+        subcategoria: "Framework",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/107",
         prescindible: false,
+        requisitos_notas: "Consola de depuración, backend de scripting y base fundamental para la mayoría de mods.",
         activo: true,
-        fecha_registro: '2026-01-10T10:00:00Z'
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-01T10:00:00Z"
       },
       {
-        id: 'cp-mod-red4ext',
-        nombre: 'RED4ext',
-        categoria_principal: 'core',
-        subcategoria: 'engine_extender',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/2380',
-        atelier_shop_ref: '',
-        atelier_shop_url: '',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Cargador de plugins nativos de arquitectura C++ para REDengine.',
+        id: "MOD_002",
+        nombre: "RED4ext",
+        categoria_principal: "core",
+        subcategoria: "Framework",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/2380",
         prescindible: false,
+        requisitos_notas: "Cargador nativo para extender las funciones y arquitectura del REDengine.",
         activo: true,
-        fecha_registro: '2026-01-11T10:00:00Z'
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-02T10:00:00Z"
       },
       {
-        id: 'cp-mod-archivexl',
-        nombre: 'ArchiveXL',
-        categoria_principal: 'core',
-        subcategoria: 'engine_extender',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/4198',
-        atelier_shop_ref: '',
-        atelier_shop_url: '',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Requiere RED4ext. Inyecta recursos .archive personalizados sin reemplazar archivos base.',
+        id: "MOD_003",
+        nombre: "ArchiveXL",
+        categoria_principal: "core",
+        subcategoria: "Framework",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/4198",
         prescindible: false,
+        requisitos_notas: "Requiere RED4ext. Carga recursos y slots de ropa/items sin sobreescribir archivos vainilla.",
         activo: true,
-        fecha_registro: '2026-01-12T10:00:00Z'
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-03T10:00:00Z"
       },
       {
-        id: 'cp-mod-tweakxl',
-        nombre: 'TweakXL',
-        categoria_principal: 'core',
-        subcategoria: 'tweak_db',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/4197',
-        atelier_shop_ref: '',
-        atelier_shop_url: '',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Requiere RED4ext. Inyecta modificaciones directas a la base de datos TweakDB.',
+        id: "MOD_004",
+        nombre: "TweakXL",
+        categoria_principal: "core",
+        subcategoria: "Framework",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/4197",
         prescindible: false,
+        requisitos_notas: "Modificador y creador de tweaks en tiempo de ejecución. Indispensable para items personalizados.",
         activo: true,
-        fecha_registro: '2026-01-13T10:00:00Z'
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-04T10:00:00Z"
       },
       {
-        id: 'cp-mod-equipment-ex',
-        nombre: 'Equipment-EX (Enhanced Wardrobe)',
-        categoria_principal: 'core',
-        subcategoria: 'wardrobe_core',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/6943',
-        atelier_shop_ref: '',
-        atelier_shop_url: '',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Requiere ArchiveXL y TweakXL. Desbloquea más de 30 slots de atuendos para V.',
+        id: "MOD_005",
+        nombre: "Redscript",
+        categoria_principal: "core",
+        subcategoria: "Framework",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/1511",
         prescindible: false,
+        requisitos_notas: "Compilador de scripts del juego para inyectar y modificar la lógica de Cyberpunk.",
         activo: true,
-        fecha_registro: '2026-01-14T10:00:00Z'
-      },
-
-      // GRÁFICOS & RENDIMIENTO
-      {
-        id: 'cp-mod-nova-lut',
-        nombre: 'Nova LUT - Pure Photorealistic Color Grading',
-        categoria_principal: 'graficos',
-        subcategoria: 'lut',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/13764',
-        atelier_shop_ref: '',
-        atelier_shop_url: '',
-        rendimiento_impacto: 'bajo',
-        requisitos_notas: 'LUT calibrado para eliminar el tinte verdoso original y añadir negros puros.',
-        prescindible: true,
-        activo: true,
-        fecha_registro: '2026-01-15T10:00:00Z'
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-05T10:00:00Z"
       },
       {
-        id: 'cp-mod-nc-reshade',
-        nombre: 'Night City Cinematic Ray-Tracing ReShade',
-        categoria_principal: 'graficos',
-        subcategoria: 'texturas_reshade',
-        origen_tipo: 'archivo',
-        origen_valor: 'bin/x64/reshade-presets/nc_photoreal_cinematic.ini',
-        atelier_shop_ref: '',
-        atelier_shop_url: '',
-        rendimiento_impacto: 'alto',
-        requisitos_notas: 'Requiere ReShade 5.9+ con shaders RTGI. Impacto de aproximadamente -8 a -12 FPS.',
-        prescindible: true,
+        id: "MOD_006",
+        nombre: "Codeware",
+        categoria_principal: "core",
+        subcategoria: "Framework",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/7780",
+        prescindible: false,
+        requisitos_notas: "API y librería de utilidades para scripts avanzados en Redscript y RED4ext.",
         activo: true,
-        fecha_registro: '2026-01-16T10:00:00Z'
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-06T10:00:00Z"
       },
       {
-        id: 'cp-mod-memory-pool',
-        nombre: 'Cyberpunk Engine Optimizations & Memory Pool',
-        categoria_principal: 'graficos',
-        subcategoria: 'optimizacion',
-        origen_tipo: 'archivo',
-        origen_valor: 'engine/config/platform/pc/memory_budget.ini',
-        atelier_shop_ref: '',
-        atelier_shop_url: '',
-        rendimiento_impacto: 'bajo',
-        requisitos_notas: 'Ajusta el presupuesto de VRAM de GPUs modernas para erradicar el stutering en Dogtown.',
-        prescindible: true,
+        id: "MOD_007",
+        nombre: "Mod Settings",
+        categoria_principal: "core",
+        subcategoria: "UI / Config",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/4885",
+        prescindible: false,
+        requisitos_notas: "Menú dentro del juego para configurar parámetros de otros mods.",
         activo: true,
-        fecha_registro: '2026-01-17T10:00:00Z'
-      },
-
-      // FEM V & VIRTUAL ATELIER
-      {
-        id: 'cp-mod-angel-body',
-        nombre: 'Angel Body Rigging & Refit Collection',
-        categoria_principal: 'fem_v',
-        subcategoria: 'cuerpo',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/11440',
-        atelier_shop_ref: '',
-        atelier_shop_url: '',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Malla corporal personalizada de alta definición con soporte para físicas de ropa.',
-        prescindible: true,
-        activo: true,
-        fecha_registro: '2026-01-18T10:00:00Z'
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-07T10:00:00Z"
       },
       {
-        id: 'cp-mod-nola-suit',
-        nombre: 'Nola Dreamer Cyber Leather Jumpsuit',
-        categoria_principal: 'fem_v',
-        subcategoria: 'ropa',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/9820',
-        atelier_shop_ref: 'Nola Dreamer Atelier Store',
-        atelier_shop_url: 'https://www.nexusmods.com/cyberpunk2077/mods/6211',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Mono de cuero cyberpunk para Fem V. Se adquiere en la tienda Virtual Atelier.',
-        prescindible: true,
+        id: "MOD_008",
+        nombre: "Native Settings UI",
+        categoria_principal: "core",
+        subcategoria: "UI / Config",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/3518",
+        prescindible: false,
+        requisitos_notas: "Interfaz integrada en el menú principal para configurar mods CET.",
         activo: true,
-        fecha_registro: '2026-01-19T10:00:00Z'
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-08T10:00:00Z"
       },
       {
-        id: 'cp-mod-nola-jacket',
-        nombre: 'Nola Dreamer Cyberpunk Neon Cropped Jacket',
-        categoria_principal: 'fem_v',
-        subcategoria: 'ropa',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/9835',
-        atelier_shop_ref: 'Nola Dreamer Atelier Store',
-        atelier_shop_url: 'https://www.nexusmods.com/cyberpunk2077/mods/6211',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Chaqueta corta con tubos LED luminiscentes. Requiere ArchiveXL.',
-        prescindible: true,
+        id: "MOD_009",
+        nombre: "Native Interactions Framework",
+        categoria_principal: "core",
+        subcategoria: "Framework",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/6508",
+        prescindible: false,
+        requisitos_notas: "Base interactiva obligatoria para mods de apartamentos, sentarse, beber e interacciones de inmersión.",
         activo: true,
-        fecha_registro: '2026-01-20T10:00:00Z'
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-09T10:00:00Z"
       },
       {
-        id: 'cp-mod-viki-corset',
-        nombre: 'Viki Shop Techwear Corset & Holsters',
-        categoria_principal: 'fem_v',
-        subcategoria: 'ropa',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/8730',
-        atelier_shop_ref: 'Viki Shop 4 Atelier',
-        atelier_shop_url: 'https://www.nexusmods.com/cyberpunk2077/mods/5998',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Corsé táctico con fundas de pistola Militech.',
-        prescindible: true,
+        id: "MOD_010",
+        nombre: "Equipment EX",
+        categoria_principal: "core",
+        subcategoria: "Framework / Outfits",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/6943",
+        prescindible: false,
+        requisitos_notas: "Sistema completo de transfiguración con slots ilimitados de ropa/capas sin sustitución.",
         activo: true,
-        fecha_registro: '2026-01-21T10:00:00Z'
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-10T10:00:00Z"
       },
       {
-        id: 'cp-mod-ks-hairdos',
-        nombre: 'KS Hairdos - Cyberpunk Ponytail & Braids',
-        categoria_principal: 'fem_v',
-        subcategoria: 'pelo',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/7212',
-        atelier_shop_ref: '',
-        atelier_shop_url: '',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Paquete de 15 peinados con físicas dinámicas de viento.',
-        prescindible: true,
+        id: "MOD_011",
+        nombre: "Virtual Atelier",
+        categoria_principal: "core",
+        subcategoria: "Tiendas / Framework",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/2987",
+        prescindible: false,
+        requisitos_notas: "Framework para comprar ropa en tiendas personalizadas desde la terminal del apartamento.",
         activo: true,
-        fecha_registro: '2026-01-22T10:00:00Z'
-      },
-
-      // MAS V
-      {
-        id: 'cp-mod-solo-body-masv',
-        nombre: 'Solo Body Enhanced Mesh & Textures (Male V)',
-        categoria_principal: 'mas_v',
-        subcategoria: 'cuerpo',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/4813',
-        atelier_shop_ref: '',
-        atelier_shop_url: '',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Reemplazo de malla muscular para Vincent con texturas 4K dedicadas.',
-        prescindible: true,
-        activo: true,
-        fecha_registro: '2026-01-23T10:00:00Z'
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-11T10:00:00Z"
       },
       {
-        id: 'cp-mod-monsterkerg-vest',
-        nombre: 'Monsterkerg Tactical Mercenary Vest (Mas V)',
-        categoria_principal: 'mas_v',
-        subcategoria: 'ropa',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/8321',
-        atelier_shop_ref: 'Monsterkerg Cyberwear',
-        atelier_shop_url: 'https://www.nexusmods.com/cyberpunk2077/mods/7100',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Chaleco antibalas mercenario para Mas V. Requiere Monsterkerg Atelier.',
-        prescindible: true,
+        id: "MOD_012",
+        nombre: "Browser Extension",
+        categoria_principal: "core",
+        subcategoria: "Framework",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/10038",
+        prescindible: false,
+        requisitos_notas: "Permite registrar y renderizar sitios web interactivos en la red interna de Night City.",
         activo: true,
-        fecha_registro: '2026-01-24T10:00:00Z'
-      },
-
-      // HISTORIA & INMERSIÓN
-      {
-        id: 'cp-mod-judy-romance',
-        nombre: 'Judy Romance Enhanced & Daily Messages',
-        categoria_principal: 'historia',
-        subcategoria: 'romance',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/4508',
-        atelier_shop_ref: '',
-        atelier_shop_url: '',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Añade más de 40 intercambios de mensajes de texto diarios, fotos y llamadas con Judy Alvarez.',
-        prescindible: true,
-        activo: true,
-        fecha_registro: '2026-01-25T10:00:00Z'
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-12T10:00:00Z"
       },
       {
-        id: 'cp-mod-panam-haboob',
-        nombre: 'Panam Palmer Extended Aldecaldos Interactions',
-        categoria_principal: 'historia',
-        subcategoria: 'romance',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/4622',
-        atelier_shop_ref: '',
-        atelier_shop_url: '',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Nuevos diálogos en el campamento nómada y opciones de abrazo/cita.',
-        prescindible: true,
+        id: "MOD_013",
+        nombre: "Virtual Car Dealer",
+        categoria_principal: "core",
+        subcategoria: "Tiendas / Vehículos",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/4454",
+        prescindible: false,
+        requisitos_notas: "Concesionario virtual en la red del apartamento para comprar coches añadidos por mods.",
         activo: true,
-        fecha_registro: '2026-01-26T10:00:00Z'
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-13T10:00:00Z"
       },
-
-      // GAMEPLAY & COMBATE
       {
-        id: 'cp-mod-sandevistan-overhaul',
-        nombre: 'Wannabe Edgerunner - Cyberpsychosis Overhaul',
-        categoria_principal: 'gameplay',
-        subcategoria: 'cyberware_tweaks',
-        origen_tipo: 'url',
-        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/5646',
-        atelier_shop_ref: '',
-        atelier_shop_url: '',
-        rendimiento_impacto: 'nulo',
-        requisitos_notas: 'Sistema de ciberpsicosis: el uso desmedido de Sandevistan y cyberware reduce la humanidad.',
+        id: "MOD_014",
+        nombre: "Cyberware EX",
+        categoria_principal: "gameplay",
+        subcategoria: "Cyberware",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/8270",
         prescindible: true,
+        requisitos_notas: "Expande los slots de ciberware para instalar implantes adicionales y configuraciones híbridas.",
         activo: true,
-        fecha_registro: '2026-01-27T10:00:00Z'
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-14T10:00:00Z"
+      },
+      {
+        id: "MOD_015",
+        nombre: "Reset Attributes Always Available",
+        categoria_principal: "gameplay",
+        subcategoria: "Calidad de Vida",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/9240",
+        prescindible: true,
+        requisitos_notas: "Elimina el límite de un solo reseteo de atributos en la partida.",
+        activo: true,
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-15T10:00:00Z"
+      },
+      {
+        id: "MOD_016",
+        nombre: "Always First Equip",
+        categoria_principal: "gameplay",
+        subcategoria: "Animación / Inmersión",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/2557",
+        prescindible: true,
+        requisitos_notas: "Reproduce la animación de inspección y primer desenfunde de las armas al equiparlas.",
+        activo: true,
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-16T10:00:00Z"
+      },
+      {
+        id: "MOD_017",
+        nombre: "Unlock Me Mods",
+        categoria_principal: "gameplay",
+        subcategoria: "Mecánicas / Armas",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/9358",
+        prescindible: true,
+        requisitos_notas: "Permite quitar y cambiar mods de armas sin destruirlos.",
+        activo: true,
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-17T10:00:00Z"
+      },
+      {
+        id: "MOD_018",
+        nombre: "Faster Elevators",
+        categoria_principal: "gameplay",
+        subcategoria: "Calidad de Vida",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/7918",
+        prescindible: true,
+        requisitos_notas: "Aumenta la velocidad de los ascensores para no esperar tiempos muertos en Night City.",
+        activo: true,
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-18T10:00:00Z"
+      },
+      {
+        id: "MOD_019",
+        nombre: "Nova LUT 4.0",
+        categoria_principal: "graficos",
+        subcategoria: "LUTs / Color Grading",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/11699",
+        prescindible: true,
+        rendimiento_impacto: "bajo",
+        requisitos_notas: "Corrección de color realista, elimina el tinte verde y mejora negros/iluminación sin impacto de FPS.",
+        activo: true,
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-19T10:00:00Z"
+      },
+      {
+        id: "MOD_020",
+        nombre: "High Resolution Meshes and Textures",
+        categoria_principal: "graficos",
+        subcategoria: "Texturas / Modelos",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/15317",
+        prescindible: true,
+        rendimiento_impacto: "medio",
+        requisitos_notas: "Mejora resolución de mallas y texturas en assets y personajes.",
+        activo: true,
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-20T10:00:00Z"
+      },
+      {
+        id: "MOD_021",
+        nombre: "Material and Texture Override",
+        categoria_principal: "core",
+        subcategoria: "Framework Texturas",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/5266",
+        prescindible: false,
+        requisitos_notas: "Permite sustituir shaders, materiales y texturas sin romper los archivos del REDengine.",
+        activo: true,
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-21T10:00:00Z"
+      },
+      {
+        id: "MOD_022",
+        nombre: "Panam Romance Enhanced",
+        categoria_principal: "historia",
+        subcategoria: "Romance / Mensajes",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/4626",
+        prescindible: true,
+        requisitos_notas: "Nuevas rutinas diarias, mensajes de texto adicionales y mayor interacción con Panam.",
+        activo: true,
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-22T10:00:00Z"
+      },
+      {
+        id: "MOD_023",
+        nombre: "Judy Romance Enhanced",
+        categoria_principal: "historia",
+        subcategoria: "Romance / Mensajes",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/4508",
+        prescindible: true,
+        requisitos_notas: "Rutinas en su apartamento, nuevas interacciones y textos dinámicos con Judy.",
+        activo: true,
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-23T10:00:00Z"
+      },
+      {
+        id: "MOD_024",
+        nombre: "Romance Hangouts Enhanced",
+        categoria_principal: "historia",
+        subcategoria: "Romance / Inmersión",
+        origen_tipo: "url",
+        origen_valor: "https://www.nexusmods.com/cyberpunk2077/mods/14101",
+        prescindible: true,
+        requisitos_notas: "Mejora las citas e interacciones continuas con parejas románticas en los apartamentos.",
+        activo: true,
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-24T10:00:00Z"
+      },
+      {
+        id: "MOD_025",
+        nombre: "BtkVanillaHDBody4FemV",
+        categoria_principal: "fem_v",
+        subcategoria: "Cuerpo",
+        origen_tipo: "archivo",
+        origen_valor: "BtkVanillaHDBody4FemV.archive",
+        prescindible: true,
+        requisitos_notas: "Malla HD y texturas de alta fidelidad para el cuerpo vainilla de V femenino.",
+        activo: true,
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-25T10:00:00Z"
+      },
+      {
+        id: "MOD_026",
+        nombre: "BtkAngel Body (Angel Boy & Dependencias)",
+        categoria_principal: "mas_v",
+        subcategoria: "Cuerpo",
+        origen_tipo: "archivo",
+        origen_valor: "BtkAngel_MasV_Body.archive",
+        prescindible: true,
+        requisitos_notas: "Malla anatómica muscular modificada para V masculino. Toda la ropa de Mas V debe soportar este refit.",
+        activo: true,
+        rendimiento_impacto: "nulo",
+        atelier_shop_ref: "",
+        atelier_shop_url: "",
+        fecha_registro: "2026-01-26T10:00:00Z"
       }
     ];
 
     // --- State Management ---
     const STORAGE_KEY = 'cybermod_2077_advanced_v3';
+    const DATASET_VERSION = '2026_10_14_v4_26mods';
     let mods = [];
     let currentMainTab = 'dashboard';
     let currentSubcategoryFilter = 'all';
@@ -1268,63 +1451,69 @@
     }
 
     function loadMods() {
+      const storedVersion = localStorage.getItem('cp2077_dataset_version');
       const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        try {
-          mods = JSON.parse(stored);
-        } catch (e) {
-          mods = [...STARTER_DATABASE];
-          saveMods();
-        }
-      } else {
-        // Check if old v2 storage exists to migrate smoothly
-        const oldStored = localStorage.getItem('cp2077_mods_db');
-        if (oldStored) {
-          try {
-            const oldList = JSON.parse(oldStored);
-            if (Array.isArray(oldList) && oldList.length > 0) {
-              mods = migrateOldMods(oldList);
-              saveMods();
-              showToast('DATOS MIGRADOS', 'Base de datos adaptada a la Arquitectura Modular v3', 'cyan');
-              return;
-            }
-          } catch (e) {}
-        }
-        mods = [...STARTER_DATABASE];
-        saveMods();
-      }
-    }
 
-    function migrateOldMods(oldList) {
-      return oldList.map(item => ({
-        id: item.id || `cp-mod-${Date.now()}-${Math.random()}`,
-        nombre: item.name || item.nombre || 'Mod Sin Nombre',
-        categoria_principal: normalizeCategory(item.category || item.categoria_principal),
-        subcategoria: item.subcategoria || 'all',
-        origen_tipo: item.sourceType === 'path' ? 'archivo' : 'url',
-        origen_valor: item.source || item.origen_valor || '',
-        atelier_shop_ref: item.atelier_shop_ref || '',
-        atelier_shop_url: item.atelier_shop_url || '',
-        rendimiento_impacto: item.rendimiento_impacto || 'bajo',
-        requisitos_notas: item.notes || item.requisitos_notas || '',
-        prescindible: item.category === 'core' ? false : (item.prescindible ?? true),
-        activo: item.enabled ?? true,
-        fecha_registro: item.dateAdded || item.fecha_registro || new Date().toISOString()
-      }));
+      if (stored && storedVersion === DATASET_VERSION) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            mods = parsed;
+            return;
+          }
+        } catch (e) {
+          console.error("Error reading stored mods", e);
+        }
+      }
+
+      // First run, empty storage, or dataset version upgrade:
+      mods = [...STARTER_DATABASE];
+      localStorage.setItem('cp2077_dataset_version', DATASET_VERSION);
+      saveMods();
     }
 
     function normalizeCategory(cat) {
       if (!cat) return 'core';
-      if (cat === 'core') return 'core';
-      if (cat === 'fem_v') return 'fem_v';
-      if (cat === 'mas_v') return 'mas_v';
-      if (cat === 'cosmetic') return 'graficos';
-      if (cat === 'gameplay') return 'gameplay';
-      return cat;
+      const c = String(cat).toLowerCase().trim();
+      if (c === 'core') return 'core';
+      if (c === 'fem_v' || c === 'fem v') return 'fem_v';
+      if (c === 'mas_v' || c === 'mas v') return 'mas_v';
+      if (c === 'graficos' || c === 'gráficos' || c === 'cosmetic') return 'graficos';
+      if (c === 'historia') return 'historia';
+      if (c === 'gameplay') return 'gameplay';
+      return 'core';
     }
 
     function saveMods() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(mods));
+    }
+
+    // --- Dynamic Subcategory Helpers ---
+    function getSubcategoriesForCategory(catKey) {
+      // Subcategorías únicas presentes en los mods actuales de esta categoría
+      const uniqueInMods = Array.from(new Set(
+        mods
+          .filter(m => m.categoria_principal === catKey && m.subcategoria && m.subcategoria.trim() !== '')
+          .map(m => m.subcategoria.trim())
+      ));
+
+      // Subcategorías predefinidas del sistema
+      const defaults = (SUBCATEGORIES_CONFIG[catKey] || []).filter(s => s.id !== 'all').map(s => s.label);
+      const combined = Array.from(new Set([...uniqueInMods, ...defaults]));
+
+      const allLabels = {
+        core: 'Todos los Core',
+        graficos: 'Todos Gráficos',
+        fem_v: 'Todo Fem V',
+        mas_v: 'Todo Mas V',
+        historia: 'Toda Historia',
+        gameplay: 'Todo Gameplay'
+      };
+
+      return [
+        { id: 'all', label: allLabels[catKey] || 'Todos' },
+        ...combined.map(name => ({ id: name, label: name }))
+      ];
     }
 
     // --- Clock ---
@@ -1374,6 +1563,10 @@
         borderCol = 'border-cp-purple';
         barCol = 'bg-cp-purple';
         titleCol = 'text-cp-purple';
+      } else if (type === 'green') {
+        borderCol = 'border-cp-green';
+        barCol = 'bg-cp-green';
+        titleCol = 'text-cp-green';
       }
 
       toast.className = `p-3 bg-cp-card border ${borderCol} cp-cut-sm shadow-[0_0_15px_rgba(0,0,0,0.85)] text-xs font-mono max-w-sm pointer-events-auto transform translate-y-2 opacity-0 transition-all duration-300`;
@@ -1399,6 +1592,9 @@
     function renderApp() {
       updateNavBadges();
       renderDashboardKPIs();
+
+      const footerPresetCount = document.getElementById('footer-preset-count');
+      if (footerPresetCount) footerPresetCount.textContent = mods.length;
 
       if (currentMainTab === 'dashboard') {
         showTabSection('view-dashboard');
@@ -1433,7 +1629,7 @@
       const masCount = mods.filter(m => m.categoria_principal === 'mas_v').length;
       const historiaCount = mods.filter(m => m.categoria_principal === 'historia').length;
       const gameplayCount = mods.filter(m => m.categoria_principal === 'gameplay').length;
-      const atelierClothing = mods.filter(m => m.atelier_shop_ref && m.atelier_shop_ref.trim() !== '').length;
+      const atelierClothing = mods.filter(m => m.subcategoria.includes('Atelier') || m.subcategoria.includes('Tiendas') || (m.atelier_shop_ref && m.atelier_shop_ref.trim() !== '')).length;
 
       document.getElementById('tab-count-core').textContent = coreCount;
       document.getElementById('tab-count-graficos').textContent = graficosCount;
@@ -1464,8 +1660,8 @@
       const atelierClothingCount = mods.filter(m => m.atelier_shop_ref && m.atelier_shop_ref.trim() !== '').length;
 
       document.getElementById('dash-core-count').textContent = coreCount;
-      document.getElementById('dash-atelier-count').textContent = `${shopsSet.size} Tiendas`;
-      document.getElementById('dash-clothing-count').textContent = `${atelierClothingCount} Prendas vinculadas`;
+      document.getElementById('dash-atelier-count').textContent = shopsSet.size > 0 ? `${shopsSet.size} Tiendas` : `Framework Listo`;
+      document.getElementById('dash-clothing-count').textContent = atelierClothingCount > 0 ? `${atelierClothingCount} Prendas vinculadas` : `Virtual Atelier (MOD_011)`;
       document.getElementById('dash-v-count').textContent = `${femCount} / ${masCount}`;
       document.getElementById('dash-active-count').textContent = `${activeCount} / ${mods.length}`;
       document.getElementById('dash-prescindible-count').textContent = `${prescindibleCount} Prescindibles`;
@@ -1482,7 +1678,7 @@
     // --- Modular Category View Render ---
     function renderCategoryView() {
       const catKey = currentMainTab;
-      const subcats = SUBCATEGORIES_CONFIG[catKey] || [];
+      const subcats = getSubcategoriesForCategory(catKey);
       const subFilterContainer = document.getElementById('subcategory-filters-container');
       subFilterContainer.innerHTML = '';
 
@@ -1501,7 +1697,7 @@
       // Render Subcategory filter buttons
       subcats.forEach(sub => {
         const btn = document.createElement('button');
-        const isActive = currentSubcategoryFilter === sub.id;
+        const isActive = currentSubcategoryFilter.toLowerCase() === sub.id.toLowerCase();
         btn.className = `px-2.5 py-1 text-xs font-mono font-bold uppercase transition cp-cut-sm flex items-center space-x-1 ${
           isActive 
             ? 'bg-cp-yellow text-black shadow-[0_0_8px_rgba(252,238,10,0.4)]' 
@@ -1513,7 +1709,7 @@
         if (sub.id === 'all') {
           count = mods.filter(m => m.categoria_principal === catKey).length;
         } else {
-          count = mods.filter(m => m.categoria_principal === catKey && m.subcategoria === sub.id).length;
+          count = mods.filter(m => m.categoria_principal === catKey && m.subcategoria && m.subcategoria.toLowerCase() === sub.id.toLowerCase()).length;
         }
 
         btn.innerHTML = `<span>${escapeHtml(sub.label)}</span><span class="text-[10px] ml-1 px-1 py-0.2 ${isActive ? 'bg-black/30 text-black' : 'bg-cp-card text-cp-muted'} rounded">${count}</span>`;
@@ -1525,7 +1721,7 @@
         subFilterContainer.appendChild(btn);
       });
 
-      // Special Category Banner (Core vs Graphics vs Atelier hint)
+      // Special Category Banner
       const banner = document.getElementById('category-banner');
       const bannerIcon = document.getElementById('category-banner-icon');
       const bannerText = document.getElementById('category-banner-text');
@@ -1534,23 +1730,23 @@
       if (catKey === 'core') {
         banner.className = 'p-3 border border-cp-red/70 bg-cp-red/10 cp-cut text-xs font-mono flex items-center justify-between';
         bannerIcon.textContent = '⚠️';
-        bannerText.innerHTML = '<strong class="text-cp-red">AVISO DE KERNEL:</strong> Los mods en Core Engine son críticos. Desactivarlos o purgarlos provocará crashes al iniciar Cyberpunk 2077.';
+        bannerText.innerHTML = '<strong class="text-cp-red">AVISO DE KERNEL:</strong> Los mods en Core Engine son indispensables (CET, RED4ext, ArchiveXL, etc.). Desactivarlos impedirá el arranque del juego.';
         bannerBadge.className = 'px-2 py-0.5 text-[10px] font-bold uppercase bg-cp-red text-black rounded';
         bannerBadge.textContent = 'NO DESINSTALAR';
         banner.classList.remove('hidden');
       } else if (catKey === 'graficos') {
         banner.className = 'p-3 border border-cp-cyan/70 bg-cp-cyan/10 cp-cut text-xs font-mono flex items-center justify-between';
         bannerIcon.textContent = '🖥️';
-        bannerText.innerHTML = '<strong class="text-cp-cyan">DIAGNÓSTICO GRÁFICO:</strong> Revisa la etiqueta de impacto de rendimiento antes de acumular shaders ReShade con Path Tracing.';
+        bannerText.innerHTML = '<strong class="text-cp-cyan">DIAGNÓSTICO GRÁFICO:</strong> Nova LUT 4.0 no consume FPS; las texturas HD aprovechan la VRAM de tu GPU.';
         bannerBadge.className = 'px-2 py-0.5 text-[10px] font-bold uppercase bg-cp-cyan text-black rounded';
-        bannerBadge.textContent = 'PERFORMANCE ENGINE';
+        bannerBadge.textContent = 'VISUAL CALIBRATED';
         banner.classList.remove('hidden');
       } else if (catKey === 'fem_v' || catKey === 'mas_v') {
-        banner.className = 'p-3 border border-cp-purple/70 bg-cp-purple/10 cp-cut text-xs font-mono flex items-center justify-between';
-        bannerIcon.textContent = '🛍️';
-        bannerText.innerHTML = `<strong class="text-purple-300">VIRTUAL ATELIER:</strong> Las prendas vinculadas a tiendas Atelier pueden adquirirse en el PC del apartamento de V en Night City.`;
-        bannerBadge.className = 'px-2 py-0.5 text-[10px] font-bold uppercase bg-cp-purple text-black rounded';
-        bannerBadge.textContent = 'ATELIER READY';
+        banner.className = 'p-3 border border-pink-500/70 bg-pink-500/10 cp-cut text-xs font-mono flex items-center justify-between';
+        bannerIcon.textContent = '🧍';
+        bannerText.innerHTML = `<strong class="text-pink-300">ANATOMY REFIT:</strong> Mallas corporales dedicadas (BtkVanillaHDBody4FemV / BtkAngel Body). Requieren ArchiveXL y modas compatibles.`;
+        bannerBadge.className = 'px-2 py-0.5 text-[10px] font-bold uppercase bg-pink-500 text-black rounded';
+        bannerBadge.textContent = 'REFIT READY';
         banner.classList.remove('hidden');
       } else {
         banner.classList.add('hidden');
@@ -1559,7 +1755,7 @@
       // Filter mods
       let list = mods.filter(m => m.categoria_principal === catKey);
       if (currentSubcategoryFilter !== 'all') {
-        list = list.filter(m => m.subcategoria === currentSubcategoryFilter);
+        list = list.filter(m => m.subcategoria && m.subcategoria.toLowerCase() === currentSubcategoryFilter.toLowerCase());
       }
       if (searchQuery.trim() !== '') {
         const q = searchQuery.toLowerCase().trim();
@@ -1567,13 +1763,16 @@
           (m.nombre && m.nombre.toLowerCase().includes(q)) ||
           (m.origen_valor && m.origen_valor.toLowerCase().includes(q)) ||
           (m.requisitos_notas && m.requisitos_notas.toLowerCase().includes(q)) ||
-          (m.atelier_shop_ref && m.atelier_shop_ref.toLowerCase().includes(q))
+          (m.subcategoria && m.subcategoria.toLowerCase().includes(q)) ||
+          (m.id && m.id.toLowerCase().includes(q))
         );
       }
 
       // Sort
       list.sort((a, b) => {
-        if (currentSort === 'recent') return new Date(b.fecha_registro) - new Date(a.fecha_registro);
+        if (currentSort === 'recent') {
+          return (a.id || '').localeCompare(b.id || '');
+        }
         if (currentSort === 'name-asc') return a.nombre.localeCompare(b.nombre);
         if (currentSort === 'name-desc') return b.nombre.localeCompare(a.nombre);
         if (currentSort === 'essential') return (a.prescindible === false ? 0 : 1) - (b.prescindible === false ? 0 : 1);
@@ -1605,8 +1804,11 @@
       container.innerHTML = '';
       unassignedGrid.innerHTML = '';
 
-      // Collect all mods with clothes or general mods
-      const clothesMods = mods.filter(m => m.subcategoria === 'ropa' || (m.atelier_shop_ref && m.atelier_shop_ref.trim() !== ''));
+      // Collect all mods with clothes or shop refs
+      const clothesMods = mods.filter(m => 
+        (m.subcategoria && (m.subcategoria.toLowerCase().includes('ropa') || m.subcategoria.toLowerCase().includes('outfit'))) || 
+        (m.atelier_shop_ref && m.atelier_shop_ref.trim() !== '')
+      );
 
       // Group by Shop
       const shopsMap = new Map();
@@ -1637,21 +1839,17 @@
       if (shopsMap.size === 0) {
         container.innerHTML = `
           <div class="text-center py-12 px-4 bg-cp-card border border-dashed border-cp-border cp-cut space-y-3 font-mono">
-            <h4 class="text-sm font-title font-bold text-white">NO HAY TIENDAS VIRTUAL ATELIER REGISTRADAS</h4>
+            <h4 class="text-sm font-title font-bold text-white">FRAMEWORK VIRTUAL ATELIER INSTALADO</h4>
             <p class="text-xs text-cp-muted max-w-md mx-auto">
-              Asocia mods de ropa con tiendas como "Nola Dreamer Atelier", "Viki Shop" o "Monsterkerg" al registrar o editar un mod.
+              Virtual Atelier (MOD_011) y Equipment EX (MOD_010) están presentes en el Core. Puedes vincular cualquier mod de ropa a una tienda virtual (ej: "Nola Dreamer Atelier", "Viki Shop 4") desde el formulario de registro.
             </p>
             <button id="btn-atelier-seed" class="cp-btn-yellow px-4 py-2 text-xs font-title uppercase tracking-wider cp-cut-sm">
-              CARGAR TIENDAS DE EJEMPLO
+              REGISTRAR PRENDA EN VIRTUAL ATELIER
             </button>
           </div>
         `;
         document.getElementById('btn-atelier-seed')?.addEventListener('click', () => {
-          mods = [...STARTER_DATABASE];
-          saveMods();
-          renderApp();
-          sound.success();
-          showToast('TIENDAS CARGADAS', 'Tiendas y prendas de Virtual Atelier inyectadas', 'purple');
+          openAddModal('fem_v', 'Viki Shop 4 Atelier');
         });
       } else {
         shopsMap.forEach(shop => {
@@ -1659,7 +1857,6 @@
           shopCard.className = 'bg-cp-card border border-cp-purple/60 p-4 cp-cut space-y-3 shadow-[0_0_15px_rgba(181,55,242,0.1)]';
 
           shopCard.innerHTML = `
-            <!-- Shop Header -->
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-cp-border pb-3">
               <div class="flex items-center space-x-2.5">
                 <div class="w-8 h-8 bg-cp-purple/20 border border-cp-purple text-cp-purple flex items-center justify-center cp-cut-sm">
@@ -1678,7 +1875,6 @@
                 </div>
               </div>
 
-              <!-- Shop Link -->
               <div class="flex items-center space-x-2">
                 ${shop.url ? `
                   <a href="${escapeHtml(shop.url)}" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-cp-dark border border-cp-cyan text-cp-cyan hover:bg-cp-cyan hover:text-black transition text-xs font-mono font-bold flex items-center space-x-1.5 cp-cut-sm">
@@ -1696,7 +1892,6 @@
               </div>
             </div>
 
-            <!-- Items Grid for this Shop -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pt-1">
               ${shop.items.map(item => `
                 <div class="bg-cp-dark/90 border border-cp-border p-3 cp-cut-sm flex flex-col justify-between hover:border-cp-purple transition">
@@ -1765,14 +1960,9 @@
     function createModCard(mod, index) {
       const card = document.createElement('div');
       const isCritical = mod.prescindible === false;
-      const isUrl = mod.origen_tipo === 'url' || mod.origen_valor.startsWith('http');
+      const isUrl = (mod.origen_tipo || '').toLowerCase() === 'url' || (mod.origen_valor || '').startsWith('http');
 
       card.className = `mod-card bg-cp-card border ${isCritical ? 'border-cp-red/60' : (mod.activo ? 'border-cp-border' : 'border-cp-border/40 opacity-70')} p-4 cp-cut flex flex-col justify-between relative group hover:border-cp-cyan`;
-
-      // Subcategory label
-      const subcats = SUBCATEGORIES_CONFIG[mod.categoria_principal] || [];
-      const subObj = subcats.find(s => s.id === mod.subcategoria);
-      const subLabel = subObj ? subObj.label : mod.subcategoria;
 
       // Performance badge HTML
       let perfHtml = '';
@@ -1789,6 +1979,8 @@
         perfHtml = `<span class="text-[9px] font-mono px-1.5 py-0.2 border ${col} rounded uppercase font-bold">${txt}</span>`;
       }
 
+      const displayId = mod.id || `#MOD_${String(index + 1).padStart(3, '0')}`;
+
       card.innerHTML = `
         <div>
           <!-- Top Row: Status, Subcategory & Critical Badge -->
@@ -1799,7 +1991,7 @@
                 ${mod.activo ? 'ACTIVO' : 'INACTIVO'}
               </span>
               <span class="text-cp-border">|</span>
-              <span class="text-[10px] font-mono text-cp-muted">#${String(index + 1).padStart(3, '0')}</span>
+              <span class="text-[10px] font-mono text-cp-muted">${escapeHtml(displayId)}</span>
             </div>
 
             <div class="flex items-center space-x-1">
@@ -1822,9 +2014,9 @@
           </h3>
 
           <!-- Subcategory Tag -->
-          <div class="mt-1 flex items-center space-x-2">
-            <span class="text-[10px] font-mono text-cp-cyan bg-cp-cyan/10 px-1.5 py-0.2 border border-cp-cyan/30 rounded">
-              ${escapeHtml(subLabel)}
+          <div class="mt-1.5 flex flex-wrap items-center gap-1.5">
+            <span class="text-[10px] font-mono text-cp-cyan bg-cp-cyan/10 px-1.5 py-0.2 border border-cp-cyan/30 rounded font-bold">
+              ${escapeHtml(mod.subcategoria || 'General')}
             </span>
             ${mod.atelier_shop_ref ? `
               <span class="text-[10px] font-mono text-purple-300 bg-cp-purple/10 px-1.5 py-0.2 border border-cp-purple/30 rounded flex items-center space-x-1">
@@ -1857,7 +2049,7 @@
                 <svg class="w-3.5 h-3.5 shrink-0 text-cp-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
                 </svg>
-                <span class="truncate text-[11px]">${escapeHtml(mod.origen_valor)}</span>
+                <span class="truncate text-[11px] font-bold">${escapeHtml(mod.origen_valor)}</span>
               </div>
             `}
           </div>
@@ -1911,6 +2103,7 @@
       document.getElementById('btn-submit-text').textContent = 'INYECTAR MOD';
       document.getElementById('form-mod-id').value = '';
       document.getElementById('form-mod-nombre').value = '';
+      document.getElementById('form-mod-subcategoria').value = '';
       document.getElementById('form-mod-origen').value = '';
       document.getElementById('form-mod-notas').value = '';
       document.getElementById('form-mod-atelier-shop').value = defaultShop || '';
@@ -1928,7 +2121,7 @@
       }
 
       setSourceType('url');
-      populateSubcategoriesDropdown(catSelect.value);
+      populateSubcategoriesDatalist(catSelect.value);
       updateConditionalFields(catSelect.value);
 
       document.getElementById('modal-mod-form').classList.remove('hidden');
@@ -1944,6 +2137,7 @@
       document.getElementById('btn-submit-text').textContent = 'ACTUALIZAR DATOS';
       document.getElementById('form-mod-id').value = mod.id;
       document.getElementById('form-mod-nombre').value = mod.nombre;
+      document.getElementById('form-mod-subcategoria').value = mod.subcategoria || '';
       document.getElementById('form-mod-origen').value = mod.origen_valor;
       document.getElementById('form-mod-notas').value = mod.requisitos_notas || '';
       document.getElementById('form-mod-atelier-shop').value = mod.atelier_shop_ref || '';
@@ -1954,8 +2148,9 @@
       const catSelect = document.getElementById('form-mod-categoria');
       catSelect.value = mod.categoria_principal;
 
-      setSourceType(mod.origen_tipo === 'archivo' ? 'archivo' : 'url');
-      populateSubcategoriesDropdown(mod.categoria_principal, mod.subcategoria);
+      const isArch = (mod.origen_tipo || '').toLowerCase() === 'archivo' || (!mod.origen_valor.startsWith('http') && mod.origen_valor.includes('.archive'));
+      setSourceType(isArch ? 'archivo' : 'url');
+      populateSubcategoriesDatalist(mod.categoria_principal);
       updateConditionalFields(mod.categoria_principal);
 
       // Performance radio
@@ -1971,17 +2166,15 @@
       document.getElementById('modal-mod-form').classList.add('hidden');
     }
 
-    function populateSubcategoriesDropdown(catKey, selectedSub = null) {
-      const subSelect = document.getElementById('form-mod-subcategoria');
-      subSelect.innerHTML = '';
-      const list = SUBCATEGORIES_CONFIG[catKey] || [];
+    function populateSubcategoriesDatalist(catKey) {
+      const datalist = document.getElementById('subcategories-datalist');
+      datalist.innerHTML = '';
+      const list = getSubcategoriesForCategory(catKey).filter(s => s.id !== 'all');
       
-      list.filter(s => s.id !== 'all').forEach(s => {
+      list.forEach(s => {
         const opt = document.createElement('option');
-        opt.value = s.id;
-        opt.textContent = s.label;
-        if (selectedSub && selectedSub === s.id) opt.selected = true;
-        subSelect.appendChild(opt);
+        opt.value = s.label;
+        datalist.appendChild(opt);
       });
     }
 
@@ -2031,8 +2224,8 @@
       } else {
         tabPath.className = 'py-1.5 px-3 border border-cp-yellow bg-cp-yellow/15 text-cp-yellow font-bold flex items-center justify-center space-x-1.5 cp-cut-sm';
         tabUrl.className = 'py-1.5 px-3 border border-cp-border bg-cp-dark text-cp-muted font-bold flex items-center justify-center space-x-1.5 cp-cut-sm';
-        input.placeholder = 'archive/pc/mod/mi_mod.archive o r6/scripts/...';
-        hint.textContent = 'Ruta o nombre del archivo local en la instalación del juego';
+        input.placeholder = 'MiMod.archive o r6/scripts/...';
+        hint.textContent = 'Nombre o ruta del archivo local dentro de Cyberpunk 2077';
         input.dataset.sourceType = 'archivo';
       }
     }
@@ -2063,12 +2256,26 @@
       showToast('MOD PURGADO', `${name} desinstalado del sistema`, 'danger');
     }
 
+    // --- Reset / Seed Initial Presets ---
+    function resetToStarterPresets() {
+      sound.click();
+      if (confirm('¿Deseas recargar la base de datos oficial con los 26 presets iniciales de Cyberpunk 2077?')) {
+        mods = [...STARTER_DATABASE];
+        localStorage.setItem('cp2077_dataset_version', DATASET_VERSION);
+        saveMods();
+        renderApp();
+        sound.success();
+        showToast('PRESETS INICIALES CARGADOS', 'Se han inyectado los 26 mods oficiales al Load Order.', 'green');
+      }
+    }
+
     // --- Export & Import Backup ---
     function exportBackup() {
       sound.success();
       const backupData = {
         app: 'CYBERMOD_2077_MODULAR_HUB',
-        schemaVersion: '3.0',
+        schemaVersion: '4.0',
+        datasetVersion: DATASET_VERSION,
         exportDate: new Date().toISOString(),
         totalMods: mods.length,
         mods: mods
@@ -2119,11 +2326,11 @@
           else throw new Error('Formato no reconocido');
 
           const normalized = rawList.map((item, idx) => ({
-            id: item.id || `imported-${Date.now()}-${idx}`,
+            id: item.id || `MOD_${String(idx + 1).padStart(3, '0')}`,
             nombre: item.nombre || item.name || 'Mod Importado',
             categoria_principal: normalizeCategory(item.categoria_principal || item.category),
-            subcategoria: item.subcategoria || 'all',
-            origen_tipo: item.origen_tipo || (item.sourceType === 'path' ? 'archivo' : 'url'),
+            subcategoria: item.subcategoria || 'General',
+            origen_tipo: (item.origen_tipo || (item.sourceType === 'path' ? 'archivo' : 'url')).toLowerCase(),
             origen_valor: item.origen_valor || item.source || '',
             atelier_shop_ref: item.atelier_shop_ref || '',
             atelier_shop_url: item.atelier_shop_url || '',
@@ -2138,7 +2345,7 @@
             mods = normalized;
             showToast('REEMPLAZO TOTAL', `Base de datos restaurada con ${normalized.length} mods`, 'yellow');
           } else {
-            // Merge: avoid duplicates by name or source
+            // Merge: avoid duplicates by ID or name
             let addedCount = 0;
             normalized.forEach(n => {
               const exists = mods.some(m => m.id === n.id || (m.nombre.toLowerCase() === n.nombre.toLowerCase()));
@@ -2275,6 +2482,10 @@
         }
       });
 
+      // Reset / Load Presets buttons
+      document.getElementById('btn-seed-presets').addEventListener('click', resetToStarterPresets);
+      document.getElementById('btn-seed-presets-banner')?.addEventListener('click', resetToStarterPresets);
+
       // Source type toggle tabs inside modal
       document.getElementById('tab-src-url').addEventListener('click', () => {
         sound.click();
@@ -2288,7 +2499,7 @@
       // Category select inside modal
       document.getElementById('form-mod-categoria').addEventListener('change', (e) => {
         sound.click();
-        populateSubcategoriesDropdown(e.target.value);
+        populateSubcategoriesDatalist(e.target.value);
         updateConditionalFields(e.target.value);
       });
 
@@ -2327,7 +2538,7 @@
         const id = document.getElementById('form-mod-id').value;
         const nombre = document.getElementById('form-mod-nombre').value.trim();
         const categoria_principal = document.getElementById('form-mod-categoria').value;
-        const subcategoria = document.getElementById('form-mod-subcategoria').value;
+        const subcategoria = document.getElementById('form-mod-subcategoria').value.trim() || 'General';
         const origen_valor = document.getElementById('form-mod-origen').value.trim();
         const origen_tipo = document.getElementById('form-mod-origen').dataset.sourceType || 
           (origen_valor.startsWith('http') ? 'url' : 'archivo');
@@ -2367,7 +2578,7 @@
         } else {
           // New
           const newMod = {
-            id: `cp-mod-${Date.now()}`,
+            id: `MOD_${String(mods.length + 1).padStart(3, '0')}`,
             nombre,
             categoria_principal,
             subcategoria,
@@ -2381,7 +2592,7 @@
             activo,
             fecha_registro: new Date().toISOString()
           };
-          mods.unshift(newMod);
+          mods.push(newMod);
           showToast('MOD INYECTADO', `${nombre} añadido al load order`, 'yellow');
         }
 
