@@ -1,48 +1,45 @@
-# CYBERMOD 2077 // Night City Protocol
+# CYBERMOD 2077 // Modular Catalog & Virtual Atelier Hub
 
-> Gestor web autocontenido de Mods y Load Order para **Cyberpunk 2077**, diseñado con estética Cyberpunk Night City (paleta oscura, amarillo neón `#fcee0a`, cian `#00f0ff` y rojo Arasaka `#ff003c`). Listo para **GitHub Pages**.
+> Aplicación web avanzada para la catalogación modular, gestión y orden de carga de mods de **Cyberpunk 2077**. Diseñada con estética Night City (paleta oscura `#08090d`, amarillo Kiroshi `#fcee0a`, cian `#00f0ff`, rojo Arasaka `#ff003c` y morado Neón `#b537f2`), 100% autocontenida en `index.html` y optimizada para **GitHub Pages**.
 
 ---
 
-## ⚡ Características Principales
+## ⚡ Novedades de la Arquitectura Modular v3.0
 
-- **100% Autocontenido**: Un único archivo `index.html` sin build steps ni dependencias complejas.
-- **Estética Cyberpunk 2077**: Bordes angulares chamfered (`clip-path`), scanlines de terminal, fuentes tipográficas tecnológicas (*Orbitron*, *Rajdhani*, *Share Tech Mono*) y efectos glitch y resplandor neón.
-- **Modelo de Datos Completo**:
-  - Nombre del mod.
-  - Origen / Tipo de entrada: Enlace directo (NexusMods / URL) o Archivo/Ruta local (`.archive`, scripts CET, etc.).
-  - Categorías y Prioridades:
-    - ⚡ `Imprescindible / Core Engine` (CET, Redscript, ArchiveXL, TweakXL, Codeware, RED4ext).
-    - 🌸 `Fem V` (Mods exclusivos de V femenino).
-    - ⚡ `Mas V` (Mods exclusivos de V masculino).
-    - 🎨 `Prescindible / Estético General` (Autos, reshades, radios, texturas).
-    - ⚔️ `Gameplay / Skills` (Rebalanceos, perks, cyberware tweaks).
-  - Notas y Dependencias (con botones de inserción rápida para `ArchiveXL`, `TweakXL`, `RED4ext`, etc.).
-- **Persistencia en `localStorage`**: Todos los datos se guardan en el navegador y sobreviven a recargas de página.
-- **Filtros Rápidos & Búsqueda en Vivo**:
-  - Filtros por pestaña: *Todos*, *Core Engine*, *Fem V*, *Mas V*, *Estéticos*, *Gameplay*.
-  - Búsqueda en tiempo real por nombre, archivo o dependencias.
-- **Gestión Rápida de Tarjetas**:
-  - Switch ON/OFF para activar/desactivar del orden de carga.
-  - Botón de copiado con un clic ("Copiar ruta / enlace").
-  - Enlaces directos a NexusMods / web.
-  - Edición en modal dedicada.
-  - Purga / Eliminación con confirmación de seguridad.
-- **Sistema de Backup (JSON)**:
-  - Exportar base de datos a `.json`.
-  - Importar archivo de backup para restaurar o migrar entre ordenadores.
-- **Sintetizador de Audio Cyberpunk (Web Audio API)**:
-  - Bips y efectos sci-fi sin necesidad de archivos externos de audio, con opción de silenciar en el HUD.
+### 1. Hub Modular & Navegación por Secciones:
+- **📊 Dashboard General**: Métricas en vivo (mods críticos, tiendas Atelier, estado del load order y accesos directos).
+- **⚡ [CORE] Frameworks & Engine Essentials**: CET, Redscript, ArchiveXL, TweakXL, Codeware, RED4ext, Equipment-EX. Etiquetados como **"Crítico / No Desinstalar"** con bloqueo de seguridad ante desactivaciones accidentales.
+- **🖥️ [GRÁFICOS & RENDIMIENTO]**:
+  - Subcategorías: `LUTs / Color Grading`, `Texturas / Reshades`, `Optimizaciones / Rendimiento`.
+  - Selector de **Impacto en Rendimiento** (Bajo / Medio / Alto) para planear actualizaciones de hardware o caídas de FPS.
+- **🌸 [PERFIL: FEM V] y ⚡ [PERFIL: MAS V]**:
+  - Filtrado por subcategorías: `Cuerpo & Mallas (Angel / Hyst / Solo)`, `Ropa & Outfits`, `Pelo & Cabello`, `Tatuajes / Piel / Cyberware visual`.
+  - Integración nativa con **Virtual Atelier**: cada prenda se asocia a su tienda virtual con un solo clic.
+- **🛍️ VIRTUAL ATELIER HUB (Módulo Exclusivo)**:
+  - Agrupación por tienda holográfica (*Nola Dreamer Atelier*, *Viki Shop*, *Monsterkerg*, etc.).
+  - Enlace directo a la tienda en NexusMods y catálogo de todas las prendas que dependen de ella.
+  - Sección de prendas sin tienda para reasignación rápida.
+- **💬 [HISTORIA, MISIONES & INMERSIÓN]**:
+  - Subcategorías: `Misiones & Contenido Extra`, `Romance & Mensajes (Panam, Judy, etc.)`, `Comportamiento de NPCs / Ciudad`.
+- **⚔️ [GAMEPLAY & COMBATE]**:
+  - Subcategorías: `Skills / Stealth / Perks`, `Cyberware Tweaks (Sandevistan / Ciberpsicosis)`, `Armas & Vehículos`.
+
+---
+
+## 🛡️ Persistencia & Sistema de Backup Inteligente
+
+- **`localStorage` Automático**: Todos los cambios se guardan al instante sin necesidad de backend.
+- **Exportación en JSON**: Descarga un respaldo con metadata y timestamp (`cp2077_modular_backup_[fecha].json`).
+- **Importación con Prevención de Sobreescrituras**:
+  - **Modo Fusión (Recomendado)**: Integra los mods del archivo JSON agregando los faltantes sin borrar tus mods locales actuales.
+  - **Modo Reemplazo Total**: Sobreescritura completa con confirmación explícita.
 
 ---
 
 ## 🚀 Despliegue en GitHub Pages
 
-1. Ve a los **Settings** de este repositorio en GitHub.
-2. Navega a la sección **Pages** (menú izquierdo).
-3. En **Build and deployment > Source**, selecciona `Deploy from a branch`.
-4. Elige la rama `main` y la carpeta `/ (root)`.
-5. Haz clic en **Save**. En cuestión de segundos tu app estará online.
+El proyecto está configurado y desplegado automáticamente en la rama `main`:
+- **URL de Producción:** [https://victorramirezp.github.io/cyberpunk-mod-manager/](https://victorramirezp.github.io/cyberpunk-mod-manager/)
 
 ---
 

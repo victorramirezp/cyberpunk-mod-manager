@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CYBERMOD 2077 // NIGHT CITY PROTOCOL</title>
-  
+  <title>CYBERMOD 2077 // MODULAR CATALOG & LOAD ORDER</title>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- Google Fonts: Orbitron, Rajdhani, Share Tech Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,21 +20,21 @@
         extend: {
           colors: {
             cp: {
-              black: '#07070a',
-              dark: '#0d0d13',
-              card: '#12131a',
-              panel: '#171822',
-              hover: '#1e202e',
-              border: '#2a2d3d',
+              black: '#08090d',
+              dark: '#111218',
+              card: '#161822',
+              panel: '#1b1d2a',
+              border: '#2a2d40',
               yellow: '#fcee0a',
               yellowGlow: 'rgba(252, 238, 10, 0.45)',
               cyan: '#00f0ff',
               cyanGlow: 'rgba(0, 240, 255, 0.45)',
               red: '#ff003c',
               redGlow: 'rgba(255, 0, 60, 0.45)',
-              purple: '#b026ff',
+              purple: '#b537f2',
+              purpleGlow: 'rgba(181, 55, 242, 0.45)',
               green: '#00ff66',
-              muted: '#7b829a'
+              muted: '#7a829e'
             }
           },
           fontFamily: {
@@ -48,29 +48,30 @@
   </script>
 
   <style>
-    /* Cyberpunk Scanlines & Grid Effects */
+    /* Night City Background & Scanlines */
     body {
-      background-color: #07070a;
+      background-color: #08090d;
       color: #e2e8f0;
       font-family: 'Rajdhani', sans-serif;
       background-image: 
         radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.08) 0%, transparent 60%),
-        radial-gradient(circle at 90% 100%, rgba(255, 0, 60, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 85% 100%, rgba(181, 55, 242, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 10% 80%, rgba(255, 0, 60, 0.06) 0%, transparent 50%),
         linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+      background-size: 100% 100%, 100% 100%, 100% 100%, 32px 32px, 32px 32px;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
     /* Cyberpunk Scrollbar */
     ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
     }
     ::-webkit-scrollbar-track {
-      background: #0d0d13;
-      border-left: 1px solid #1e202e;
+      background: #08090d;
+      border-left: 1px solid #1b1d2a;
     }
     ::-webkit-scrollbar-thumb {
       background: #fcee0a;
@@ -81,43 +82,18 @@
       box-shadow: 0 0 8px rgba(0, 240, 255, 0.8);
     }
 
-    /* Angular Chamfered Borders (Clip Paths) */
-    .cp-cut-corner {
+    /* Chamfered Corners */
+    .cp-cut {
       clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
     }
-    .cp-cut-corner-sm {
+    .cp-cut-sm {
       clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
     }
-    .cp-cut-top-right {
-      clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
-    }
-    .cp-cut-bottom-right {
-      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+    .cp-cut-tr {
+      clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
     }
 
-    /* Glitch and Neon Effects */
-    .neon-yellow-text {
-      color: #fcee0a;
-      text-shadow: 0 0 10px rgba(252, 238, 10, 0.7), 0 0 20px rgba(252, 238, 10, 0.3);
-    }
-    .neon-cyan-text {
-      color: #00f0ff;
-      text-shadow: 0 0 10px rgba(0, 240, 255, 0.7), 0 0 20px rgba(0, 240, 255, 0.3);
-    }
-    .neon-red-text {
-      color: #ff003c;
-      text-shadow: 0 0 10px rgba(255, 0, 60, 0.7), 0 0 20px rgba(255, 0, 60, 0.3);
-    }
-    .neon-border-yellow {
-      border-color: #fcee0a;
-      box-shadow: 0 0 12px rgba(252, 238, 10, 0.35);
-    }
-    .neon-border-cyan {
-      border-color: #00f0ff;
-      box-shadow: 0 0 12px rgba(0, 240, 255, 0.35);
-    }
-
-    /* Cyberpunk Button Glitch & Hover */
+    /* Cyber Buttons */
     .cp-btn-yellow {
       background: #fcee0a;
       color: #000;
@@ -126,14 +102,13 @@
     }
     .cp-btn-yellow:hover {
       background: #00f0ff;
-      color: #000;
-      box-shadow: 0 0 18px rgba(0, 240, 255, 0.75);
+      box-shadow: 0 0 16px rgba(0, 240, 255, 0.7);
       transform: translateY(-1px);
     }
 
     .cp-btn-outline {
-      background: rgba(18, 19, 26, 0.85);
-      border: 1px solid #2a2d3d;
+      background: rgba(22, 24, 34, 0.85);
+      border: 1px solid #2a2d40;
       transition: all 0.2s ease;
     }
     .cp-btn-outline:hover {
@@ -142,70 +117,97 @@
       color: #00f0ff;
     }
 
-    /* Subtle Scanlines overlay */
-    .scanlines-overlay {
-      background: linear-gradient(
-        rgba(18, 16, 16, 0) 50%, 
-        rgba(0, 0, 0, 0.25) 50%
-      );
+    /* Scanlines */
+    .scanlines {
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
       background-size: 100% 4px;
       pointer-events: none;
     }
 
-    /* Card Hover Glow */
+    /* Cards */
     .mod-card {
       transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .mod-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 240, 255, 0.2);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 240, 255, 0.15);
+    }
+
+    /* Active Nav Tab */
+    .nav-tab.active {
+      background: #fcee0a;
+      color: #000;
+      border-color: #fcee0a;
+      box-shadow: 0 0 12px rgba(252, 238, 10, 0.5);
+    }
+    .nav-tab.active svg {
+      color: #000;
     }
   </style>
 </head>
 <body class="relative flex flex-col min-h-screen selection:bg-cp-yellow selection:text-black">
   <!-- Scanlines overlay -->
-  <div class="fixed inset-0 scanlines-overlay z-50 pointer-events-none opacity-40"></div>
+  <div class="fixed inset-0 scanlines z-50 pointer-events-none opacity-30"></div>
 
-  <!-- HUD STATUS BAR / TOP HEADER -->
-  <header class="border-b border-cp-border bg-cp-dark/90 backdrop-blur-md sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-      <div class="flex flex-wrap items-center justify-between gap-4">
+  <!-- HUD STATUS HEADER -->
+  <header class="border-b border-cp-border bg-cp-dark/95 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+      <div class="flex flex-wrap items-center justify-between gap-3">
         
-        <!-- Logo & Brand -->
+        <!-- Logo & Title -->
         <div class="flex items-center space-x-3">
-          <div class="relative w-10 h-10 bg-cp-card border border-cp-yellow flex items-center justify-center cp-cut-corner-sm shadow-[0_0_12px_rgba(252,238,10,0.4)]">
-            <svg class="w-6 h-6 text-cp-yellow" fill="currentColor" viewBox="0 0 24 24">
+          <div class="relative w-9 h-9 bg-cp-card border border-cp-yellow flex items-center justify-center cp-cut-sm shadow-[0_0_10px_rgba(252,238,10,0.4)]">
+            <svg class="w-5 h-5 text-cp-yellow" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
             <span class="absolute -top-1 -right-1 w-2 h-2 bg-cp-cyan rounded-full animate-ping"></span>
           </div>
           <div>
             <div class="flex items-center space-x-2">
-              <h1 class="text-xl sm:text-2xl font-black font-title tracking-wider text-white">
-                CYBER<span class="text-cp-yellow">MOD</span><span class="text-cp-cyan font-mono text-sm ml-1">// 2077</span>
+              <h1 class="text-lg sm:text-xl font-black font-title tracking-wider text-white">
+                CYBER<span class="text-cp-yellow">MOD</span><span class="text-cp-cyan font-mono text-xs ml-1">// ADVANCED</span>
               </h1>
-              <span class="bg-cp-red/20 text-cp-red border border-cp-red/50 text-[10px] font-mono px-1.5 py-0.5 rounded uppercase tracking-widest font-bold animate-pulse">
-                NET_LINK V2.13
+              <span class="bg-cp-purple/20 text-cp-purple border border-cp-purple/50 text-[10px] font-mono px-1.5 py-0.2 rounded font-bold uppercase tracking-widest">
+                MODULAR HUB
               </span>
             </div>
-            <p class="text-xs font-mono text-cp-muted tracking-tight">NIGHT CITY MOD LOADOUT INTERFACE // REPO SYNC</p>
+            <p class="text-[11px] font-mono text-cp-muted">NIGHT CITY MODULAR LOADOUT & VIRTUAL ATELIER</p>
           </div>
         </div>
 
-        <!-- System Diagnostic Indicators -->
-        <div class="flex items-center space-x-3 sm:space-x-6 text-xs font-mono">
-          <div class="hidden md:flex flex-col text-right">
-            <span class="text-cp-muted text-[10px]">LOCAL TIME // NC TIME</span>
-            <span id="hud-clock" class="text-cp-cyan font-bold tracking-widest">00:00:00 PM</span>
+        <!-- Global Action Controls & Diagnostic HUD -->
+        <div class="flex items-center space-x-2 sm:space-x-3 text-xs font-mono">
+          <div class="hidden lg:flex flex-col text-right">
+            <span class="text-cp-muted text-[10px]">NC TIME</span>
+            <span id="hud-clock" class="text-cp-cyan font-bold tracking-widest">00:00:00 NC</span>
           </div>
 
-          <div class="flex items-center space-x-2 bg-cp-card border border-cp-border px-3 py-1.5 cp-cut-corner-sm">
-            <span class="w-2.5 h-2.5 rounded-full bg-cp-green shadow-[0_0_8px_#00ff66]"></span>
-            <span class="text-gray-300 font-bold uppercase" id="hud-status-badge">CYBER ENGINE: READY</span>
-          </div>
+          <!-- Register Mod Button -->
+          <button id="btn-open-add-modal" class="cp-btn-yellow px-3.5 py-2 text-xs font-title uppercase tracking-wider flex items-center space-x-1.5 cp-cut-sm shadow-[0_0_10px_rgba(252,238,10,0.3)]">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path>
+            </svg>
+            <span>REGISTRAR MOD</span>
+          </button>
 
-          <!-- Audio FX Toggle Button -->
-          <button id="btn-toggle-sound" title="Alternar Efectos de Sonido Cyberpunk (Web Audio)" class="p-2 border border-cp-border hover:border-cp-yellow text-cp-muted hover:text-cp-yellow transition bg-cp-card cp-cut-corner-sm">
+          <!-- Export JSON Button -->
+          <button id="btn-export-backup" class="cp-btn-outline px-3 py-2 text-xs font-mono uppercase text-gray-200 flex items-center space-x-1 cp-cut-sm hover:border-cp-cyan" title="Descargar copia de seguridad en JSON">
+            <svg class="w-3.5 h-3.5 text-cp-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+            </svg>
+            <span class="hidden sm:inline">EXPORTAR</span>
+          </button>
+
+          <!-- Import JSON Button -->
+          <button id="btn-import-backup-open" class="cp-btn-outline px-3 py-2 text-xs font-mono uppercase text-gray-200 flex items-center space-x-1 cp-cut-sm hover:border-cp-yellow" title="Restaurar o fusionar backup JSON">
+            <svg class="w-3.5 h-3.5 text-cp-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+            </svg>
+            <span class="hidden sm:inline">IMPORTAR</span>
+          </button>
+
+          <!-- Audio FX Toggle -->
+          <button id="btn-toggle-sound" title="Alternar audio sintetizado Cyberpunk" class="p-2 border border-cp-border hover:border-cp-yellow text-cp-muted hover:text-cp-yellow transition bg-cp-card cp-cut-sm">
             <svg id="icon-sound-on" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
             </svg>
@@ -217,210 +219,404 @@
 
       </div>
     </div>
+
+    <!-- MAIN NAVIGATION TABS (MODULAR HUB) -->
+    <nav class="border-t border-cp-border/60 bg-cp-black/70 px-4 sm:px-6 lg:px-8 overflow-x-auto scrollbar-none">
+      <div class="max-w-7xl mx-auto flex items-center space-x-1 py-1.5 min-w-max">
+        
+        <button data-tab="dashboard" class="nav-tab active px-3 py-1.5 text-xs font-mono font-bold tracking-wider uppercase rounded-none border border-transparent transition flex items-center space-x-1.5 cp-cut-sm">
+          <span>📊 DASHBOARD GENERAL</span>
+        </button>
+
+        <button data-tab="core" class="nav-tab px-3 py-1.5 text-xs font-mono font-bold tracking-wider uppercase rounded-none border border-cp-border/60 text-gray-300 hover:text-cp-red hover:border-cp-red/50 transition flex items-center space-x-1.5 cp-cut-sm">
+          <span class="w-1.5 h-1.5 bg-cp-red rounded-full"></span>
+          <span>⚡ CORE ESSENTIALS</span>
+          <span id="tab-count-core" class="text-[10px] bg-cp-red/20 text-cp-red px-1 py-0.2 rounded font-mono">0</span>
+        </button>
+
+        <button data-tab="graficos" class="nav-tab px-3 py-1.5 text-xs font-mono font-bold tracking-wider uppercase rounded-none border border-cp-border/60 text-gray-300 hover:text-cp-cyan hover:border-cp-cyan/50 transition flex items-center space-x-1.5 cp-cut-sm">
+          <span>🖥️ GRÁFICOS & RENDIMIENTO</span>
+          <span id="tab-count-graficos" class="text-[10px] bg-cp-cyan/20 text-cp-cyan px-1 py-0.2 rounded font-mono">0</span>
+        </button>
+
+        <button data-tab="fem_v" class="nav-tab px-3 py-1.5 text-xs font-mono font-bold tracking-wider uppercase rounded-none border border-cp-border/60 text-gray-300 hover:text-pink-400 hover:border-pink-500/50 transition flex items-center space-x-1.5 cp-cut-sm">
+          <span>🌸 PERFIL: FEM V</span>
+          <span id="tab-count-fem" class="text-[10px] bg-pink-500/20 text-pink-300 px-1 py-0.2 rounded font-mono">0</span>
+        </button>
+
+        <button data-tab="mas_v" class="nav-tab px-3 py-1.5 text-xs font-mono font-bold tracking-wider uppercase rounded-none border border-cp-border/60 text-gray-300 hover:text-cp-cyan hover:border-cp-cyan/50 transition flex items-center space-x-1.5 cp-cut-sm">
+          <span>⚡ PERFIL: MAS V</span>
+          <span id="tab-count-mas" class="text-[10px] bg-cp-cyan/20 text-cp-cyan px-1 py-0.2 rounded font-mono">0</span>
+        </button>
+
+        <button data-tab="historia" class="nav-tab px-3 py-1.5 text-xs font-mono font-bold tracking-wider uppercase rounded-none border border-cp-border/60 text-gray-300 hover:text-cp-yellow hover:border-cp-yellow/50 transition flex items-center space-x-1.5 cp-cut-sm">
+          <span>💬 HISTORIA & INMERSIÓN</span>
+          <span id="tab-count-historia" class="text-[10px] bg-cp-yellow/20 text-cp-yellow px-1 py-0.2 rounded font-mono">0</span>
+        </button>
+
+        <button data-tab="gameplay" class="nav-tab px-3 py-1.5 text-xs font-mono font-bold tracking-wider uppercase rounded-none border border-cp-border/60 text-gray-300 hover:text-cp-green hover:border-cp-green/50 transition flex items-center space-x-1.5 cp-cut-sm">
+          <span>⚔️ GAMEPLAY & COMBATE</span>
+          <span id="tab-count-gameplay" class="text-[10px] bg-cp-green/20 text-cp-green px-1 py-0.2 rounded font-mono">0</span>
+        </button>
+
+        <button data-tab="atelier" class="nav-tab px-3 py-1.5 text-xs font-mono font-bold tracking-wider uppercase rounded-none border border-cp-border/60 text-purple-300 hover:text-cp-purple hover:border-cp-purple/50 transition flex items-center space-x-1.5 cp-cut-sm">
+          <span>🛍️ VIRTUAL ATELIER HUB</span>
+          <span id="tab-count-atelier" class="text-[10px] bg-cp-purple/20 text-cp-purple px-1 py-0.2 rounded font-mono">0</span>
+        </button>
+
+      </div>
+    </nav>
   </header>
 
-  <!-- MAIN HUD CONTENT -->
+  <!-- MAIN CONTAINER -->
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-    
-    <!-- STATS COUNTER BAR -->
-    <section class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono">
-      <div class="bg-cp-card border border-cp-border p-3.5 cp-cut-corner relative overflow-hidden group hover:border-cp-yellow/60 transition">
-        <div class="absolute -right-4 -bottom-4 text-cp-border/20 text-6xl font-black font-title select-none group-hover:text-cp-yellow/10 transition">MOD</div>
-        <div class="text-[11px] text-cp-muted uppercase tracking-wider font-bold">TOTAL MODS INYECTADOS</div>
-        <div class="text-2xl sm:text-3xl font-black font-title text-white mt-1" id="stat-total-mods">0</div>
-        <div class="text-[10px] text-cp-cyan mt-1 flex items-center">
-          <span class="inline-block w-1.5 h-1.5 bg-cp-cyan mr-1"></span> BASE LOCALSTORAGE ACTIVA
-        </div>
-      </div>
 
-      <div class="bg-cp-card border border-cp-border p-3.5 cp-cut-corner relative overflow-hidden group hover:border-cp-red/60 transition">
-        <div class="absolute -right-4 -bottom-4 text-cp-border/20 text-6xl font-black font-title select-none group-hover:text-cp-red/10 transition">CORE</div>
-        <div class="text-[11px] text-cp-red uppercase tracking-wider font-bold">CORE ENGINE ESSENTIALS</div>
-        <div class="text-2xl sm:text-3xl font-black font-title text-cp-red mt-1" id="stat-core-mods">0</div>
-        <div class="text-[10px] text-cp-muted mt-1">CET / RED4ext / ArchiveXL</div>
-      </div>
-
-      <div class="bg-cp-card border border-cp-border p-3.5 cp-cut-corner relative overflow-hidden group hover:border-cp-purple/60 transition">
-        <div class="absolute -right-4 -bottom-4 text-cp-border/20 text-6xl font-black font-title select-none group-hover:text-cp-purple/10 transition">V</div>
-        <div class="text-[11px] text-purple-400 uppercase tracking-wider font-bold">PERFIL FEM V / MAS V</div>
-        <div class="text-2xl sm:text-3xl font-black font-title text-purple-300 mt-1" id="stat-v-mods">0 / 0</div>
-        <div class="text-[10px] text-cp-muted mt-1">APARIENCIA & CYBERWARE</div>
-      </div>
-
-      <div class="bg-cp-card border border-cp-border p-3.5 cp-cut-corner relative overflow-hidden group hover:border-cp-green/60 transition">
-        <div class="absolute -right-4 -bottom-4 text-cp-border/20 text-6xl font-black font-title select-none group-hover:text-cp-green/10 transition">RUN</div>
-        <div class="text-[11px] text-cp-green uppercase tracking-wider font-bold">ESTADO DE EJECUCIÓN</div>
-        <div class="text-2xl sm:text-3xl font-black font-title text-cp-green mt-1" id="stat-active-mods">0</div>
-        <div class="text-[10px] text-cp-muted mt-1">ACTIVOS EN EL LOAD ORDER</div>
-      </div>
-    </section>
-
-    <!-- ACTION CONTROLS / TOOLBAR -->
-    <section class="bg-cp-card border border-cp-border p-4 cp-cut-corner shadow-lg space-y-4">
-      <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
-        
-        <!-- Search Bar with Live Filter -->
-        <div class="relative flex-grow">
-          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-cp-muted">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-          </div>
-          <input 
-            type="text" 
-            id="search-input" 
-            placeholder="Escanear mods por nombre, archivo (.archive), autor o notas..." 
-            class="w-full pl-11 pr-10 py-2.5 bg-cp-dark border border-cp-border rounded-none focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow font-mono text-sm text-white placeholder-cp-muted tracking-wide transition cp-cut-corner-sm"
-          >
-          <button id="btn-clear-search" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-cp-muted hover:text-cp-yellow hidden">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Global Action Buttons (Add Mod, Export, Import) -->
-        <div class="flex flex-wrap items-center gap-2 sm:gap-3 shrink-0">
-          
-          <!-- Open Add Mod Modal Button -->
-          <button id="btn-open-add-modal" class="cp-btn-yellow px-4 py-2.5 text-sm font-title uppercase tracking-wider flex items-center space-x-2 cp-cut-corner-sm shadow-[0_0_12px_rgba(252,238,10,0.3)]">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path>
-            </svg>
-            <span>REGISTRAR MOD</span>
-          </button>
-
-          <!-- Export JSON Backup Button -->
-          <button id="btn-export-backup" class="cp-btn-outline px-3.5 py-2.5 text-xs font-mono uppercase text-gray-200 flex items-center space-x-1.5 cp-cut-corner-sm hover:border-cp-cyan">
-            <svg class="w-4 h-4 text-cp-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-            </svg>
-            <span>EXPORTAR (.JSON)</span>
-          </button>
-
-          <!-- Import JSON Backup Button & Hidden File Input -->
-          <input type="file" id="file-import-input" accept=".json" class="hidden">
-          <button id="btn-import-backup" class="cp-btn-outline px-3.5 py-2.5 text-xs font-mono uppercase text-gray-200 flex items-center space-x-1.5 cp-cut-corner-sm hover:border-cp-yellow">
-            <svg class="w-4 h-4 text-cp-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
-            </svg>
-            <span>IMPORTAR</span>
-          </button>
-
-          <!-- Reset / Seed sample data button -->
-          <button id="btn-seed-data" title="Cargar Mods Recomendados Oficiales de Cyberpunk 2077" class="cp-btn-outline p-2.5 text-cp-muted hover:text-white cp-cut-corner-sm">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-            </svg>
-          </button>
-
-        </div>
-      </div>
-
-      <!-- Quick Filter Tags / Tabs -->
-      <div class="pt-2 border-t border-cp-border flex flex-wrap items-center gap-2">
-        <span class="text-xs font-mono text-cp-muted uppercase tracking-wider mr-1 hidden sm:inline">FILTRAR POR:</span>
-        
-        <button data-filter="all" class="filter-tab active px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider font-bold transition flex items-center space-x-1.5 cp-cut-corner-sm bg-cp-yellow text-black shadow-[0_0_10px_rgba(252,238,10,0.4)]">
-          <span>TODOS</span>
-          <span id="badge-count-all" class="ml-1 px-1.5 py-0.2 bg-black/40 text-black text-[10px] rounded-sm font-bold">0</span>
-        </button>
-
-        <button data-filter="core" class="filter-tab px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider font-bold transition flex items-center space-x-1.5 cp-cut-corner-sm bg-cp-dark border border-cp-border text-cp-red hover:border-cp-red hover:shadow-[0_0_8px_rgba(255,0,60,0.4)]">
-          <span class="w-1.5 h-1.5 bg-cp-red rounded-full"></span>
-          <span>IMPRESCINDIBLES / CORE</span>
-          <span id="badge-count-core" class="ml-1 px-1.5 py-0.2 bg-cp-red/20 text-cp-red text-[10px] rounded-sm">0</span>
-        </button>
-
-        <button data-filter="fem_v" class="filter-tab px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider font-bold transition flex items-center space-x-1.5 cp-cut-corner-sm bg-cp-dark border border-cp-border text-pink-400 hover:border-pink-400 hover:shadow-[0_0_8px_rgba(244,114,182,0.4)]">
-          <span>FEM V</span>
-          <span id="badge-count-fem" class="ml-1 px-1.5 py-0.2 bg-pink-500/20 text-pink-300 text-[10px] rounded-sm">0</span>
-        </button>
-
-        <button data-filter="mas_v" class="filter-tab px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider font-bold transition flex items-center space-x-1.5 cp-cut-corner-sm bg-cp-dark border border-cp-border text-cp-cyan hover:border-cp-cyan hover:shadow-[0_0_8px_rgba(0,240,255,0.4)]">
-          <span>MAS V</span>
-          <span id="badge-count-mas" class="ml-1 px-1.5 py-0.2 bg-cp-cyan/20 text-cp-cyan text-[10px] rounded-sm">0</span>
-        </button>
-
-        <button data-filter="cosmetic" class="filter-tab px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider font-bold transition flex items-center space-x-1.5 cp-cut-corner-sm bg-cp-dark border border-cp-border text-yellow-300 hover:border-yellow-300 hover:shadow-[0_0_8px_rgba(253,224,71,0.4)]">
-          <span>PRESCINDIBLE / ESTÉTICO</span>
-          <span id="badge-count-cosmetic" class="ml-1 px-1.5 py-0.2 bg-yellow-500/20 text-yellow-200 text-[10px] rounded-sm">0</span>
-        </button>
-
-        <button data-filter="gameplay" class="filter-tab px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider font-bold transition flex items-center space-x-1.5 cp-cut-corner-sm bg-cp-dark border border-cp-border text-cp-green hover:border-cp-green hover:shadow-[0_0_8px_rgba(0,255,102,0.4)]">
-          <span>GAMEPLAY / SKILLS</span>
-          <span id="badge-count-gameplay" class="ml-1 px-1.5 py-0.2 bg-cp-green/20 text-cp-green text-[10px] rounded-sm">0</span>
-        </button>
-
-        <!-- Sort Select -->
-        <div class="ml-auto flex items-center space-x-2 text-xs font-mono">
-          <span class="text-cp-muted hidden md:inline">ORDEN:</span>
-          <select id="select-sort" class="bg-cp-dark border border-cp-border text-gray-300 py-1 px-2.5 focus:outline-none focus:border-cp-cyan cp-cut-corner-sm cursor-pointer">
-            <option value="date-desc">Más recientes primero</option>
-            <option value="date-asc">Más antiguos primero</option>
-            <option value="name-asc">Nombre (A - Z)</option>
-            <option value="name-desc">Nombre (Z - A)</option>
-            <option value="priority">Prioridad de Carga</option>
-          </select>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- MODS LISTING CONTAINER / GRID -->
-    <section>
-      <div id="mods-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Mod Cards Rendered dynamically via JavaScript -->
-      </div>
-
-      <!-- Empty State View -->
-      <div id="empty-state" class="hidden text-center py-16 px-4 bg-cp-card/50 border border-dashed border-cp-border cp-cut-corner space-y-4">
-        <div class="w-16 h-16 mx-auto border border-cp-red/50 bg-cp-red/10 flex items-center justify-center rounded-none cp-cut-corner-sm">
-          <svg class="w-8 h-8 text-cp-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+    <!-- GLOBAL SEARCH & FILTER STRIP -->
+    <section class="bg-cp-card border border-cp-border p-3.5 cp-cut shadow-lg flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+      <!-- Search Input -->
+      <div class="relative flex-grow">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cp-muted">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
         </div>
-        <h3 class="text-lg font-title font-bold text-white tracking-wider">MATRIZ DE MODS VACÍA</h3>
-        <p class="text-sm font-mono text-cp-muted max-w-md mx-auto">No se encontraron mods registrados que coincidan con los filtros o la búsqueda actual.</p>
-        <div class="pt-2 flex flex-wrap justify-center gap-3">
-          <button id="btn-empty-add" class="cp-btn-yellow px-4 py-2 text-xs font-title uppercase tracking-wider cp-cut-corner-sm">
-            INJECTAR PRIMER MOD
-          </button>
-          <button id="btn-empty-load-seeds" class="cp-btn-outline px-4 py-2 text-xs font-mono uppercase tracking-wider text-cp-cyan cp-cut-corner-sm">
-            CARGAR MODS CORE ESENCIALES
-          </button>
-        </div>
+        <input 
+          type="text" 
+          id="global-search" 
+          placeholder="Escanear mods por nombre, archivo (.archive/.reds), tienda Atelier o dependencias..." 
+          class="w-full pl-9 pr-8 py-2 bg-cp-dark border border-cp-border text-white text-xs font-mono focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow cp-cut-sm placeholder-cp-muted tracking-wide"
+        >
+        <button id="btn-clear-search" class="absolute inset-y-0 right-0 pr-3 flex items-center text-cp-muted hover:text-cp-yellow hidden">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Quick Context Switcher / Stats Pill -->
+      <div class="flex items-center space-x-2 shrink-0 text-xs font-mono">
+        <span class="text-cp-muted hidden sm:inline">VISTA:</span>
+        <span id="current-view-badge" class="px-2.5 py-1 bg-cp-dark border border-cp-border text-cp-yellow font-bold uppercase cp-cut-sm">
+          DASHBOARD GENERAL
+        </span>
+        <span class="text-cp-border">|</span>
+        <span class="text-gray-300">TOTAL: <strong id="stat-total-badge" class="text-white">0</strong></span>
       </div>
     </section>
+
+    <!-- VIEW 1: DASHBOARD GENERAL -->
+    <div id="view-dashboard" class="space-y-6">
+      
+      <!-- HUD KPI CARDS -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 font-mono">
+        
+        <div class="bg-cp-card border border-cp-border p-3.5 cp-cut relative overflow-hidden group hover:border-cp-red/60 transition">
+          <div class="text-[10px] text-cp-red uppercase font-bold tracking-wider flex items-center space-x-1">
+            <span class="w-1.5 h-1.5 bg-cp-red rounded-full"></span>
+            <span>CORE ESSENTIALS</span>
+          </div>
+          <div class="text-2xl sm:text-3xl font-black font-title text-cp-red mt-1" id="dash-core-count">0</div>
+          <div class="text-[10px] text-cp-muted mt-0.5">Frameworks de motor críticos</div>
+          <button data-target-tab="core" class="mt-2 text-[10px] text-cp-cyan hover:underline flex items-center space-x-1 jump-tab">
+            <span>Explorar Core</span> →
+          </button>
+        </div>
+
+        <div class="bg-cp-card border border-cp-border p-3.5 cp-cut relative overflow-hidden group hover:border-cp-purple/60 transition">
+          <div class="text-[10px] text-cp-purple uppercase font-bold tracking-wider flex items-center space-x-1">
+            <span class="w-1.5 h-1.5 bg-cp-purple rounded-full"></span>
+            <span>VIRTUAL ATELIER</span>
+          </div>
+          <div class="text-2xl sm:text-3xl font-black font-title text-purple-300 mt-1" id="dash-atelier-count">0 Tiendas</div>
+          <div class="text-[10px] text-cp-muted mt-0.5" id="dash-clothing-count">0 Prendas vinculadas</div>
+          <button data-target-tab="atelier" class="mt-2 text-[10px] text-cp-cyan hover:underline flex items-center space-x-1 jump-tab">
+            <span>Abrir Atelier Hub</span> →
+          </button>
+        </div>
+
+        <div class="bg-cp-card border border-cp-border p-3.5 cp-cut relative overflow-hidden group hover:border-pink-500/60 transition">
+          <div class="text-[10px] text-pink-400 uppercase font-bold tracking-wider flex items-center space-x-1">
+            <span>PERFILES FEM / MAS V</span>
+          </div>
+          <div class="text-2xl sm:text-3xl font-black font-title text-pink-300 mt-1" id="dash-v-count">0 / 0</div>
+          <div class="text-[10px] text-cp-muted mt-0.5">Cuerpos, pelo & atuendos</div>
+          <div class="mt-2 flex space-x-2 text-[10px]">
+            <button data-target-tab="fem_v" class="text-pink-400 hover:underline jump-tab">Fem V →</button>
+            <span class="text-cp-border">|</span>
+            <button data-target-tab="mas_v" class="text-cp-cyan hover:underline jump-tab">Mas V →</button>
+          </div>
+        </div>
+
+        <div class="bg-cp-card border border-cp-border p-3.5 cp-cut relative overflow-hidden group hover:border-cp-green/60 transition">
+          <div class="text-[10px] text-cp-green uppercase font-bold tracking-wider flex items-center space-x-1">
+            <span>ESTADO LOAD ORDER</span>
+          </div>
+          <div class="text-2xl sm:text-3xl font-black font-title text-cp-green mt-1" id="dash-active-count">0 / 0</div>
+          <div class="text-[10px] text-cp-muted mt-0.5" id="dash-prescindible-count">0 Prescindibles</div>
+          <span class="mt-2 inline-block text-[10px] text-cp-green font-bold">STATUS: RUNNING // STABLE</span>
+        </div>
+
+      </div>
+
+      <!-- CATEGORY HUBS GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+        <!-- Hub Card: Core -->
+        <div class="bg-cp-card border border-cp-border p-4 cp-cut hover:border-cp-red/70 transition flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono font-bold text-cp-red bg-cp-red/10 px-2 py-0.5 border border-cp-red/30 cp-cut-sm">
+                CRITICAL KERNEL
+              </span>
+              <span class="text-xs font-mono text-cp-muted" id="hub-core-subcount">0 mods</span>
+            </div>
+            <h3 class="text-base font-title font-bold text-white">⚡ [CORE] Frameworks & Engine Essentials</h3>
+            <p class="text-xs font-mono text-gray-400 mt-1">
+              CET, Redscript, ArchiveXL, TweakXL, Codeware, RED4ext. Base fundamental sin la cual el juego no compila scripts ni carga archivos custom.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cp-border flex items-center justify-between">
+            <span class="text-[10px] font-mono text-cp-red font-bold">REGLA: NUNCA DESINSTALAR</span>
+            <button data-target-tab="core" class="cp-btn-outline px-3 py-1 text-xs font-mono text-cp-red hover:border-cp-red jump-tab cp-cut-sm">
+              ACCEDER →
+            </button>
+          </div>
+        </div>
+
+        <!-- Hub Card: Graphics -->
+        <div class="bg-cp-card border border-cp-border p-4 cp-cut hover:border-cp-cyan/70 transition flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono font-bold text-cp-cyan bg-cp-cyan/10 px-2 py-0.5 border border-cp-cyan/30 cp-cut-sm">
+                VISUAL ENGINE
+              </span>
+              <span class="text-xs font-mono text-cp-muted" id="hub-graficos-subcount">0 mods</span>
+            </div>
+            <h3 class="text-base font-title font-bold text-white">🖥️ [GRÁFICOS & RENDIMIENTO]</h3>
+            <p class="text-xs font-mono text-gray-400 mt-1">
+              LUTs de corrección de color (Nova LUT), texturas 4K, presets ReShade fotorealistas y optimizaciones de memoria e iluminación.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cp-border flex items-center justify-between">
+            <span class="text-[10px] font-mono text-cp-cyan" id="hub-graficos-perf-tag">Impacto medio / alto</span>
+            <button data-target-tab="graficos" class="cp-btn-outline px-3 py-1 text-xs font-mono text-cp-cyan hover:border-cp-cyan jump-tab cp-cut-sm">
+              ACCEDER →
+            </button>
+          </div>
+        </div>
+
+        <!-- Hub Card: Fem V -->
+        <div class="bg-cp-card border border-cp-border p-4 cp-cut hover:border-pink-500/70 transition flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono font-bold text-pink-400 bg-pink-500/10 px-2 py-0.5 border border-pink-500/30 cp-cut-sm">
+                FEMALE V RIG
+              </span>
+              <span class="text-xs font-mono text-cp-muted" id="hub-fem-subcount">0 mods</span>
+            </div>
+            <h3 class="text-base font-title font-bold text-white">🌸 [PERFIL: FEM V]</h3>
+            <p class="text-xs font-mono text-gray-400 mt-1">
+              Cuerpos Angel/Hyst/EBBP, trajes, peinados KS Hairdos, pieles 4K, tatuajes y brazos cibernéticos exclusivos de Valerie.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cp-border flex items-center justify-between">
+            <span class="text-[10px] font-mono text-pink-400">Atelier vinculado activo</span>
+            <button data-target-tab="fem_v" class="cp-btn-outline px-3 py-1 text-xs font-mono text-pink-400 hover:border-pink-400 jump-tab cp-cut-sm">
+              ACCEDER →
+            </button>
+          </div>
+        </div>
+
+        <!-- Hub Card: Mas V -->
+        <div class="bg-cp-card border border-cp-border p-4 cp-cut hover:border-cp-cyan/70 transition flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono font-bold text-cp-cyan bg-cp-cyan/10 px-2 py-0.5 border border-cp-cyan/30 cp-cut-sm">
+                MALE V RIG
+              </span>
+              <span class="text-xs font-mono text-cp-muted" id="hub-mas-subcount">0 mods</span>
+            </div>
+            <h3 class="text-base font-title font-bold text-white">⚡ [PERFIL: MAS V]</h3>
+            <p class="text-xs font-mono text-gray-400 mt-1">
+              Cuerpos Solo Body, ropa militar, barbas, peinados y cyberware exclusivo para Vincent.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cp-border flex items-center justify-between">
+            <span class="text-[10px] font-mono text-cp-cyan">Atelier vinculado activo</span>
+            <button data-target-tab="mas_v" class="cp-btn-outline px-3 py-1 text-xs font-mono text-cp-cyan hover:border-cp-cyan jump-tab cp-cut-sm">
+              ACCEDER →
+            </button>
+          </div>
+        </div>
+
+        <!-- Hub Card: Historia & Inmersión -->
+        <div class="bg-cp-card border border-cp-border p-4 cp-cut hover:border-cp-yellow/70 transition flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono font-bold text-cp-yellow bg-cp-yellow/10 px-2 py-0.5 border border-cp-yellow/30 cp-cut-sm">
+                NARRATIVE & WORLD
+              </span>
+              <span class="text-xs font-mono text-cp-muted" id="hub-historia-subcount">0 mods</span>
+            </div>
+            <h3 class="text-base font-title font-bold text-white">💬 [HISTORIA & INMERSIÓN]</h3>
+            <p class="text-xs font-mono text-gray-400 mt-1">
+              Misiones expandidas, mensajes de texto y citas románticas de Panam, Judy, Kerry y River, reactividad de NPCs y supervivencia.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cp-border flex items-center justify-between">
+            <span class="text-[10px] font-mono text-cp-yellow">Inmersión profunda</span>
+            <button data-target-tab="historia" class="cp-btn-outline px-3 py-1 text-xs font-mono text-cp-yellow hover:border-cp-yellow jump-tab cp-cut-sm">
+              ACCEDER →
+            </button>
+          </div>
+        </div>
+
+        <!-- Hub Card: Gameplay -->
+        <div class="bg-cp-card border border-cp-border p-4 cp-cut hover:border-cp-green/70 transition flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono font-bold text-cp-green bg-cp-green/10 px-2 py-0.5 border border-cp-green/30 cp-cut-sm">
+                COMBAT & CYBERWARE
+              </span>
+              <span class="text-xs font-mono text-cp-muted" id="hub-gameplay-subcount">0 mods</span>
+            </div>
+            <h3 class="text-base font-title font-bold text-white">⚔️ [GAMEPLAY & COMBATE]</h3>
+            <p class="text-xs font-mono text-gray-400 mt-1">
+              Sandevistan tweaks, stealth rebalance, árboles de ventajas desbloqueados, armas exóticas y conducción mejorada.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cp-border flex items-center justify-between">
+            <span class="text-[10px] font-mono text-cp-green">Overhauls de combate</span>
+            <button data-target-tab="gameplay" class="cp-btn-outline px-3 py-1 text-xs font-mono text-cp-green hover:border-cp-green jump-tab cp-cut-sm">
+              ACCEDER →
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- VIEW 2: MODULAR CATEGORY VIEW (Shared for Core, Graficos, Fem V, Mas V, Historia, Gameplay) -->
+    <div id="view-category" class="hidden space-y-4">
+      
+      <!-- Subcategory Bar & Context Filters -->
+      <div class="bg-cp-card border border-cp-border p-3 cp-cut flex flex-wrap items-center justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-1.5" id="subcategory-filters-container">
+          <!-- Dynamically populated subcategory filter pills -->
+        </div>
+
+        <!-- Context Filter: Performance / Prescindible -->
+        <div class="flex items-center space-x-2 text-xs font-mono">
+          <span class="text-cp-muted hidden md:inline">ORDENAR:</span>
+          <select id="select-category-sort" class="bg-cp-dark border border-cp-border text-gray-300 py-1 px-2 text-xs focus:outline-none focus:border-cp-cyan cp-cut-sm cursor-pointer">
+            <option value="recent">Más recientes</option>
+            <option value="name-asc">Nombre (A - Z)</option>
+            <option value="name-desc">Nombre (Z - A)</option>
+            <option value="essential">Críticos primero</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Category Context Banner -->
+      <div id="category-banner" class="hidden p-3 border cp-cut text-xs font-mono flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <span id="category-banner-icon" class="text-base">⚡</span>
+          <span id="category-banner-text" class="text-gray-300"></span>
+        </div>
+        <span id="category-banner-badge" class="px-2 py-0.5 text-[10px] font-bold uppercase rounded"></span>
+      </div>
+
+      <!-- Cards Grid -->
+      <div id="category-mods-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Empty State inside Category -->
+      <div id="category-empty-state" class="hidden text-center py-12 px-4 bg-cp-card/50 border border-dashed border-cp-border cp-cut space-y-3">
+        <div class="w-12 h-12 mx-auto border border-cp-cyan/50 bg-cp-cyan/10 flex items-center justify-center cp-cut-sm text-cp-cyan">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
+          </svg>
+        </div>
+        <h4 class="text-sm font-title font-bold text-white tracking-wider">NO HAY MODS EN ESTA SUBCATEGORÍA</h4>
+        <p class="text-xs font-mono text-cp-muted max-w-sm mx-auto">No se encontraron mods registrados con los filtros seleccionados.</p>
+        <button class="btn-quick-add-in-category cp-btn-yellow px-3 py-1.5 text-xs font-title uppercase tracking-wider cp-cut-sm">
+          AÑADIR MOD A ESTA SECCIÓN
+        </button>
+      </div>
+
+    </div>
+
+    <!-- VIEW 3: VIRTUAL ATELIER HUB -->
+    <div id="view-atelier" class="hidden space-y-6">
+      
+      <!-- Atelier Header Banner -->
+      <div class="bg-gradient-to-r from-cp-card via-cp-panel to-cp-card border border-cp-purple p-5 cp-cut shadow-[0_0_20px_rgba(181,55,242,0.15)] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 bg-cp-purple rounded-full animate-pulse shadow-[0_0_8px_#b537f2]"></span>
+            <h2 class="text-lg font-title font-black text-white tracking-wider">VIRTUAL ATELIER HUB // NET SHOPPING NETWORK</h2>
+          </div>
+          <p class="text-xs font-mono text-gray-300 mt-1 max-w-2xl">
+            Catálogo unificado de tiendas virtuales instaladas en el ordenador de V. Consulta qué prendas dependen de qué tienda Atelier y salta directamente al enlace de la tienda con un clic.
+          </p>
+        </div>
+        <div class="flex items-center space-x-2 text-xs font-mono shrink-0">
+          <div class="px-3 py-2 bg-cp-dark border border-cp-purple/50 text-purple-300 font-bold cp-cut-sm">
+            TIENDAS REGISTRADAS: <strong id="atelier-total-shops" class="text-white">0</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Atelier Shops Container -->
+      <div id="atelier-shops-container" class="space-y-6">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Unassigned Atelier Items (Clothes without shop) -->
+      <div id="atelier-unassigned-section" class="hidden bg-cp-card border border-dashed border-cp-border p-4 cp-cut space-y-3">
+        <div class="flex items-center justify-between">
+          <h4 class="text-xs font-mono font-bold text-yellow-400 uppercase tracking-wider flex items-center space-x-2">
+            <span>⚠️ PRENDAS SIN TIENDA VIRTUAL ATELIER ASIGNADA</span>
+          </h4>
+          <span class="text-[11px] font-mono text-cp-muted" id="atelier-unassigned-count">0 prendas</span>
+        </div>
+        <div id="atelier-unassigned-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <!-- Unassigned items -->
+        </div>
+      </div>
+
+    </div>
 
   </main>
 
   <!-- FOOTER -->
-  <footer class="border-t border-cp-border bg-cp-dark/80 backdrop-blur py-5 mt-12 text-xs font-mono text-cp-muted">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+  <footer class="border-t border-cp-border bg-cp-dark/80 backdrop-blur py-4 mt-12 text-xs font-mono text-cp-muted">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2">
       <div class="flex items-center space-x-2">
         <span class="w-2 h-2 bg-cp-yellow inline-block"></span>
-        <span class="text-gray-400 font-bold">NIGHT CITY MOD LOADER</span>
+        <span class="text-gray-400 font-bold">CYBERMOD 2077 // ARCHITECTURE V3</span>
         <span>— AUTOCONTENIDO PARA GITHUB PAGES</span>
       </div>
       <div class="flex items-center space-x-4">
         <span>ESTADO: <strong class="text-cp-green">ONLINE</strong></span>
-        <span>PERSISTENCIA: <strong class="text-cp-cyan">LOCALSTORAGE</strong></span>
-        <span>VERSION: <strong class="text-cp-yellow">v2.13</strong></span>
+        <span>ATELIER ENGINE: <strong class="text-cp-purple">LINKED</strong></span>
+        <span>BRANCH: <strong class="text-cp-yellow">main</strong></span>
       </div>
     </div>
   </footer>
 
   <!-- MODAL: ADD / EDIT MOD -->
-  <div id="modal-mod-form" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
-    <div class="relative w-full max-w-xl bg-cp-card border-2 border-cp-yellow cp-cut-corner shadow-[0_0_30px_rgba(252,238,10,0.25)] overflow-hidden">
+  <div id="modal-mod-form" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-sm hidden overflow-y-auto">
+    <div class="relative w-full max-w-xl bg-cp-card border-2 border-cp-yellow cp-cut shadow-[0_0_30px_rgba(252,238,10,0.25)] my-8">
       
       <!-- Modal Header -->
-      <div class="bg-cp-panel border-b border-cp-border px-6 py-4 flex items-center justify-between">
+      <div class="bg-cp-panel border-b border-cp-border px-5 py-3.5 flex items-center justify-between">
         <div class="flex items-center space-x-2">
           <span class="w-2 h-4 bg-cp-yellow inline-block"></span>
-          <h2 id="modal-title" class="text-lg font-title font-bold text-white tracking-wider">
-            INYECCIÓN DE NUEVO MOD // LOAD_ORDER
+          <h2 id="modal-form-title" class="text-base sm:text-lg font-title font-bold text-white tracking-wider">
+            REGISTRO MODULAR DE MOD // NET_INJECT
           </h2>
         </div>
         <button id="btn-close-modal" class="text-cp-muted hover:text-cp-yellow transition p-1">
@@ -430,158 +626,257 @@
         </button>
       </div>
 
-      <!-- Modal Body / Form -->
-      <form id="form-mod" class="p-6 space-y-4">
-        <input type="hidden" id="input-mod-id" value="">
+      <!-- Modal Body -->
+      <form id="form-mod" class="p-5 sm:p-6 space-y-4 text-xs font-mono max-h-[80vh] overflow-y-auto">
+        <input type="hidden" id="form-mod-id" value="">
 
         <!-- Mod Name -->
         <div>
-          <label class="block text-xs font-mono uppercase font-bold text-cp-yellow mb-1.5 flex items-center justify-between">
-            <span>NOMBRE DEL MOD *</span>
-            <span class="text-[10px] text-cp-muted">Identificador legible</span>
-          </label>
+          <label class="block uppercase font-bold text-cp-yellow mb-1">NOMBRE DEL MOD *</label>
           <input 
             type="text" 
-            id="input-mod-name" 
+            id="form-mod-nombre" 
             required 
-            placeholder="Ej. Cyber Engine Tweaks / Equipment-EX / Arasaka Cyberarms"
-            class="w-full px-3.5 py-2.5 bg-cp-dark border border-cp-border text-white text-sm font-mono focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow cp-cut-corner-sm"
+            placeholder="Ej. Nova City LUT / Equipment-EX / Nola Dreamer CyberSuit"
+            class="w-full px-3 py-2 bg-cp-dark border border-cp-border text-white focus:outline-none focus:border-cp-yellow cp-cut-sm tracking-wide"
           >
         </div>
 
-        <!-- Input Type / Source Origin Selector -->
+        <!-- Main Category & Subcategory -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block uppercase font-bold text-gray-300 mb-1">CATEGORÍA PRINCIPAL *</label>
+            <select id="form-mod-categoria" required class="w-full px-3 py-2 bg-cp-dark border border-cp-border text-white focus:outline-none focus:border-cp-yellow cp-cut-sm cursor-pointer">
+              <option value="core">⚡ Core Essentials (CET, RED4ext...)</option>
+              <option value="graficos">🖥️ Gráficos & Rendimiento</option>
+              <option value="fem_v">🌸 Perfil: Fem V</option>
+              <option value="mas_v">⚡ Perfil: Mas V</option>
+              <option value="historia">💬 Historia & Inmersión</option>
+              <option value="gameplay">⚔️ Gameplay & Combate</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block uppercase font-bold text-gray-300 mb-1">SUBCATEGORÍA MODULAR *</label>
+            <select id="form-mod-subcategoria" required class="w-full px-3 py-2 bg-cp-dark border border-cp-border text-white focus:outline-none focus:border-cp-cyan cp-cut-sm cursor-pointer">
+              <!-- Dynamically populated according to main category -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Source Origin (URL vs Local File) -->
         <div>
-          <label class="block text-xs font-mono uppercase font-bold text-gray-300 mb-1.5">
-            TIPO DE ENTRADA / ORIGEN *
-          </label>
-          <div class="grid grid-cols-2 gap-2 mb-2 font-mono text-xs">
-            <button type="button" id="tab-src-url" class="py-2 px-3 border border-cp-cyan bg-cp-cyan/15 text-cp-cyan font-bold flex items-center justify-center space-x-1.5 cp-cut-corner-sm">
+          <label class="block uppercase font-bold text-gray-300 mb-1">TIPO DE ENTRADA / ORIGEN *</label>
+          <div class="grid grid-cols-2 gap-2 mb-2">
+            <button type="button" id="tab-src-url" class="py-1.5 px-3 border border-cp-cyan bg-cp-cyan/15 text-cp-cyan font-bold flex items-center justify-center space-x-1.5 cp-cut-sm">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
               </svg>
               <span>ENLACE NEXUS / WEB</span>
             </button>
-            <button type="button" id="tab-src-path" class="py-2 px-3 border border-cp-border bg-cp-dark text-cp-muted font-bold flex items-center justify-center space-x-1.5 cp-cut-corner-sm">
+            <button type="button" id="tab-src-path" class="py-1.5 px-3 border border-cp-border bg-cp-dark text-cp-muted font-bold flex items-center justify-center space-x-1.5 cp-cut-sm">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
               </svg>
-              <span>ARCHIVO / RUTA LOCAL</span>
+              <span>ARCHIVO LOCAL (.archive/.reds)</span>
             </button>
           </div>
           <input 
             type="text" 
-            id="input-mod-source" 
+            id="form-mod-origen" 
             required 
             placeholder="https://www.nexusmods.com/cyberpunk2077/mods/..." 
-            class="w-full px-3.5 py-2.5 bg-cp-dark border border-cp-border text-white text-sm font-mono focus:outline-none focus:border-cp-cyan focus:ring-1 focus:ring-cp-cyan cp-cut-corner-sm"
+            class="w-full px-3 py-2 bg-cp-dark border border-cp-border text-white focus:outline-none focus:border-cp-cyan cp-cut-sm tracking-wide"
           >
-          <div class="flex items-center justify-between text-[10px] font-mono text-cp-muted mt-1 px-1">
-            <span id="source-hint-text">Pega la URL de descarga o página del mod</span>
+          <div class="flex items-center justify-between text-[10px] text-cp-muted mt-1 px-1">
+            <span id="form-source-hint">Pega el link de NexusMods o GitHub</span>
             <span class="text-cp-cyan cursor-pointer hover:underline" id="btn-paste-source">Pegar del Portapapeles</span>
           </div>
         </div>
 
-        <!-- Category / Priority -->
-        <div>
-          <label class="block text-xs font-mono uppercase font-bold text-gray-300 mb-1.5">
-            TIPO DE MOD / PRIORIDAD DE CARGA *
-          </label>
-          <select 
-            id="select-mod-category" 
-            required 
-            class="w-full px-3.5 py-2.5 bg-cp-dark border border-cp-border text-white text-sm font-mono focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow cp-cut-corner-sm cursor-pointer"
-          >
-            <option value="core">⚡ Imprescindible / Core Engine (CET, Redscript, ArchiveXL, etc.)</option>
-            <option value="fem_v">🌸 Fem V (Exclusivo V Femenino: Ropa, Pelo, Cuerpo)</option>
-            <option value="mas_v">⚡ Mas V (Exclusivo V Masculino: Texturas, Mesh)</option>
-            <option value="cosmetic">🎨 Prescindible / Estético General (Coches, Reshades, Radio)</option>
-            <option value="gameplay">⚔️ Gameplay / Skills (Rebalanceos, Cyberware, Perks)</option>
-          </select>
-        </div>
-
-        <!-- Notes / Dependencies -->
-        <div>
-          <label class="block text-xs font-mono uppercase font-bold text-gray-300 mb-1.5 flex items-center justify-between">
-            <span>NOTAS / DEPENDENCIAS</span>
-            <span class="text-[10px] text-cp-muted">Prerrequisitos clave</span>
-          </label>
-          <textarea 
-            id="input-mod-notes" 
-            rows="2" 
-            placeholder="Ej. Requiere ArchiveXL v1.12 y RED4ext. Cargar antes del overhaul de cuerpo."
-            class="w-full px-3.5 py-2 bg-cp-dark border border-cp-border text-white text-sm font-mono focus:outline-none focus:border-cp-yellow focus:ring-1 focus:ring-cp-yellow cp-cut-corner-sm"
-          ></textarea>
-          
-          <!-- Quick Dependency Badges -->
-          <div class="flex flex-wrap items-center gap-1.5 mt-1.5 text-[10px] font-mono">
-            <span class="text-cp-muted mr-1">Atajos rápidos:</span>
-            <button type="button" class="btn-quick-dep px-1.5 py-0.5 bg-cp-border/50 text-gray-300 hover:text-cp-yellow border border-cp-border hover:border-cp-yellow rounded-sm">+ ArchiveXL</button>
-            <button type="button" class="btn-quick-dep px-1.5 py-0.5 bg-cp-border/50 text-gray-300 hover:text-cp-yellow border border-cp-border hover:border-cp-yellow rounded-sm">+ TweakXL</button>
-            <button type="button" class="btn-quick-dep px-1.5 py-0.5 bg-cp-border/50 text-gray-300 hover:text-cp-yellow border border-cp-border hover:border-cp-yellow rounded-sm">+ RED4ext</button>
-            <button type="button" class="btn-quick-dep px-1.5 py-0.5 bg-cp-border/50 text-gray-300 hover:text-cp-yellow border border-cp-border hover:border-cp-yellow rounded-sm">+ CET</button>
-            <button type="button" class="btn-quick-dep px-1.5 py-0.5 bg-cp-border/50 text-gray-300 hover:text-cp-yellow border border-cp-border hover:border-cp-yellow rounded-sm">+ Redscript</button>
+        <!-- Conditional: Virtual Atelier Shop Integration (Shows for Fem V / Mas V) -->
+        <div id="atelier-fields-group" class="p-3 bg-cp-purple/10 border border-cp-purple/40 cp-cut-sm space-y-2.5">
+          <div class="flex items-center space-x-2 text-purple-300 font-bold">
+            <svg class="w-4 h-4 text-cp-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+            </svg>
+            <span>INTEGRACIÓN CON VIRTUAL ATELIER (OPCIONAL)</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div>
+              <label class="block text-[10px] uppercase text-gray-300 mb-0.5">Tienda Virtual Atelier requerida:</label>
+              <input 
+                type="text" 
+                id="form-mod-atelier-shop" 
+                list="atelier-shops-datalist" 
+                placeholder="Ej. Nola Dreamer Atelier Store / Viki Shop" 
+                class="w-full px-2.5 py-1.5 bg-cp-dark border border-cp-border text-white focus:outline-none focus:border-cp-purple cp-cut-sm"
+              >
+              <datalist id="atelier-shops-datalist">
+                <option value="Nola Dreamer Atelier Store">
+                <option value="Viki Shop 4 Atelier">
+                <option value="Monsterkerg Cyberwear">
+                <option value="Wingdeer Clothing Store">
+                <option value="Peacheshill Boutique">
+                <option value="Kwek's Atelier Store">
+              </datalist>
+            </div>
+            <div>
+              <label class="block text-[10px] uppercase text-gray-300 mb-0.5">URL de la Tienda en Nexus (Opcional):</label>
+              <input 
+                type="text" 
+                id="form-mod-atelier-url" 
+                placeholder="https://nexusmods.com/.../mods/..." 
+                class="w-full px-2.5 py-1.5 bg-cp-dark border border-cp-border text-white focus:outline-none focus:border-cp-purple cp-cut-sm"
+              >
+            </div>
           </div>
         </div>
 
-        <!-- Active Switch -->
-        <div class="flex items-center justify-between pt-2 border-t border-cp-border">
-          <div class="flex items-center space-x-2">
-            <input type="checkbox" id="input-mod-enabled" checked class="w-4 h-4 accent-cp-yellow cursor-pointer">
-            <label for="input-mod-enabled" class="text-xs font-mono text-gray-200 cursor-pointer select-none">
-              Activar de inmediato en el orden de carga (LOAD ORDER)
+        <!-- Conditional: Performance Impact (Shows for Graphics) -->
+        <div id="perf-fields-group" class="p-3 bg-cp-cyan/10 border border-cp-cyan/40 cp-cut-sm space-y-1.5">
+          <label class="block uppercase font-bold text-cp-cyan">IMPACTO EN RENDIMIENTO (FPS / HARDWARE):</label>
+          <div class="grid grid-cols-3 gap-2">
+            <label class="flex items-center space-x-1.5 cursor-pointer bg-cp-dark p-2 border border-cp-border cp-cut-sm">
+              <input type="radio" name="perf-impact" value="bajo" checked class="accent-cp-green">
+              <span class="text-cp-green font-bold text-[11px]">Bajo / Nulo</span>
+            </label>
+            <label class="flex items-center space-x-1.5 cursor-pointer bg-cp-dark p-2 border border-cp-border cp-cut-sm">
+              <input type="radio" name="perf-impact" value="medio" class="accent-cp-yellow">
+              <span class="text-cp-yellow font-bold text-[11px]">Medio (-5 FPS)</span>
+            </label>
+            <label class="flex items-center space-x-1.5 cursor-pointer bg-cp-dark p-2 border border-cp-border cp-cut-sm">
+              <input type="radio" name="perf-impact" value="alto" class="accent-cp-red">
+              <span class="text-cp-red font-bold text-[11px]">Alto (Ray-Tracing)</span>
             </label>
           </div>
         </div>
 
-        <!-- Modal Action Buttons -->
-        <div class="pt-4 flex items-center justify-end space-x-3 border-t border-cp-border">
-          <button type="button" id="btn-cancel-modal" class="px-4 py-2 border border-cp-border text-gray-300 font-mono text-xs uppercase hover:bg-cp-hover cp-cut-corner-sm">
+        <!-- Notes / Dependencies -->
+        <div>
+          <label class="block uppercase font-bold text-gray-300 mb-1">REQUISITOS / NOTAS DE INSTALACIÓN</label>
+          <textarea 
+            id="form-mod-notas" 
+            rows="2" 
+            placeholder="Ej. Requiere ArchiveXL v1.14 y RED4ext. Cargar antes del overhaul corporal." 
+            class="w-full px-3 py-2 bg-cp-dark border border-cp-border text-white focus:outline-none focus:border-cp-yellow cp-cut-sm"
+          ></textarea>
+          <!-- Quick Dependency Badges -->
+          <div class="flex flex-wrap items-center gap-1 mt-1 text-[10px]">
+            <span class="text-cp-muted mr-1">Atajos rápidos:</span>
+            <button type="button" class="btn-quick-dep px-1.5 py-0.5 bg-cp-border/50 text-gray-300 hover:text-cp-yellow border border-cp-border rounded-none">+ ArchiveXL</button>
+            <button type="button" class="btn-quick-dep px-1.5 py-0.5 bg-cp-border/50 text-gray-300 hover:text-cp-yellow border border-cp-border rounded-none">+ TweakXL</button>
+            <button type="button" class="btn-quick-dep px-1.5 py-0.5 bg-cp-border/50 text-gray-300 hover:text-cp-yellow border border-cp-border rounded-none">+ RED4ext</button>
+            <button type="button" class="btn-quick-dep px-1.5 py-0.5 bg-cp-border/50 text-gray-300 hover:text-cp-yellow border border-cp-border rounded-none">+ CET</button>
+            <button type="button" class="btn-quick-dep px-1.5 py-0.5 bg-cp-border/50 text-gray-300 hover:text-cp-yellow border border-cp-border rounded-none">+ Virtual Atelier</button>
+            <button type="button" class="btn-quick-dep px-1.5 py-0.5 bg-cp-border/50 text-gray-300 hover:text-cp-yellow border border-cp-border rounded-none">+ Equipment-EX</button>
+          </div>
+        </div>
+
+        <!-- Prescindible vs Crítico & Enabled Toggle -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-cp-border">
+          <label class="flex items-center space-x-2 cursor-pointer select-none">
+            <input type="checkbox" id="form-mod-prescindible" checked class="w-4 h-4 accent-cp-yellow">
+            <span class="text-gray-300 text-[11px]" id="label-prescindible">Mod Prescindible (Desactivable)</span>
+          </label>
+
+          <label class="flex items-center space-x-2 cursor-pointer select-none">
+            <input type="checkbox" id="form-mod-activo" checked class="w-4 h-4 accent-cp-green">
+            <span class="text-gray-300 text-[11px]">Activar en Load Order de inmediato</span>
+          </label>
+        </div>
+
+        <!-- Modal Submit Actions -->
+        <div class="pt-3 flex items-center justify-end space-x-3 border-t border-cp-border">
+          <button type="button" id="btn-cancel-modal" class="px-4 py-2 border border-cp-border text-gray-300 uppercase hover:bg-cp-panel cp-cut-sm">
             CANCELAR
           </button>
-          <button type="submit" class="cp-btn-yellow px-5 py-2 font-title text-xs uppercase tracking-wider cp-cut-corner-sm flex items-center space-x-1.5">
+          <button type="submit" class="cp-btn-yellow px-5 py-2 font-title uppercase tracking-wider cp-cut-sm flex items-center space-x-1.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
             </svg>
-            <span id="btn-submit-text">INYECTAR MOD</span>
+            <span id="btn-submit-text">INJECTAR MOD</span>
           </button>
         </div>
 
       </form>
-
     </div>
   </div>
 
-  <!-- MODAL: CONFIRM DELETE -->
-  <div id="modal-delete-confirm" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm hidden">
-    <div class="w-full max-w-md bg-cp-card border-2 border-cp-red cp-cut-corner shadow-[0_0_25px_rgba(255,0,60,0.35)] p-6 space-y-4">
-      <div class="flex items-center space-x-3 text-cp-red">
-        <svg class="w-8 h-8 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+  <!-- MODAL: IMPORT BACKUP (FLEXIBLE: MERGE VS OVERWRITE) -->
+  <div id="modal-import-choice" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm hidden">
+    <div class="w-full max-w-md bg-cp-card border-2 border-cp-cyan cp-cut shadow-[0_0_25px_rgba(0,240,255,0.3)] p-5 space-y-4 font-mono text-xs">
+      <div class="flex items-center space-x-2 text-cp-cyan">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
         </svg>
-        <h3 class="font-title font-bold text-lg text-white">PURGAR DATOS DE MOD</h3>
+        <h3 class="font-title font-bold text-sm text-white">RESTAURAR BACKUP (.JSON)</h3>
       </div>
-      <p class="text-xs font-mono text-gray-300">
-        ¿Confirmas la desinstalación y purga definitiva de <strong id="delete-mod-name" class="text-cp-yellow"></strong> del sistema? Esta acción no se puede deshacer.
+      <p class="text-gray-300">
+        Selecciona un archivo JSON exportado previamente. Elige cómo deseas procesar los datos para evitar sobreescrituras accidentales:
       </p>
-      <div class="flex items-center justify-end space-x-3 pt-3 border-t border-cp-border">
-        <button id="btn-cancel-delete" class="px-4 py-2 border border-cp-border text-gray-300 font-mono text-xs uppercase hover:bg-cp-hover cp-cut-corner-sm">
+
+      <input type="file" id="file-import-input" accept=".json" class="w-full p-2 bg-cp-dark border border-cp-border text-white text-[11px] cp-cut-sm">
+
+      <div class="space-y-2 pt-2 border-t border-cp-border">
+        <label class="flex items-start space-x-2 cursor-pointer bg-cp-dark p-2 border border-cp-border cp-cut-sm">
+          <input type="radio" name="import-mode" value="merge" checked class="mt-0.5 accent-cp-yellow">
+          <div>
+            <strong class="text-cp-yellow">Modo Fusión (Recomendado):</strong>
+            <p class="text-[10px] text-cp-muted">Agrega mods nuevos del backup sin borrar tus mods locales actuales.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start space-x-2 cursor-pointer bg-cp-dark p-2 border border-cp-red/40 cp-cut-sm">
+          <input type="radio" name="import-mode" value="replace" class="mt-0.5 accent-cp-red">
+          <div>
+            <strong class="text-cp-red">Reemplazo Total:</strong>
+            <p class="text-[10px] text-cp-muted">Sustituye toda la base de datos por el contenido del archivo JSON.</p>
+          </div>
+        </label>
+      </div>
+
+      <div class="flex items-center justify-end space-x-2 pt-3 border-t border-cp-border">
+        <button id="btn-cancel-import" class="px-3 py-1.5 border border-cp-border text-gray-300 uppercase hover:bg-cp-panel cp-cut-sm">
           CANCELAR
         </button>
-        <button id="btn-confirm-delete" class="px-4 py-2 bg-cp-red text-white hover:bg-red-700 font-title text-xs uppercase tracking-wider cp-cut-corner-sm shadow-[0_0_12px_rgba(255,0,60,0.5)]">
+        <button id="btn-execute-import" class="cp-btn-yellow px-4 py-1.5 font-title text-[11px] uppercase tracking-wider cp-cut-sm">
+          EJECUTAR IMPORTACIÓN
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DELETE CONFIRM -->
+  <div id="modal-delete-confirm" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm hidden">
+    <div class="w-full max-w-md bg-cp-card border-2 border-cp-red cp-cut shadow-[0_0_25px_rgba(255,0,60,0.35)] p-5 space-y-3 font-mono text-xs">
+      <div class="flex items-center space-x-2.5 text-cp-red">
+        <svg class="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+        </svg>
+        <h3 class="font-title font-bold text-sm text-white">CONFIRMAR PURGA DE MOD</h3>
+      </div>
+      <p class="text-gray-300">
+        ¿Deseas desinstalar y purgar permanentemente <strong id="delete-mod-name-label" class="text-cp-yellow"></strong> del load order?
+      </p>
+      <div class="flex items-center justify-end space-x-2 pt-3 border-t border-cp-border">
+        <button id="btn-cancel-delete" class="px-3 py-1.5 border border-cp-border text-gray-300 uppercase hover:bg-cp-panel cp-cut-sm">
+          CANCELAR
+        </button>
+        <button id="btn-confirm-delete" class="px-4 py-1.5 bg-cp-red text-white hover:bg-red-700 font-title text-[11px] uppercase tracking-wider cp-cut-sm shadow-[0_0_10px_rgba(255,0,60,0.5)]">
           PURGAR MOD
         </button>
       </div>
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATION HUD -->
+  <!-- TOAST CONTAINER -->
   <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
 
-  <!-- APPLICATION LOGIC SCRIPT -->
+  <!-- JAVASCRIPT ES6 LOGIC -->
   <script>
     /**
-     * CYBERMOD 2077 - NIGHT CITY PROTOCOL
-     * Vanilla JS Single-File Implementation
+     * CYBERMOD 2077 // MODULAR CATALOG & LOAD ORDER ARCHITECTURE
      */
 
     // --- Audio Synthesizer (Web Audio API) ---
@@ -590,20 +885,16 @@
         this.ctx = null;
         this.enabled = localStorage.getItem('cp2077_sound_enabled') !== 'false';
       }
-
       init() {
         if (!this.ctx && (window.AudioContext || window.webkitAudioContext)) {
           this.ctx = new (window.AudioContext || window.webkitAudioContext)();
         }
       }
-
-      playTone(freq, type = 'sine', duration = 0.08, gainVal = 0.1) {
+      play(freq, type = 'sine', duration = 0.08, gainVal = 0.08) {
         if (!this.enabled) return;
         try {
           this.init();
-          if (this.ctx.state === 'suspended') {
-            this.ctx.resume();
-          }
+          if (this.ctx.state === 'suspended') this.ctx.resume();
           const osc = this.ctx.createOscillator();
           const gain = this.ctx.createGain();
           osc.type = type;
@@ -614,220 +905,444 @@
           gain.connect(this.ctx.destination);
           osc.start();
           osc.stop(this.ctx.currentTime + duration);
-        } catch (e) {
-          // Audio context might be restricted before gesture
-        }
+        } catch (e) {}
       }
-
-      click() { this.playTone(880, 'triangle', 0.04, 0.05); }
-      success() { 
-        this.playTone(523.25, 'sine', 0.05, 0.07);
-        setTimeout(() => this.playTone(783.99, 'sine', 0.1, 0.07), 50);
+      click() { this.play(880, 'triangle', 0.04, 0.04); }
+      success() {
+        this.play(523.25, 'sine', 0.04, 0.06);
+        setTimeout(() => this.play(783.99, 'sine', 0.08, 0.06), 40);
       }
-      danger() {
-        this.playTone(220, 'sawtooth', 0.12, 0.08);
-      }
+      danger() { this.play(220, 'sawtooth', 0.12, 0.08); }
       toggle() {
         this.enabled = !this.enabled;
         localStorage.setItem('cp2077_sound_enabled', this.enabled);
         return this.enabled;
       }
     }
-
     const sound = new CyberAudio();
 
-    // --- Recommended Starter Mods (Seed Data) ---
-    const STARTER_MODS = [
+    // --- Subcategory Master Mapping ---
+    const SUBCATEGORIES_CONFIG = {
+      core: [
+        { id: 'all', label: 'Todos los Core' },
+        { id: 'script_loader', label: 'Script Loaders & Hooks' },
+        { id: 'engine_extender', label: 'Engine Extenders' },
+        { id: 'tweak_db', label: 'TweakDB & DB Inyectors' },
+        { id: 'wardrobe_core', label: 'Wardrobe Frameworks' }
+      ],
+      graficos: [
+        { id: 'all', label: 'Todos Gráficos' },
+        { id: 'lut', label: 'LUTs / Color Grading' },
+        { id: 'texturas_reshade', label: 'Texturas & Reshades' },
+        { id: 'optimizacion', label: 'Optimizaciones & Rendimiento' }
+      ],
+      fem_v: [
+        { id: 'all', label: 'Todo Fem V' },
+        { id: 'cuerpo', label: 'Cuerpo & Mallas (Angel/Hyst)' },
+        { id: 'ropa', label: 'Ropa & Outfits' },
+        { id: 'pelo', label: 'Pelo & Cabello' },
+        { id: 'tatuajes_piel', label: 'Tatuajes / Piel / Cyberware' }
+      ],
+      mas_v: [
+        { id: 'all', label: 'Todo Mas V' },
+        { id: 'cuerpo', label: 'Cuerpo & Mallas (Solo Body)' },
+        { id: 'ropa', label: 'Ropa & Outfits' },
+        { id: 'pelo', label: 'Pelo & Cabello' },
+        { id: 'tatuajes_piel', label: 'Tatuajes / Piel / Cyberware' }
+      ],
+      historia: [
+        { id: 'all', label: 'Toda Historia' },
+        { id: 'misiones', label: 'Misiones & Contenido Extra' },
+        { id: 'romance', label: 'Romance & Mensajes (Panam/Judy)' },
+        { id: 'npc_ciudad', label: 'Comportamiento NPCs & Ciudad' }
+      ],
+      gameplay: [
+        { id: 'all', label: 'Todo Gameplay' },
+        { id: 'skills_stealth', label: 'Skills / Stealth / Perks' },
+        { id: 'cyberware_tweaks', label: 'Cyberware Tweaks' },
+        { id: 'armas_vehiculos', label: 'Armas & Vehículos' }
+      ]
+    };
+
+    // --- Starter Modular Database (Seed Data) ---
+    const STARTER_DATABASE = [
+      // CORE ESSENTIALS
       {
         id: 'cp-mod-cet',
-        name: 'Cyber Engine Tweaks (CET)',
-        sourceType: 'url',
-        source: 'https://www.nexusmods.com/cyberpunk2077/mods/107',
-        category: 'core',
-        notes: 'Framework de scripting obligatorio, consola debug y soporte para LUA plugins.',
-        enabled: true,
-        dateAdded: '2026-01-10T10:00:00.000Z'
+        nombre: 'Cyber Engine Tweaks (CET)',
+        categoria_principal: 'core',
+        subcategoria: 'script_loader',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/107',
+        atelier_shop_ref: '',
+        atelier_shop_url: '',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Framework LUA y consola debug fundamental para el 90% de mods.',
+        prescindible: false,
+        activo: true,
+        fecha_registro: '2026-01-10T10:00:00Z'
       },
       {
         id: 'cp-mod-red4ext',
-        name: 'RED4ext',
-        sourceType: 'url',
-        source: 'https://www.nexusmods.com/cyberpunk2077/mods/2380',
-        category: 'core',
-        notes: 'Plugin loader de arquitectura nativa para extender la funcionalidad del REDengine.',
-        enabled: true,
-        dateAdded: '2026-01-11T11:00:00.000Z'
+        nombre: 'RED4ext',
+        categoria_principal: 'core',
+        subcategoria: 'engine_extender',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/2380',
+        atelier_shop_ref: '',
+        atelier_shop_url: '',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Cargador de plugins nativos de arquitectura C++ para REDengine.',
+        prescindible: false,
+        activo: true,
+        fecha_registro: '2026-01-11T10:00:00Z'
       },
       {
         id: 'cp-mod-archivexl',
-        name: 'ArchiveXL',
-        sourceType: 'url',
-        source: 'https://www.nexusmods.com/cyberpunk2077/mods/4198',
-        category: 'core',
-        notes: 'Requiere RED4ext. Permite inyectar recursos .archive y slots de ropa personalizados sin reemplazar assets vainilla.',
-        enabled: true,
-        dateAdded: '2026-01-12T12:00:00.000Z'
+        nombre: 'ArchiveXL',
+        categoria_principal: 'core',
+        subcategoria: 'engine_extender',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/4198',
+        atelier_shop_ref: '',
+        atelier_shop_url: '',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Requiere RED4ext. Inyecta recursos .archive personalizados sin reemplazar archivos base.',
+        prescindible: false,
+        activo: true,
+        fecha_registro: '2026-01-12T10:00:00Z'
       },
       {
         id: 'cp-mod-tweakxl',
-        name: 'TweakXL',
-        sourceType: 'url',
-        source: 'https://www.nexusmods.com/cyberpunk2077/mods/4197',
-        category: 'core',
-        notes: 'Requiere RED4ext. Inyector de modificaciones dinámicas para el TweakDB del motor.',
-        enabled: true,
-        dateAdded: '2026-01-13T13:00:00.000Z'
-      },
-      {
-        id: 'cp-mod-codeware',
-        name: 'Codeware',
-        sourceType: 'url',
-        source: 'https://www.nexusmods.com/cyberpunk2077/mods/7780',
-        category: 'core',
-        notes: 'Biblioteca y API de soporte avanzado para Redscript y Red4ext.',
-        enabled: true,
-        dateAdded: '2026-01-14T14:00:00.000Z'
+        nombre: 'TweakXL',
+        categoria_principal: 'core',
+        subcategoria: 'tweak_db',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/4197',
+        atelier_shop_ref: '',
+        atelier_shop_url: '',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Requiere RED4ext. Inyecta modificaciones directas a la base de datos TweakDB.',
+        prescindible: false,
+        activo: true,
+        fecha_registro: '2026-01-13T10:00:00Z'
       },
       {
         id: 'cp-mod-equipment-ex',
-        name: 'Equipment-EX (Enhanced Wardrobe)',
-        sourceType: 'url',
-        source: 'https://www.nexusmods.com/cyberpunk2077/mods/6943',
-        category: 'fem_v',
-        notes: 'Requiere ArchiveXL y TweakXL. Desbloquea más de 30 slots adicionales para atuendos de V.',
-        enabled: true,
-        dateAdded: '2026-01-15T15:00:00.000Z'
+        nombre: 'Equipment-EX (Enhanced Wardrobe)',
+        categoria_principal: 'core',
+        subcategoria: 'wardrobe_core',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/6943',
+        atelier_shop_ref: '',
+        atelier_shop_url: '',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Requiere ArchiveXL y TweakXL. Desbloquea más de 30 slots de atuendos para V.',
+        prescindible: false,
+        activo: true,
+        fecha_registro: '2026-01-14T10:00:00Z'
+      },
+
+      // GRÁFICOS & RENDIMIENTO
+      {
+        id: 'cp-mod-nova-lut',
+        nombre: 'Nova LUT - Pure Photorealistic Color Grading',
+        categoria_principal: 'graficos',
+        subcategoria: 'lut',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/13764',
+        atelier_shop_ref: '',
+        atelier_shop_url: '',
+        rendimiento_impacto: 'bajo',
+        requisitos_notas: 'LUT calibrado para eliminar el tinte verdoso original y añadir negros puros.',
+        prescindible: true,
+        activo: true,
+        fecha_registro: '2026-01-15T10:00:00Z'
       },
       {
-        id: 'cp-mod-arasaka-cyberarms',
-        name: 'Arasaka Cyberarms Collection',
-        sourceType: 'path',
-        source: 'archive/pc/mod/arasaka_cyberarms_femv.archive',
-        category: 'fem_v',
-        notes: 'Brazos cibernéticos de alta gama con skins térmicas y de mantis. Requiere ArchiveXL.',
-        enabled: true,
-        dateAdded: '2026-01-16T16:00:00.000Z'
+        id: 'cp-mod-nc-reshade',
+        nombre: 'Night City Cinematic Ray-Tracing ReShade',
+        categoria_principal: 'graficos',
+        subcategoria: 'texturas_reshade',
+        origen_tipo: 'archivo',
+        origen_valor: 'bin/x64/reshade-presets/nc_photoreal_cinematic.ini',
+        atelier_shop_ref: '',
+        atelier_shop_url: '',
+        rendimiento_impacto: 'alto',
+        requisitos_notas: 'Requiere ReShade 5.9+ con shaders RTGI. Impacto de aproximadamente -8 a -12 FPS.',
+        prescindible: true,
+        activo: true,
+        fecha_registro: '2026-01-16T10:00:00Z'
       },
       {
-        id: 'cp-mod-male-v-solo',
-        name: 'Solo Body Overhaul & Textures (Mas V)',
-        sourceType: 'url',
-        source: 'https://www.nexusmods.com/cyberpunk2077/mods/4813',
-        category: 'mas_v',
-        notes: 'Malla muscular mejorada y texturas 4K dedicadas para Vincent (Male V).',
-        enabled: true,
-        dateAdded: '2026-01-17T17:00:00.000Z'
+        id: 'cp-mod-memory-pool',
+        nombre: 'Cyberpunk Engine Optimizations & Memory Pool',
+        categoria_principal: 'graficos',
+        subcategoria: 'optimizacion',
+        origen_tipo: 'archivo',
+        origen_valor: 'engine/config/platform/pc/memory_budget.ini',
+        atelier_shop_ref: '',
+        atelier_shop_url: '',
+        rendimiento_impacto: 'bajo',
+        requisitos_notas: 'Ajusta el presupuesto de VRAM de GPUs modernas para erradicar el stutering en Dogtown.',
+        prescindible: true,
+        activo: true,
+        fecha_registro: '2026-01-17T10:00:00Z'
+      },
+
+      // FEM V & VIRTUAL ATELIER
+      {
+        id: 'cp-mod-angel-body',
+        nombre: 'Angel Body Rigging & Refit Collection',
+        categoria_principal: 'fem_v',
+        subcategoria: 'cuerpo',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/11440',
+        atelier_shop_ref: '',
+        atelier_shop_url: '',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Malla corporal personalizada de alta definición con soporte para físicas de ropa.',
+        prescindible: true,
+        activo: true,
+        fecha_registro: '2026-01-18T10:00:00Z'
       },
       {
-        id: 'cp-mod-night-city-reshade',
-        name: 'Night City Photoreal Ultra Reshade',
-        sourceType: 'path',
-        source: 'bin/x64/reshade-presets/nc_photoreal_cinematic.ini',
-        category: 'cosmetic',
-        notes: 'Preset de iluminación Ray-Tracing simulada sin caída drástica de FPS. Requiere ReShade 5.9+.',
-        enabled: true,
-        dateAdded: '2026-01-18T18:00:00.000Z'
+        id: 'cp-mod-nola-suit',
+        nombre: 'Nola Dreamer Cyber Leather Jumpsuit',
+        categoria_principal: 'fem_v',
+        subcategoria: 'ropa',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/9820',
+        atelier_shop_ref: 'Nola Dreamer Atelier Store',
+        atelier_shop_url: 'https://www.nexusmods.com/cyberpunk2077/mods/6211',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Mono de cuero cyberpunk para Fem V. Se adquiere en la tienda Virtual Atelier.',
+        prescindible: true,
+        activo: true,
+        fecha_registro: '2026-01-19T10:00:00Z'
       },
       {
-        id: 'cp-mod-stealth-sandevistan',
-        name: 'Sandevistan & Cyberware Overhaul',
-        sourceType: 'url',
-        source: 'https://www.nexusmods.com/cyberpunk2077/mods/3512',
-        category: 'gameplay',
-        notes: 'Rebalanceo de tiempos de desaceleración y consumo de RAM para Netrunners y Samuráis.',
-        enabled: false,
-        dateAdded: '2026-01-19T19:00:00.000Z'
+        id: 'cp-mod-nola-jacket',
+        nombre: 'Nola Dreamer Cyberpunk Neon Cropped Jacket',
+        categoria_principal: 'fem_v',
+        subcategoria: 'ropa',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/9835',
+        atelier_shop_ref: 'Nola Dreamer Atelier Store',
+        atelier_shop_url: 'https://www.nexusmods.com/cyberpunk2077/mods/6211',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Chaqueta corta con tubos LED luminiscentes. Requiere ArchiveXL.',
+        prescindible: true,
+        activo: true,
+        fecha_registro: '2026-01-20T10:00:00Z'
+      },
+      {
+        id: 'cp-mod-viki-corset',
+        nombre: 'Viki Shop Techwear Corset & Holsters',
+        categoria_principal: 'fem_v',
+        subcategoria: 'ropa',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/8730',
+        atelier_shop_ref: 'Viki Shop 4 Atelier',
+        atelier_shop_url: 'https://www.nexusmods.com/cyberpunk2077/mods/5998',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Corsé táctico con fundas de pistola Militech.',
+        prescindible: true,
+        activo: true,
+        fecha_registro: '2026-01-21T10:00:00Z'
+      },
+      {
+        id: 'cp-mod-ks-hairdos',
+        nombre: 'KS Hairdos - Cyberpunk Ponytail & Braids',
+        categoria_principal: 'fem_v',
+        subcategoria: 'pelo',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/7212',
+        atelier_shop_ref: '',
+        atelier_shop_url: '',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Paquete de 15 peinados con físicas dinámicas de viento.',
+        prescindible: true,
+        activo: true,
+        fecha_registro: '2026-01-22T10:00:00Z'
+      },
+
+      // MAS V
+      {
+        id: 'cp-mod-solo-body-masv',
+        nombre: 'Solo Body Enhanced Mesh & Textures (Male V)',
+        categoria_principal: 'mas_v',
+        subcategoria: 'cuerpo',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/4813',
+        atelier_shop_ref: '',
+        atelier_shop_url: '',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Reemplazo de malla muscular para Vincent con texturas 4K dedicadas.',
+        prescindible: true,
+        activo: true,
+        fecha_registro: '2026-01-23T10:00:00Z'
+      },
+      {
+        id: 'cp-mod-monsterkerg-vest',
+        nombre: 'Monsterkerg Tactical Mercenary Vest (Mas V)',
+        categoria_principal: 'mas_v',
+        subcategoria: 'ropa',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/8321',
+        atelier_shop_ref: 'Monsterkerg Cyberwear',
+        atelier_shop_url: 'https://www.nexusmods.com/cyberpunk2077/mods/7100',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Chaleco antibalas mercenario para Mas V. Requiere Monsterkerg Atelier.',
+        prescindible: true,
+        activo: true,
+        fecha_registro: '2026-01-24T10:00:00Z'
+      },
+
+      // HISTORIA & INMERSIÓN
+      {
+        id: 'cp-mod-judy-romance',
+        nombre: 'Judy Romance Enhanced & Daily Messages',
+        categoria_principal: 'historia',
+        subcategoria: 'romance',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/4508',
+        atelier_shop_ref: '',
+        atelier_shop_url: '',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Añade más de 40 intercambios de mensajes de texto diarios, fotos y llamadas con Judy Alvarez.',
+        prescindible: true,
+        activo: true,
+        fecha_registro: '2026-01-25T10:00:00Z'
+      },
+      {
+        id: 'cp-mod-panam-haboob',
+        nombre: 'Panam Palmer Extended Aldecaldos Interactions',
+        categoria_principal: 'historia',
+        subcategoria: 'romance',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/4622',
+        atelier_shop_ref: '',
+        atelier_shop_url: '',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Nuevos diálogos en el campamento nómada y opciones de abrazo/cita.',
+        prescindible: true,
+        activo: true,
+        fecha_registro: '2026-01-26T10:00:00Z'
+      },
+
+      // GAMEPLAY & COMBATE
+      {
+        id: 'cp-mod-sandevistan-overhaul',
+        nombre: 'Wannabe Edgerunner - Cyberpsychosis Overhaul',
+        categoria_principal: 'gameplay',
+        subcategoria: 'cyberware_tweaks',
+        origen_tipo: 'url',
+        origen_valor: 'https://www.nexusmods.com/cyberpunk2077/mods/5646',
+        atelier_shop_ref: '',
+        atelier_shop_url: '',
+        rendimiento_impacto: 'nulo',
+        requisitos_notas: 'Sistema de ciberpsicosis: el uso desmedido de Sandevistan y cyberware reduce la humanidad.',
+        prescindible: true,
+        activo: true,
+        fecha_registro: '2026-01-27T10:00:00Z'
       }
     ];
 
     // --- State Management ---
-    const STORAGE_KEY = 'cp2077_mods_db';
+    const STORAGE_KEY = 'cybermod_2077_advanced_v3';
     let mods = [];
-    let currentFilter = 'all';
+    let currentMainTab = 'dashboard';
+    let currentSubcategoryFilter = 'all';
     let searchQuery = '';
-    let currentSort = 'date-desc';
+    let currentSort = 'recent';
     let modToDeleteId = null;
-
-    // --- Category Metadata ---
-    const CATEGORIES = {
-      core: {
-        label: 'Core Engine',
-        badgeClass: 'bg-cp-red/20 text-cp-red border border-cp-red/50 shadow-[0_0_8px_rgba(255,0,60,0.3)]',
-        borderHover: 'hover:border-cp-red',
-        icon: '⚡'
-      },
-      fem_v: {
-        label: 'Fem V',
-        badgeClass: 'bg-pink-500/20 text-pink-300 border border-pink-500/50 shadow-[0_0_8px_rgba(236,72,153,0.3)]',
-        borderHover: 'hover:border-pink-500',
-        icon: '🌸'
-      },
-      mas_v: {
-        label: 'Mas V',
-        badgeClass: 'bg-cp-cyan/20 text-cp-cyan border border-cp-cyan/50 shadow-[0_0_8px_rgba(0,240,255,0.3)]',
-        borderHover: 'hover:border-cp-cyan',
-        icon: '⚡'
-      },
-      cosmetic: {
-        label: 'Prescindible / Estético',
-        badgeClass: 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/50 shadow-[0_0_8px_rgba(234,179,8,0.3)]',
-        borderHover: 'hover:border-yellow-400',
-        icon: '🎨'
-      },
-      gameplay: {
-        label: 'Gameplay / Skills',
-        badgeClass: 'bg-cp-green/20 text-cp-green border border-cp-green/50 shadow-[0_0_8px_rgba(0,255,102,0.3)]',
-        borderHover: 'hover:border-cp-green',
-        icon: '⚔️'
-      }
-    };
 
     // --- Initialization ---
     function init() {
-      loadModsFromStorage();
+      loadMods();
       setupClock();
       setupEventListeners();
       renderApp();
-      updateAudioButtonUI();
+      updateAudioIcon();
     }
 
-    // --- Storage Operations ---
-    function loadModsFromStorage() {
+    function loadMods() {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         try {
           mods = JSON.parse(stored);
         } catch (e) {
-          console.error("Error loading mods from localStorage", e);
-          mods = [...STARTER_MODS];
-          saveModsToStorage();
+          mods = [...STARTER_DATABASE];
+          saveMods();
         }
       } else {
-        mods = [...STARTER_MODS];
-        saveModsToStorage();
+        // Check if old v2 storage exists to migrate smoothly
+        const oldStored = localStorage.getItem('cp2077_mods_db');
+        if (oldStored) {
+          try {
+            const oldList = JSON.parse(oldStored);
+            if (Array.isArray(oldList) && oldList.length > 0) {
+              mods = migrateOldMods(oldList);
+              saveMods();
+              showToast('DATOS MIGRADOS', 'Base de datos adaptada a la Arquitectura Modular v3', 'cyan');
+              return;
+            }
+          } catch (e) {}
+        }
+        mods = [...STARTER_DATABASE];
+        saveMods();
       }
     }
 
-    function saveModsToStorage() {
+    function migrateOldMods(oldList) {
+      return oldList.map(item => ({
+        id: item.id || `cp-mod-${Date.now()}-${Math.random()}`,
+        nombre: item.name || item.nombre || 'Mod Sin Nombre',
+        categoria_principal: normalizeCategory(item.category || item.categoria_principal),
+        subcategoria: item.subcategoria || 'all',
+        origen_tipo: item.sourceType === 'path' ? 'archivo' : 'url',
+        origen_valor: item.source || item.origen_valor || '',
+        atelier_shop_ref: item.atelier_shop_ref || '',
+        atelier_shop_url: item.atelier_shop_url || '',
+        rendimiento_impacto: item.rendimiento_impacto || 'bajo',
+        requisitos_notas: item.notes || item.requisitos_notas || '',
+        prescindible: item.category === 'core' ? false : (item.prescindible ?? true),
+        activo: item.enabled ?? true,
+        fecha_registro: item.dateAdded || item.fecha_registro || new Date().toISOString()
+      }));
+    }
+
+    function normalizeCategory(cat) {
+      if (!cat) return 'core';
+      if (cat === 'core') return 'core';
+      if (cat === 'fem_v') return 'fem_v';
+      if (cat === 'mas_v') return 'mas_v';
+      if (cat === 'cosmetic') return 'graficos';
+      if (cat === 'gameplay') return 'gameplay';
+      return cat;
+    }
+
+    function saveMods() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(mods));
     }
 
-    // --- Real-time Clock ---
+    // --- Clock ---
     function setupClock() {
-      const clockEl = document.getElementById('hud-clock');
+      const clock = document.getElementById('hud-clock');
       function update() {
-        const now = new Date();
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        clockEl.textContent = `${hours}:${minutes}:${seconds} NC_TIME`;
+        const d = new Date();
+        const hh = String(d.getHours()).padStart(2, '0');
+        const mm = String(d.getMinutes()).padStart(2, '0');
+        const ss = String(d.getSeconds()).padStart(2, '0');
+        clock.textContent = `${hh}:${mm}:${ss} NC`;
       }
       update();
       setInterval(update, 1000);
     }
 
-    // --- Audio Button UI Sync ---
-    function updateAudioButtonUI() {
+    // --- Audio Indicator Sync ---
+    function updateAudioIcon() {
       const onIcon = document.getElementById('icon-sound-on');
       const offIcon = document.getElementById('icon-sound-off');
       if (sound.enabled) {
@@ -839,260 +1354,585 @@
       }
     }
 
-    // --- Toast Notifications ---
-    function showToast(title, message, type = 'success') {
+    // --- Toast HUD ---
+    function showToast(title, message, type = 'cyan') {
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
       
       let borderCol = 'border-cp-cyan';
-      let textCol = 'text-cp-cyan';
+      let barCol = 'bg-cp-cyan';
+      let titleCol = 'text-cp-cyan';
       if (type === 'danger') {
         borderCol = 'border-cp-red';
-        textCol = 'text-cp-red';
+        barCol = 'bg-cp-red';
+        titleCol = 'text-cp-red';
       } else if (type === 'yellow') {
         borderCol = 'border-cp-yellow';
-        textCol = 'text-cp-yellow';
+        barCol = 'bg-cp-yellow';
+        titleCol = 'text-cp-yellow';
+      } else if (type === 'purple') {
+        borderCol = 'border-cp-purple';
+        barCol = 'bg-cp-purple';
+        titleCol = 'text-cp-purple';
       }
 
-      toast.className = `p-3.5 bg-cp-card border ${borderCol} cp-cut-corner-sm shadow-[0_0_15px_rgba(0,0,0,0.8)] text-xs font-mono max-w-sm pointer-events-auto transform translate-y-2 opacity-0 transition-all duration-300`;
+      toast.className = `p-3 bg-cp-card border ${borderCol} cp-cut-sm shadow-[0_0_15px_rgba(0,0,0,0.85)] text-xs font-mono max-w-sm pointer-events-auto transform translate-y-2 opacity-0 transition-all duration-300`;
       toast.innerHTML = `
         <div class="flex items-start space-x-2.5">
-          <span class="w-1.5 h-3 ${type === 'danger' ? 'bg-cp-red' : (type === 'yellow' ? 'bg-cp-yellow' : 'bg-cp-cyan')} inline-block mt-0.5"></span>
+          <span class="w-1.5 h-3.5 ${barCol} inline-block mt-0.5"></span>
           <div>
-            <div class="font-title font-bold ${textCol} tracking-wider">${title}</div>
-            <div class="text-gray-300 mt-0.5 text-[11px]">${message}</div>
+            <div class="font-title font-bold ${titleCol} tracking-wider">${escapeHtml(title)}</div>
+            <div class="text-gray-300 mt-0.5 text-[11px] leading-snug">${escapeHtml(message)}</div>
           </div>
         </div>
       `;
 
       container.appendChild(toast);
-      
-      // Animate entry
-      requestAnimationFrame(() => {
-        toast.classList.remove('translate-y-2', 'opacity-0');
-      });
-
-      // Auto dismiss
+      requestAnimationFrame(() => toast.classList.remove('translate-y-2', 'opacity-0'));
       setTimeout(() => {
         toast.classList.add('translate-y-2', 'opacity-0');
         setTimeout(() => toast.remove(), 300);
       }, 3500);
     }
 
-    // --- UI Render ---
+    // --- Main Rendering Controller ---
     function renderApp() {
-      renderStats();
-      renderModsGrid();
-      updateFilterTabsBadges();
+      updateNavBadges();
+      renderDashboardKPIs();
+
+      if (currentMainTab === 'dashboard') {
+        showTabSection('view-dashboard');
+        document.getElementById('current-view-badge').textContent = 'DASHBOARD GENERAL';
+        document.getElementById('current-view-badge').className = 'px-2.5 py-1 bg-cp-dark border border-cp-border text-cp-yellow font-bold uppercase cp-cut-sm';
+      } else if (currentMainTab === 'atelier') {
+        showTabSection('view-atelier');
+        document.getElementById('current-view-badge').textContent = 'VIRTUAL ATELIER HUB';
+        document.getElementById('current-view-badge').className = 'px-2.5 py-1 bg-cp-dark border border-cp-purple text-purple-300 font-bold uppercase cp-cut-sm';
+        renderAtelierHub();
+      } else {
+        showTabSection('view-category');
+        renderCategoryView();
+      }
     }
 
-    function renderStats() {
-      const total = mods.length;
-      const coreCount = mods.filter(m => m.category === 'core').length;
-      const femCount = mods.filter(m => m.category === 'fem_v').length;
-      const masCount = mods.filter(m => m.category === 'mas_v').length;
-      const activeCount = mods.filter(m => m.enabled).length;
-
-      document.getElementById('stat-total-mods').textContent = total;
-      document.getElementById('stat-core-mods').textContent = coreCount;
-      document.getElementById('stat-v-mods').textContent = `${femCount} / ${masCount}`;
-      document.getElementById('stat-active-mods').textContent = `${activeCount} / ${total}`;
-
-      // Tab badges
-      document.getElementById('badge-count-all').textContent = total;
-      document.getElementById('badge-count-core').textContent = coreCount;
-      document.getElementById('badge-count-fem').textContent = femCount;
-      document.getElementById('badge-count-mas').textContent = masCount;
-      document.getElementById('badge-count-cosmetic').textContent = mods.filter(m => m.category === 'cosmetic').length;
-      document.getElementById('badge-count-gameplay').textContent = mods.filter(m => m.category === 'gameplay').length;
-    }
-
-    function updateFilterTabsBadges() {
-      document.querySelectorAll('.filter-tab').forEach(tab => {
-        const filterType = tab.getAttribute('data-filter');
-        if (filterType === currentFilter) {
-          tab.classList.add('active', 'bg-cp-yellow', 'text-black', 'border-transparent', 'shadow-[0_0_10px_rgba(252,238,10,0.4)]');
-          tab.classList.remove('bg-cp-dark', 'text-gray-300', 'border-cp-border');
+    function showTabSection(activeId) {
+      ['view-dashboard', 'view-category', 'view-atelier'].forEach(id => {
+        const el = document.getElementById(id);
+        if (id === activeId) {
+          el.classList.remove('hidden');
         } else {
-          tab.classList.remove('active', 'bg-cp-yellow', 'text-black', 'border-transparent', 'shadow-[0_0_10px_rgba(252,238,10,0.4)]');
-          tab.classList.add('bg-cp-dark');
+          el.classList.add('hidden');
         }
       });
     }
 
-    // --- Filtering and Sorting ---
-    function getFilteredAndSortedMods() {
-      let filtered = [...mods];
+    function updateNavBadges() {
+      const coreCount = mods.filter(m => m.categoria_principal === 'core').length;
+      const graficosCount = mods.filter(m => m.categoria_principal === 'graficos').length;
+      const femCount = mods.filter(m => m.categoria_principal === 'fem_v').length;
+      const masCount = mods.filter(m => m.categoria_principal === 'mas_v').length;
+      const historiaCount = mods.filter(m => m.categoria_principal === 'historia').length;
+      const gameplayCount = mods.filter(m => m.categoria_principal === 'gameplay').length;
+      const atelierClothing = mods.filter(m => m.atelier_shop_ref && m.atelier_shop_ref.trim() !== '').length;
 
-      // Category Filter
-      if (currentFilter !== 'all') {
-        filtered = filtered.filter(m => m.category === currentFilter);
+      document.getElementById('tab-count-core').textContent = coreCount;
+      document.getElementById('tab-count-graficos').textContent = graficosCount;
+      document.getElementById('tab-count-fem').textContent = femCount;
+      document.getElementById('tab-count-mas').textContent = masCount;
+      document.getElementById('tab-count-historia').textContent = historiaCount;
+      document.getElementById('tab-count-gameplay').textContent = gameplayCount;
+      document.getElementById('tab-count-atelier').textContent = atelierClothing;
+
+      document.getElementById('stat-total-badge').textContent = mods.length;
+    }
+
+    // --- Dashboard KPIs Render ---
+    function renderDashboardKPIs() {
+      const coreCount = mods.filter(m => m.categoria_principal === 'core').length;
+      const activeCount = mods.filter(m => m.activo).length;
+      const prescindibleCount = mods.filter(m => m.prescindible).length;
+      const femCount = mods.filter(m => m.categoria_principal === 'fem_v').length;
+      const masCount = mods.filter(m => m.categoria_principal === 'mas_v').length;
+
+      // Unique Atelier shops
+      const shopsSet = new Set();
+      mods.forEach(m => {
+        if (m.atelier_shop_ref && m.atelier_shop_ref.trim() !== '') {
+          shopsSet.add(m.atelier_shop_ref.trim());
+        }
+      });
+      const atelierClothingCount = mods.filter(m => m.atelier_shop_ref && m.atelier_shop_ref.trim() !== '').length;
+
+      document.getElementById('dash-core-count').textContent = coreCount;
+      document.getElementById('dash-atelier-count').textContent = `${shopsSet.size} Tiendas`;
+      document.getElementById('dash-clothing-count').textContent = `${atelierClothingCount} Prendas vinculadas`;
+      document.getElementById('dash-v-count').textContent = `${femCount} / ${masCount}`;
+      document.getElementById('dash-active-count').textContent = `${activeCount} / ${mods.length}`;
+      document.getElementById('dash-prescindible-count').textContent = `${prescindibleCount} Prescindibles`;
+
+      // Subcounts on Hub cards
+      document.getElementById('hub-core-subcount').textContent = `${coreCount} mods`;
+      document.getElementById('hub-graficos-subcount').textContent = `${mods.filter(m => m.categoria_principal === 'graficos').length} mods`;
+      document.getElementById('hub-fem-subcount').textContent = `${femCount} mods`;
+      document.getElementById('hub-mas-subcount').textContent = `${masCount} mods`;
+      document.getElementById('hub-historia-subcount').textContent = `${mods.filter(m => m.categoria_principal === 'historia').length} mods`;
+      document.getElementById('hub-gameplay-subcount').textContent = `${mods.filter(m => m.categoria_principal === 'gameplay').length} mods`;
+    }
+
+    // --- Modular Category View Render ---
+    function renderCategoryView() {
+      const catKey = currentMainTab;
+      const subcats = SUBCATEGORIES_CONFIG[catKey] || [];
+      const subFilterContainer = document.getElementById('subcategory-filters-container');
+      subFilterContainer.innerHTML = '';
+
+      // Update Header Badge
+      const badge = document.getElementById('current-view-badge');
+      const catTitles = {
+        core: '⚡ CORE ESSENTIALS',
+        graficos: '🖥️ GRÁFICOS & RENDIMIENTO',
+        fem_v: '🌸 PERFIL: FEM V',
+        mas_v: '⚡ PERFIL: MAS V',
+        historia: '💬 HISTORIA & INMERSIÓN',
+        gameplay: '⚔️ GAMEPLAY & COMBATE'
+      };
+      badge.textContent = catTitles[catKey] || catKey.toUpperCase();
+
+      // Render Subcategory filter buttons
+      subcats.forEach(sub => {
+        const btn = document.createElement('button');
+        const isActive = currentSubcategoryFilter === sub.id;
+        btn.className = `px-2.5 py-1 text-xs font-mono font-bold uppercase transition cp-cut-sm flex items-center space-x-1 ${
+          isActive 
+            ? 'bg-cp-yellow text-black shadow-[0_0_8px_rgba(252,238,10,0.4)]' 
+            : 'bg-cp-dark border border-cp-border text-gray-300 hover:border-cp-cyan hover:text-cp-cyan'
+        }`;
+        
+        // Count in this subcategory
+        let count = 0;
+        if (sub.id === 'all') {
+          count = mods.filter(m => m.categoria_principal === catKey).length;
+        } else {
+          count = mods.filter(m => m.categoria_principal === catKey && m.subcategoria === sub.id).length;
+        }
+
+        btn.innerHTML = `<span>${escapeHtml(sub.label)}</span><span class="text-[10px] ml-1 px-1 py-0.2 ${isActive ? 'bg-black/30 text-black' : 'bg-cp-card text-cp-muted'} rounded">${count}</span>`;
+        btn.addEventListener('click', () => {
+          sound.click();
+          currentSubcategoryFilter = sub.id;
+          renderCategoryView();
+        });
+        subFilterContainer.appendChild(btn);
+      });
+
+      // Special Category Banner (Core vs Graphics vs Atelier hint)
+      const banner = document.getElementById('category-banner');
+      const bannerIcon = document.getElementById('category-banner-icon');
+      const bannerText = document.getElementById('category-banner-text');
+      const bannerBadge = document.getElementById('category-banner-badge');
+
+      if (catKey === 'core') {
+        banner.className = 'p-3 border border-cp-red/70 bg-cp-red/10 cp-cut text-xs font-mono flex items-center justify-between';
+        bannerIcon.textContent = '⚠️';
+        bannerText.innerHTML = '<strong class="text-cp-red">AVISO DE KERNEL:</strong> Los mods en Core Engine son críticos. Desactivarlos o purgarlos provocará crashes al iniciar Cyberpunk 2077.';
+        bannerBadge.className = 'px-2 py-0.5 text-[10px] font-bold uppercase bg-cp-red text-black rounded';
+        bannerBadge.textContent = 'NO DESINSTALAR';
+        banner.classList.remove('hidden');
+      } else if (catKey === 'graficos') {
+        banner.className = 'p-3 border border-cp-cyan/70 bg-cp-cyan/10 cp-cut text-xs font-mono flex items-center justify-between';
+        bannerIcon.textContent = '🖥️';
+        bannerText.innerHTML = '<strong class="text-cp-cyan">DIAGNÓSTICO GRÁFICO:</strong> Revisa la etiqueta de impacto de rendimiento antes de acumular shaders ReShade con Path Tracing.';
+        bannerBadge.className = 'px-2 py-0.5 text-[10px] font-bold uppercase bg-cp-cyan text-black rounded';
+        bannerBadge.textContent = 'PERFORMANCE ENGINE';
+        banner.classList.remove('hidden');
+      } else if (catKey === 'fem_v' || catKey === 'mas_v') {
+        banner.className = 'p-3 border border-cp-purple/70 bg-cp-purple/10 cp-cut text-xs font-mono flex items-center justify-between';
+        bannerIcon.textContent = '🛍️';
+        bannerText.innerHTML = `<strong class="text-purple-300">VIRTUAL ATELIER:</strong> Las prendas vinculadas a tiendas Atelier pueden adquirirse en el PC del apartamento de V en Night City.`;
+        bannerBadge.className = 'px-2 py-0.5 text-[10px] font-bold uppercase bg-cp-purple text-black rounded';
+        bannerBadge.textContent = 'ATELIER READY';
+        banner.classList.remove('hidden');
+      } else {
+        banner.classList.add('hidden');
       }
 
-      // Search Filter
+      // Filter mods
+      let list = mods.filter(m => m.categoria_principal === catKey);
+      if (currentSubcategoryFilter !== 'all') {
+        list = list.filter(m => m.subcategoria === currentSubcategoryFilter);
+      }
       if (searchQuery.trim() !== '') {
         const q = searchQuery.toLowerCase().trim();
-        filtered = filtered.filter(m => 
-          (m.name && m.name.toLowerCase().includes(q)) ||
-          (m.source && m.source.toLowerCase().includes(q)) ||
-          (m.notes && m.notes.toLowerCase().includes(q))
+        list = list.filter(m => 
+          (m.nombre && m.nombre.toLowerCase().includes(q)) ||
+          (m.origen_valor && m.origen_valor.toLowerCase().includes(q)) ||
+          (m.requisitos_notas && m.requisitos_notas.toLowerCase().includes(q)) ||
+          (m.atelier_shop_ref && m.atelier_shop_ref.toLowerCase().includes(q))
         );
       }
 
       // Sort
-      filtered.sort((a, b) => {
-        if (currentSort === 'date-desc') {
-          return new Date(b.dateAdded || 0) - new Date(a.dateAdded || 0);
-        } else if (currentSort === 'date-asc') {
-          return new Date(a.dateAdded || 0) - new Date(b.dateAdded || 0);
-        } else if (currentSort === 'name-asc') {
-          return a.name.localeCompare(b.name);
-        } else if (currentSort === 'name-desc') {
-          return b.name.localeCompare(a.name);
-        } else if (currentSort === 'priority') {
-          const prioOrder = { core: 0, gameplay: 1, fem_v: 2, mas_v: 3, cosmetic: 4 };
-          return (prioOrder[a.category] ?? 99) - (prioOrder[b.category] ?? 99);
-        }
+      list.sort((a, b) => {
+        if (currentSort === 'recent') return new Date(b.fecha_registro) - new Date(a.fecha_registro);
+        if (currentSort === 'name-asc') return a.nombre.localeCompare(b.nombre);
+        if (currentSort === 'name-desc') return b.nombre.localeCompare(a.nombre);
+        if (currentSort === 'essential') return (a.prescindible === false ? 0 : 1) - (b.prescindible === false ? 0 : 1);
         return 0;
       });
 
-      return filtered;
-    }
-
-    function renderModsGrid() {
-      const grid = document.getElementById('mods-grid');
-      const emptyState = document.getElementById('empty-state');
-      const filtered = getFilteredAndSortedMods();
-
-      if (filtered.length === 0) {
-        grid.innerHTML = '';
-        emptyState.classList.remove('hidden');
-        return;
-      }
-
-      emptyState.classList.add('hidden');
+      const grid = document.getElementById('category-mods-grid');
+      const empty = document.getElementById('category-empty-state');
       grid.innerHTML = '';
 
-      filtered.forEach((mod, index) => {
-        const catInfo = CATEGORIES[mod.category] || { label: 'General', badgeClass: 'bg-gray-500/20 text-gray-300', icon: '📦' };
-        const isUrl = mod.sourceType === 'url' || mod.source.startsWith('http://') || mod.source.startsWith('https://');
-
-        const card = document.createElement('div');
-        card.className = `mod-card bg-cp-card border ${mod.enabled ? 'border-cp-border' : 'border-cp-border/40 opacity-70'} p-4 cp-cut-corner flex flex-col justify-between relative group ${catInfo.borderHover}`;
-        
-        card.innerHTML = `
-          <!-- Card Top: Status & Badges -->
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <div class="flex items-center space-x-1.5">
-                <span class="w-2 h-2 rounded-full ${mod.enabled ? 'bg-cp-green shadow-[0_0_6px_#00ff66]' : 'bg-gray-600'}"></span>
-                <span class="text-[10px] font-mono uppercase tracking-wider font-bold ${mod.enabled ? 'text-cp-green' : 'text-gray-500'}">
-                  ${mod.enabled ? 'ACTIVO' : 'INACTIVO'}
-                </span>
-                <span class="text-cp-border mx-1">|</span>
-                <span class="text-[10px] font-mono text-cp-muted">#MOD_${String(index + 1).padStart(3, '0')}</span>
-              </div>
-
-              <!-- Category Badge -->
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded-none font-bold uppercase tracking-wider ${catInfo.badgeClass}">
-                ${catInfo.icon} ${catInfo.label}
-              </span>
-            </div>
-
-            <!-- Mod Name -->
-            <h3 class="text-base sm:text-lg font-title font-bold text-white group-hover:text-cp-yellow transition-colors line-clamp-1">
-              ${escapeHtml(mod.name)}
-            </h3>
-
-            <!-- Source / File / Link row -->
-            <div class="mt-2 text-xs font-mono">
-              <div class="text-[10px] text-cp-muted uppercase tracking-wider mb-0.5 flex items-center justify-between">
-                <span>${isUrl ? 'ENLACE DE DESCARGA' : 'ARCHIVO / RUTA LOCAL'}</span>
-                <button class="btn-copy-source text-cp-cyan hover:text-white transition flex items-center space-x-1 text-[10px]" data-source="${escapeHtml(mod.source)}" title="Copiar al portapapeles">
-                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
-                  </svg>
-                  <span>COPIAR</span>
-                </button>
-              </div>
-
-              ${isUrl ? `
-                <a href="${escapeHtml(mod.source)}" target="_blank" rel="noopener noreferrer" class="text-cp-cyan hover:underline flex items-center space-x-1 truncate max-w-full group/link">
-                  <svg class="w-3.5 h-3.5 shrink-0 text-cp-cyan group-hover/link:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                  </svg>
-                  <span class="truncate">${escapeHtml(mod.source)}</span>
-                </a>
-              ` : `
-                <div class="text-gray-300 bg-cp-dark px-2 py-1 border border-cp-border/70 truncate cp-cut-corner-sm flex items-center space-x-1.5">
-                  <svg class="w-3.5 h-3.5 shrink-0 text-cp-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                  </svg>
-                  <span class="truncate text-[11px]">${escapeHtml(mod.source)}</span>
-                </div>
-              `}
-            </div>
-
-            <!-- Notes / Dependencies Block -->
-            <div class="mt-3 bg-cp-panel/80 p-2.5 border-l-2 ${mod.category === 'core' ? 'border-cp-red' : 'border-cp-yellow'} cp-cut-bottom-right">
-              <div class="text-[9px] font-mono uppercase tracking-wider text-cp-muted mb-0.5 font-bold">
-                PRERREQUISITOS / NOTAS:
-              </div>
-              <p class="text-xs font-mono text-gray-300 leading-relaxed">
-                ${mod.notes ? escapeHtml(mod.notes) : '<span class="text-gray-600 italic">Sin dependencias reportadas</span>'}
-              </p>
-            </div>
-          </div>
-
-          <!-- Card Bottom Action Toolbar -->
-          <div class="mt-4 pt-3 border-t border-cp-border flex items-center justify-between gap-2">
-            
-            <!-- Toggle Enable Switch -->
-            <label class="flex items-center space-x-2 cursor-pointer select-none">
-              <input type="checkbox" class="sr-only toggle-mod-status" data-id="${mod.id}" ${mod.enabled ? 'checked' : ''}>
-              <div class="w-8 h-4 bg-cp-dark border border-cp-border rounded-full relative transition-colors ${mod.enabled ? 'bg-cp-yellow/20 border-cp-yellow' : ''}">
-                <div class="dot absolute left-0.5 top-0.5 bg-gray-400 w-3 h-3 rounded-full transition-transform ${mod.enabled ? 'transform translate-x-4 bg-cp-yellow shadow-[0_0_6px_#fcee0a]' : ''}"></div>
-              </div>
-              <span class="text-[11px] font-mono text-cp-muted">${mod.enabled ? 'ON' : 'OFF'}</span>
-            </label>
-
-            <!-- Actions: Edit & Delete -->
-            <div class="flex items-center space-x-1 font-mono text-xs">
-              <button class="btn-edit-mod p-1.5 text-cp-muted hover:text-cp-cyan transition hover:bg-cp-hover cp-cut-corner-sm" data-id="${mod.id}" title="Editar Mod">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                </svg>
-              </button>
-
-              <button class="btn-delete-mod p-1.5 text-cp-muted hover:text-cp-red transition hover:bg-cp-hover cp-cut-corner-sm" data-id="${mod.id}" data-name="${escapeHtml(mod.name)}" title="Eliminar Mod">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                </svg>
-              </button>
-            </div>
-
-          </div>
-        `;
-
-        grid.appendChild(card);
-      });
+      if (list.length === 0) {
+        empty.classList.remove('hidden');
+      } else {
+        empty.classList.add('hidden');
+        list.forEach((mod, index) => {
+          grid.appendChild(createModCard(mod, index));
+        });
+      }
     }
 
-    // --- Modal Management (Add / Edit) ---
-    function openAddModal() {
+    // --- Virtual Atelier Hub Render ---
+    function renderAtelierHub() {
+      const container = document.getElementById('atelier-shops-container');
+      const unassignedSec = document.getElementById('atelier-unassigned-section');
+      const unassignedGrid = document.getElementById('atelier-unassigned-grid');
+      const unassignedCount = document.getElementById('atelier-unassigned-count');
+      const totalShopsBadge = document.getElementById('atelier-total-shops');
+
+      container.innerHTML = '';
+      unassignedGrid.innerHTML = '';
+
+      // Collect all mods with clothes or general mods
+      const clothesMods = mods.filter(m => m.subcategoria === 'ropa' || (m.atelier_shop_ref && m.atelier_shop_ref.trim() !== ''));
+
+      // Group by Shop
+      const shopsMap = new Map();
+      const unassigned = [];
+
+      clothesMods.forEach(mod => {
+        const shopName = mod.atelier_shop_ref ? mod.atelier_shop_ref.trim() : '';
+        if (shopName) {
+          if (!shopsMap.has(shopName)) {
+            shopsMap.set(shopName, {
+              name: shopName,
+              url: mod.atelier_shop_url || '',
+              items: []
+            });
+          }
+          const shop = shopsMap.get(shopName);
+          shop.items.push(mod);
+          if (!shop.url && mod.atelier_shop_url) {
+            shop.url = mod.atelier_shop_url;
+          }
+        } else {
+          unassigned.push(mod);
+        }
+      });
+
+      totalShopsBadge.textContent = shopsMap.size;
+
+      if (shopsMap.size === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 px-4 bg-cp-card border border-dashed border-cp-border cp-cut space-y-3 font-mono">
+            <h4 class="text-sm font-title font-bold text-white">NO HAY TIENDAS VIRTUAL ATELIER REGISTRADAS</h4>
+            <p class="text-xs text-cp-muted max-w-md mx-auto">
+              Asocia mods de ropa con tiendas como "Nola Dreamer Atelier", "Viki Shop" o "Monsterkerg" al registrar o editar un mod.
+            </p>
+            <button id="btn-atelier-seed" class="cp-btn-yellow px-4 py-2 text-xs font-title uppercase tracking-wider cp-cut-sm">
+              CARGAR TIENDAS DE EJEMPLO
+            </button>
+          </div>
+        `;
+        document.getElementById('btn-atelier-seed')?.addEventListener('click', () => {
+          mods = [...STARTER_DATABASE];
+          saveMods();
+          renderApp();
+          sound.success();
+          showToast('TIENDAS CARGADAS', 'Tiendas y prendas de Virtual Atelier inyectadas', 'purple');
+        });
+      } else {
+        shopsMap.forEach(shop => {
+          const shopCard = document.createElement('div');
+          shopCard.className = 'bg-cp-card border border-cp-purple/60 p-4 cp-cut space-y-3 shadow-[0_0_15px_rgba(181,55,242,0.1)]';
+
+          shopCard.innerHTML = `
+            <!-- Shop Header -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-cp-border pb-3">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-8 h-8 bg-cp-purple/20 border border-cp-purple text-cp-purple flex items-center justify-center cp-cut-sm">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-base font-title font-black text-white tracking-wider flex items-center space-x-2">
+                    <span>${escapeHtml(shop.name)}</span>
+                    <span class="text-[10px] font-mono px-1.5 py-0.2 bg-cp-purple/20 text-purple-300 border border-cp-purple/40 rounded">
+                      ${shop.items.length} ${shop.items.length === 1 ? 'Prenda' : 'Prendas'}
+                    </span>
+                  </h3>
+                  <div class="text-[11px] font-mono text-cp-muted">Tienda Virtual Atelier en la red de Night City</div>
+                </div>
+              </div>
+
+              <!-- Shop Link -->
+              <div class="flex items-center space-x-2">
+                ${shop.url ? `
+                  <a href="${escapeHtml(shop.url)}" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-cp-dark border border-cp-cyan text-cp-cyan hover:bg-cp-cyan hover:text-black transition text-xs font-mono font-bold flex items-center space-x-1.5 cp-cut-sm">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                    <span>PÁGINA DE LA TIENDA EN NEXUS</span>
+                  </a>
+                ` : `
+                  <span class="text-[10px] font-mono text-cp-muted italic">Sin enlace directo registrado</span>
+                `}
+                <button class="btn-add-item-to-shop px-2.5 py-1 bg-cp-purple/20 text-purple-300 border border-cp-purple/50 hover:bg-cp-purple hover:text-black transition text-xs font-mono font-bold cp-cut-sm" data-shop="${escapeHtml(shop.name)}">
+                  + VINCULAR PRENDA
+                </button>
+              </div>
+            </div>
+
+            <!-- Items Grid for this Shop -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pt-1">
+              ${shop.items.map(item => `
+                <div class="bg-cp-dark/90 border border-cp-border p-3 cp-cut-sm flex flex-col justify-between hover:border-cp-purple transition">
+                  <div>
+                    <div class="flex items-center justify-between text-[10px] font-mono text-cp-muted mb-1">
+                      <span class="${item.categoria_principal === 'fem_v' ? 'text-pink-400' : 'text-cp-cyan'} font-bold">
+                        ${item.categoria_principal === 'fem_v' ? '🌸 Fem V' : '⚡ Mas V'}
+                      </span>
+                      <span class="text-cp-green font-bold">${item.activo ? 'EN LOAD ORDER' : 'INACTIVO'}</span>
+                    </div>
+                    <h5 class="text-xs font-title font-bold text-white line-clamp-1">${escapeHtml(item.nombre)}</h5>
+                    <div class="mt-1.5 text-[10px] font-mono text-gray-400 truncate">
+                      ${item.origen_tipo === 'url' ? `
+                        <a href="${escapeHtml(item.origen_valor)}" target="_blank" class="text-cp-cyan hover:underline flex items-center space-x-1">
+                          <span>🔗 Ver descarga en Nexus</span>
+                        </a>
+                      ` : `
+                        <span class="text-cp-yellow">📦 ${escapeHtml(item.origen_valor)}</span>
+                      `}
+                    </div>
+                    ${item.requisitos_notas ? `
+                      <p class="text-[10px] font-mono text-gray-400 mt-1.5 bg-cp-panel p-1.5 border-l border-cp-purple/50 leading-tight">
+                        ${escapeHtml(item.requisitos_notas)}
+                      </p>
+                    ` : ''}
+                  </div>
+
+                  <div class="mt-2 pt-2 border-t border-cp-border/60 flex items-center justify-between text-[10px] font-mono">
+                    <button class="btn-copy-link text-cp-cyan hover:text-white" data-val="${escapeHtml(item.origen_valor)}">Copiar link</button>
+                    <button class="btn-edit-mod-fast text-cp-yellow hover:underline" data-id="${item.id}">Editar</button>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+
+          container.appendChild(shopCard);
+        });
+      }
+
+      // Render Unassigned clothes
+      if (unassigned.length > 0) {
+        unassignedSec.classList.remove('hidden');
+        unassignedCount.textContent = `${unassigned.length} prendas`;
+        unassigned.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'bg-cp-dark border border-cp-border p-3 cp-cut-sm flex flex-col justify-between';
+          div.innerHTML = `
+            <div>
+              <div class="text-[10px] font-mono text-yellow-400 font-bold mb-1">ROPA SIN TIENDA ASIGNADA</div>
+              <h5 class="text-xs font-title font-bold text-white line-clamp-1">${escapeHtml(item.nombre)}</h5>
+              <p class="text-[10px] font-mono text-cp-muted mt-1 truncate">${escapeHtml(item.origen_valor)}</p>
+            </div>
+            <button class="btn-assign-shop mt-2 px-2 py-1 bg-cp-card border border-cp-border hover:border-cp-purple text-purple-300 text-[10px] font-mono font-bold cp-cut-sm" data-id="${item.id}">
+              + ASIGNAR A TIENDA ATELIER
+            </button>
+          `;
+          unassignedGrid.appendChild(div);
+        });
+      } else {
+        unassignedSec.classList.add('hidden');
+      }
+    }
+
+    // --- Mod Card Component ---
+    function createModCard(mod, index) {
+      const card = document.createElement('div');
+      const isCritical = mod.prescindible === false;
+      const isUrl = mod.origen_tipo === 'url' || mod.origen_valor.startsWith('http');
+
+      card.className = `mod-card bg-cp-card border ${isCritical ? 'border-cp-red/60' : (mod.activo ? 'border-cp-border' : 'border-cp-border/40 opacity-70')} p-4 cp-cut flex flex-col justify-between relative group hover:border-cp-cyan`;
+
+      // Subcategory label
+      const subcats = SUBCATEGORIES_CONFIG[mod.categoria_principal] || [];
+      const subObj = subcats.find(s => s.id === mod.subcategoria);
+      const subLabel = subObj ? subObj.label : mod.subcategoria;
+
+      // Performance badge HTML
+      let perfHtml = '';
+      if (mod.categoria_principal === 'graficos' && mod.rendimiento_impacto) {
+        let col = 'text-cp-green border-cp-green/40 bg-cp-green/10';
+        let txt = 'Impacto: Bajo';
+        if (mod.rendimiento_impacto === 'medio') {
+          col = 'text-cp-yellow border-cp-yellow/40 bg-cp-yellow/10';
+          txt = 'Impacto: Medio';
+        } else if (mod.rendimiento_impacto === 'alto') {
+          col = 'text-cp-red border-cp-red/40 bg-cp-red/10';
+          txt = 'Impacto: Alto (RT)';
+        }
+        perfHtml = `<span class="text-[9px] font-mono px-1.5 py-0.2 border ${col} rounded uppercase font-bold">${txt}</span>`;
+      }
+
+      card.innerHTML = `
+        <div>
+          <!-- Top Row: Status, Subcategory & Critical Badge -->
+          <div class="flex items-center justify-between gap-1.5 mb-2">
+            <div class="flex items-center space-x-1.5">
+              <span class="w-2 h-2 rounded-full ${mod.activo ? 'bg-cp-green shadow-[0_0_6px_#00ff66]' : 'bg-gray-600'}"></span>
+              <span class="text-[10px] font-mono uppercase font-bold ${mod.activo ? 'text-cp-green' : 'text-gray-500'}">
+                ${mod.activo ? 'ACTIVO' : 'INACTIVO'}
+              </span>
+              <span class="text-cp-border">|</span>
+              <span class="text-[10px] font-mono text-cp-muted">#${String(index + 1).padStart(3, '0')}</span>
+            </div>
+
+            <div class="flex items-center space-x-1">
+              ${isCritical ? `
+                <span class="text-[9px] font-mono px-1.5 py-0.2 bg-cp-red/20 text-cp-red border border-cp-red/50 rounded uppercase font-bold tracking-wider animate-pulse">
+                  CRÍTICO
+                </span>
+              ` : `
+                <span class="text-[9px] font-mono px-1.5 py-0.2 bg-cp-dark border border-cp-border text-cp-muted rounded uppercase">
+                  PRESCINDIBLE
+                </span>
+              `}
+              ${perfHtml}
+            </div>
+          </div>
+
+          <!-- Mod Name -->
+          <h3 class="text-base font-title font-bold text-white group-hover:text-cp-yellow transition-colors line-clamp-2">
+            ${escapeHtml(mod.nombre)}
+          </h3>
+
+          <!-- Subcategory Tag -->
+          <div class="mt-1 flex items-center space-x-2">
+            <span class="text-[10px] font-mono text-cp-cyan bg-cp-cyan/10 px-1.5 py-0.2 border border-cp-cyan/30 rounded">
+              ${escapeHtml(subLabel)}
+            </span>
+            ${mod.atelier_shop_ref ? `
+              <span class="text-[10px] font-mono text-purple-300 bg-cp-purple/10 px-1.5 py-0.2 border border-cp-purple/30 rounded flex items-center space-x-1">
+                <span>🛍️ ${escapeHtml(mod.atelier_shop_ref)}</span>
+              </span>
+            ` : ''}
+          </div>
+
+          <!-- Source Origin Box -->
+          <div class="mt-2.5 text-xs font-mono">
+            <div class="text-[10px] text-cp-muted uppercase tracking-wider mb-0.5 flex items-center justify-between">
+              <span>${isUrl ? 'ENLACE NEXUS / GITHUB' : 'ARCHIVO LOCAL'}</span>
+              <button class="btn-copy-source text-cp-cyan hover:text-white transition flex items-center space-x-1 text-[10px]" data-val="${escapeHtml(mod.origen_valor)}" title="Copiar al portapapeles">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
+                </svg>
+                <span>COPIAR</span>
+              </button>
+            </div>
+
+            ${isUrl ? `
+              <a href="${escapeHtml(mod.origen_valor)}" target="_blank" rel="noopener noreferrer" class="text-cp-cyan hover:underline flex items-center space-x-1 truncate max-w-full">
+                <svg class="w-3.5 h-3.5 shrink-0 text-cp-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+                <span class="truncate">${escapeHtml(mod.origen_valor)}</span>
+              </a>
+            ` : `
+              <div class="text-gray-300 bg-cp-dark px-2 py-1 border border-cp-border truncate cp-cut-sm flex items-center space-x-1.5">
+                <svg class="w-3.5 h-3.5 shrink-0 text-cp-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                </svg>
+                <span class="truncate text-[11px]">${escapeHtml(mod.origen_valor)}</span>
+              </div>
+            `}
+          </div>
+
+          <!-- Notes / Dependencies Box -->
+          <div class="mt-2.5 bg-cp-panel/90 p-2 border-l-2 ${isCritical ? 'border-cp-red' : 'border-cp-yellow'} cp-cut-sm">
+            <div class="text-[9px] font-mono uppercase tracking-wider text-cp-muted mb-0.5 font-bold">REQUISITOS / NOTAS:</div>
+            <p class="text-xs font-mono text-gray-300 leading-relaxed">
+              ${mod.requisitos_notas ? escapeHtml(mod.requisitos_notas) : '<span class="text-gray-600 italic">Sin dependencias reportadas</span>'}
+            </p>
+          </div>
+        </div>
+
+        <!-- Card Bottom Toolbar -->
+        <div class="mt-3.5 pt-2.5 border-t border-cp-border flex items-center justify-between gap-2">
+          
+          <!-- Enable/Disable Switch -->
+          <label class="flex items-center space-x-1.5 cursor-pointer select-none">
+            <input type="checkbox" class="sr-only toggle-mod-status" data-id="${mod.id}" ${mod.activo ? 'checked' : ''}>
+            <div class="w-7 h-3.5 bg-cp-dark border border-cp-border rounded-full relative transition-colors ${mod.activo ? 'bg-cp-yellow/20 border-cp-yellow' : ''}">
+              <div class="dot absolute left-0.5 top-0.5 bg-gray-400 w-2.5 h-2.5 rounded-full transition-transform ${mod.activo ? 'transform translate-x-3.5 bg-cp-yellow shadow-[0_0_6px_#fcee0a]' : ''}"></div>
+            </div>
+            <span class="text-[10px] font-mono text-cp-muted">${mod.activo ? 'ON' : 'OFF'}</span>
+          </label>
+
+          <!-- Edit & Delete Buttons -->
+          <div class="flex items-center space-x-1 font-mono text-xs">
+            <button class="btn-card-edit p-1.5 text-cp-muted hover:text-cp-cyan hover:bg-cp-panel transition cp-cut-sm" data-id="${mod.id}" title="Editar Mod">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+            </button>
+
+            <button class="btn-card-delete p-1.5 text-cp-muted hover:text-cp-red hover:bg-cp-panel transition cp-cut-sm" data-id="${mod.id}" data-name="${escapeHtml(mod.nombre)}" title="Purgar Mod">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      `;
+
+      return card;
+    }
+
+    // --- Modal Logic (Add / Edit) ---
+    function openAddModal(defaultCategory = null, defaultShop = '') {
       sound.click();
-      document.getElementById('modal-title').textContent = 'INYECCIÓN DE NUEVO MOD // LOAD_ORDER';
+      document.getElementById('modal-form-title').textContent = 'REGISTRO MODULAR DE MOD // NET_INJECT';
       document.getElementById('btn-submit-text').textContent = 'INYECTAR MOD';
-      document.getElementById('input-mod-id').value = '';
-      document.getElementById('input-mod-name').value = '';
-      document.getElementById('input-mod-source').value = '';
-      document.getElementById('input-mod-notes').value = '';
-      document.getElementById('select-mod-category').value = 'core';
-      document.getElementById('input-mod-enabled').checked = true;
-      setSourceTab('url');
+      document.getElementById('form-mod-id').value = '';
+      document.getElementById('form-mod-nombre').value = '';
+      document.getElementById('form-mod-origen').value = '';
+      document.getElementById('form-mod-notas').value = '';
+      document.getElementById('form-mod-atelier-shop').value = defaultShop || '';
+      document.getElementById('form-mod-atelier-url').value = '';
+      document.getElementById('form-mod-prescindible').checked = true;
+      document.getElementById('form-mod-activo').checked = true;
+      
+      const catSelect = document.getElementById('form-mod-categoria');
+      if (defaultCategory && defaultCategory !== 'dashboard' && defaultCategory !== 'atelier') {
+        catSelect.value = defaultCategory;
+      } else if (currentMainTab !== 'dashboard' && currentMainTab !== 'atelier') {
+        catSelect.value = currentMainTab;
+      } else {
+        catSelect.value = 'core';
+      }
+
+      setSourceType('url');
+      populateSubcategoriesDropdown(catSelect.value);
+      updateConditionalFields(catSelect.value);
 
       document.getElementById('modal-mod-form').classList.remove('hidden');
-      document.getElementById('input-mod-name').focus();
+      document.getElementById('form-mod-nombre').focus();
     }
 
     function openEditModal(modId) {
@@ -1100,17 +1940,29 @@
       if (!mod) return;
       sound.click();
 
-      document.getElementById('modal-title').textContent = 'MODIFICAR DATOS DEL MOD // NET_RECONFIG';
-      document.getElementById('btn-submit-text').textContent = 'ACTUALIZAR REGISTRO';
-      document.getElementById('input-mod-id').value = mod.id;
-      document.getElementById('input-mod-name').value = mod.name;
-      document.getElementById('input-mod-source').value = mod.source;
-      document.getElementById('input-mod-notes').value = mod.notes || '';
-      document.getElementById('select-mod-category').value = mod.category;
-      document.getElementById('input-mod-enabled').checked = mod.enabled !== false;
+      document.getElementById('modal-form-title').textContent = 'MODIFICAR REGISTRO // NET_RECONFIG';
+      document.getElementById('btn-submit-text').textContent = 'ACTUALIZAR DATOS';
+      document.getElementById('form-mod-id').value = mod.id;
+      document.getElementById('form-mod-nombre').value = mod.nombre;
+      document.getElementById('form-mod-origen').value = mod.origen_valor;
+      document.getElementById('form-mod-notas').value = mod.requisitos_notas || '';
+      document.getElementById('form-mod-atelier-shop').value = mod.atelier_shop_ref || '';
+      document.getElementById('form-mod-atelier-url').value = mod.atelier_shop_url || '';
+      document.getElementById('form-mod-prescindible').checked = mod.prescindible !== false;
+      document.getElementById('form-mod-activo').checked = mod.activo !== false;
 
-      const isUrl = mod.sourceType === 'url' || mod.source.startsWith('http://') || mod.source.startsWith('https://');
-      setSourceTab(isUrl ? 'url' : 'path');
+      const catSelect = document.getElementById('form-mod-categoria');
+      catSelect.value = mod.categoria_principal;
+
+      setSourceType(mod.origen_tipo === 'archivo' ? 'archivo' : 'url');
+      populateSubcategoriesDropdown(mod.categoria_principal, mod.subcategoria);
+      updateConditionalFields(mod.categoria_principal);
+
+      // Performance radio
+      const perfRadios = document.querySelectorAll('input[name="perf-impact"]');
+      perfRadios.forEach(r => {
+        if (r.value === (mod.rendimiento_impacto || 'bajo')) r.checked = true;
+      });
 
       document.getElementById('modal-mod-form').classList.remove('hidden');
     }
@@ -1119,32 +1971,77 @@
       document.getElementById('modal-mod-form').classList.add('hidden');
     }
 
-    function setSourceTab(type) {
+    function populateSubcategoriesDropdown(catKey, selectedSub = null) {
+      const subSelect = document.getElementById('form-mod-subcategoria');
+      subSelect.innerHTML = '';
+      const list = SUBCATEGORIES_CONFIG[catKey] || [];
+      
+      list.filter(s => s.id !== 'all').forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        opt.textContent = s.label;
+        if (selectedSub && selectedSub === s.id) opt.selected = true;
+        subSelect.appendChild(opt);
+      });
+    }
+
+    function updateConditionalFields(catKey) {
+      const atelierGroup = document.getElementById('atelier-fields-group');
+      const perfGroup = document.getElementById('perf-fields-group');
+      const prescindibleCheck = document.getElementById('form-mod-prescindible');
+      const prescindibleLabel = document.getElementById('label-prescindible');
+
+      // Virtual Atelier: Show for Fem V and Mas V
+      if (catKey === 'fem_v' || catKey === 'mas_v') {
+        atelierGroup.classList.remove('hidden');
+      } else {
+        atelierGroup.classList.add('hidden');
+      }
+
+      // Performance: Show for Graphics
+      if (catKey === 'graficos') {
+        perfGroup.classList.remove('hidden');
+      } else {
+        perfGroup.classList.add('hidden');
+      }
+
+      // Core lock: if core, force non-prescindible
+      if (catKey === 'core') {
+        prescindibleCheck.checked = false;
+        prescindibleCheck.disabled = true;
+        prescindibleLabel.textContent = 'Mod Crítico / Indispensable (Bloqueado por seguridad)';
+      } else {
+        prescindibleCheck.disabled = false;
+        prescindibleLabel.textContent = 'Mod Prescindible (Desactivable sin riesgo)';
+      }
+    }
+
+    function setSourceType(type) {
       const tabUrl = document.getElementById('tab-src-url');
       const tabPath = document.getElementById('tab-src-path');
-      const input = document.getElementById('input-mod-source');
-      const hint = document.getElementById('source-hint-text');
+      const input = document.getElementById('form-mod-origen');
+      const hint = document.getElementById('form-source-hint');
 
       if (type === 'url') {
-        tabUrl.className = 'py-2 px-3 border border-cp-cyan bg-cp-cyan/15 text-cp-cyan font-bold flex items-center justify-center space-x-1.5 cp-cut-corner-sm';
-        tabPath.className = 'py-2 px-3 border border-cp-border bg-cp-dark text-cp-muted font-bold flex items-center justify-center space-x-1.5 cp-cut-corner-sm';
+        tabUrl.className = 'py-1.5 px-3 border border-cp-cyan bg-cp-cyan/15 text-cp-cyan font-bold flex items-center justify-center space-x-1.5 cp-cut-sm';
+        tabPath.className = 'py-1.5 px-3 border border-cp-border bg-cp-dark text-cp-muted font-bold flex items-center justify-center space-x-1.5 cp-cut-sm';
         input.placeholder = 'https://www.nexusmods.com/cyberpunk2077/mods/...';
         hint.textContent = 'Pega la URL de descarga o página del mod';
         input.dataset.sourceType = 'url';
       } else {
-        tabPath.className = 'py-2 px-3 border border-cp-yellow bg-cp-yellow/15 text-cp-yellow font-bold flex items-center justify-center space-x-1.5 cp-cut-corner-sm';
-        tabUrl.className = 'py-2 px-3 border border-cp-border bg-cp-dark text-cp-muted font-bold flex items-center justify-center space-x-1.5 cp-cut-corner-sm';
-        input.placeholder = 'archive/pc/mod/mi_mod.archive o bin/x64/plugins/...';
-        hint.textContent = 'Indica el nombre o ruta del archivo local dentro de Cyberpunk 2077';
-        input.dataset.sourceType = 'path';
+        tabPath.className = 'py-1.5 px-3 border border-cp-yellow bg-cp-yellow/15 text-cp-yellow font-bold flex items-center justify-center space-x-1.5 cp-cut-sm';
+        tabUrl.className = 'py-1.5 px-3 border border-cp-border bg-cp-dark text-cp-muted font-bold flex items-center justify-center space-x-1.5 cp-cut-sm';
+        input.placeholder = 'archive/pc/mod/mi_mod.archive o r6/scripts/...';
+        hint.textContent = 'Ruta o nombre del archivo local en la instalación del juego';
+        input.dataset.sourceType = 'archivo';
       }
     }
 
-    // --- Delete Confirmation Modal ---
+    // --- Delete Confirmation ---
     function openDeleteModal(id, name) {
       sound.danger();
       modToDeleteId = id;
-      document.getElementById('delete-mod-name').textContent = `"${name}"`;
+      document.getElementById('delete-mod-name-label').textContent = `"${name}"`;
       document.getElementById('modal-delete-confirm').classList.remove('hidden');
     }
 
@@ -1155,93 +2052,116 @@
 
     function confirmDelete() {
       if (!modToDeleteId) return;
-      const targetMod = mods.find(m => m.id === modToDeleteId);
-      const modName = targetMod ? targetMod.name : 'Mod';
+      const target = mods.find(m => m.id === modToDeleteId);
+      const name = target ? target.nombre : 'Mod';
       
       mods = mods.filter(m => m.id !== modToDeleteId);
-      saveModsToStorage();
+      saveMods();
       renderApp();
       closeDeleteModal();
       sound.danger();
-      showToast('MOD PURGADO', `${modName} eliminado del sistema.`, 'danger');
+      showToast('MOD PURGADO', `${name} desinstalado del sistema`, 'danger');
     }
 
-    // --- Export / Import Backup ---
+    // --- Export & Import Backup ---
     function exportBackup() {
       sound.success();
       const backupData = {
-        app: 'CYBERMOD_2077',
-        version: '2.13',
+        app: 'CYBERMOD_2077_MODULAR_HUB',
+        schemaVersion: '3.0',
         exportDate: new Date().toISOString(),
         totalMods: mods.length,
         mods: mods
       };
 
-      const jsonStr = JSON.stringify(backupData, null, 2);
-      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
-      
       const dateTag = new Date().toISOString().slice(0, 10);
+      
       const a = document.createElement('a');
       a.href = url;
-      a.download = `cp2077_mods_backup_${dateTag}.json`;
+      a.download = `cp2077_modular_backup_${dateTag}.json`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
-      showToast('BACKUP EXPORTADO', `Archivo cp2077_mods_backup_${dateTag}.json generado con éxito.`, 'yellow');
+      showToast('BACKUP EXPORTADO', `Archivo cp2077_modular_backup_${dateTag}.json listo`, 'yellow');
     }
 
-    function importBackup(e) {
-      const file = e.target.files[0];
-      if (!file) return;
+    function openImportModal() {
+      sound.click();
+      document.getElementById('file-import-input').value = '';
+      document.getElementById('modal-import-choice').classList.remove('hidden');
+    }
 
+    function closeImportModal() {
+      document.getElementById('modal-import-choice').classList.add('hidden');
+    }
+
+    function executeImport() {
+      const fileInput = document.getElementById('file-import-input');
+      const file = fileInput.files[0];
+      if (!file) {
+        showToast('ERROR', 'Por favor selecciona un archivo .json válido', 'danger');
+        return;
+      }
+
+      const mode = document.querySelector('input[name="import-mode"]:checked').value; // 'merge' or 'replace'
       const reader = new FileReader();
-      reader.onload = function(event) {
+
+      reader.onload = function(e) {
         try {
-          const parsed = JSON.parse(event.target.result);
-          let importedList = [];
+          const parsed = JSON.parse(e.target.result);
+          let rawList = [];
+          if (Array.isArray(parsed)) rawList = parsed;
+          else if (parsed && Array.isArray(parsed.mods)) rawList = parsed.mods;
+          else throw new Error('Formato no reconocido');
 
-          if (Array.isArray(parsed)) {
-            importedList = parsed;
-          } else if (parsed && Array.isArray(parsed.mods)) {
-            importedList = parsed.mods;
-          } else {
-            throw new Error('Estructura de JSON inválida.');
-          }
-
-          if (importedList.length === 0) {
-            showToast('ARCHIVO VACÍO', 'El archivo no contiene registros de mods válidos.', 'danger');
-            return;
-          }
-
-          // Merge or overwrite with existing ID validation
-          const validMods = importedList.map((item, idx) => ({
+          const normalized = rawList.map((item, idx) => ({
             id: item.id || `imported-${Date.now()}-${idx}`,
-            name: item.name || 'Mod Importado Sin Nombre',
-            sourceType: item.sourceType || (item.source && item.source.startsWith('http') ? 'url' : 'path'),
-            source: item.source || '',
-            category: item.category || 'cosmetic',
-            notes: item.notes || '',
-            enabled: item.enabled !== false,
-            dateAdded: item.dateAdded || new Date().toISOString()
+            nombre: item.nombre || item.name || 'Mod Importado',
+            categoria_principal: normalizeCategory(item.categoria_principal || item.category),
+            subcategoria: item.subcategoria || 'all',
+            origen_tipo: item.origen_tipo || (item.sourceType === 'path' ? 'archivo' : 'url'),
+            origen_valor: item.origen_valor || item.source || '',
+            atelier_shop_ref: item.atelier_shop_ref || '',
+            atelier_shop_url: item.atelier_shop_url || '',
+            rendimiento_impacto: item.rendimiento_impacto || 'bajo',
+            requisitos_notas: item.requisitos_notas || item.notes || '',
+            prescindible: item.prescindible ?? true,
+            activo: item.activo ?? true,
+            fecha_registro: item.fecha_registro || new Date().toISOString()
           }));
 
-          mods = validMods;
-          saveModsToStorage();
+          if (mode === 'replace') {
+            mods = normalized;
+            showToast('REEMPLAZO TOTAL', `Base de datos restaurada con ${normalized.length} mods`, 'yellow');
+          } else {
+            // Merge: avoid duplicates by name or source
+            let addedCount = 0;
+            normalized.forEach(n => {
+              const exists = mods.some(m => m.id === n.id || (m.nombre.toLowerCase() === n.nombre.toLowerCase()));
+              if (!exists) {
+                mods.push(n);
+                addedCount++;
+              }
+            });
+            showToast('FUSIÓN COMPLETADA', `Se integraron ${addedCount} mods nuevos sin sobreescrituras`, 'cyan');
+          }
+
+          saveMods();
           renderApp();
+          closeImportModal();
           sound.success();
-          showToast('BACKUP RESTAURADO', `Se han importado ${validMods.length} mods correctamente.`, 'success');
         } catch (err) {
           console.error(err);
           sound.danger();
-          showToast('ERROR AL IMPORTAR', 'El archivo seleccionado no es un JSON de backup válido.', 'danger');
+          showToast('ERROR AL IMPORTAR', 'El archivo no contiene un JSON válido', 'danger');
         }
       };
 
       reader.readAsText(file);
-      e.target.value = ''; // Reset input
     }
 
     // --- Helpers ---
@@ -1255,114 +2175,133 @@
         .replace(/'/g, '&#039;');
     }
 
-    function copyToClipboard(text) {
+    function copyText(val) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(() => {
+        navigator.clipboard.writeText(val).then(() => {
           sound.click();
-          showToast('ENLACE COPIADO', text, 'cyan');
-        }).catch(() => {
-          fallbackCopy(text);
-        });
+          showToast('COPIADO AL HUD', val, 'cyan');
+        }).catch(() => fallbackCopy(val));
       } else {
-        fallbackCopy(text);
+        fallbackCopy(val);
       }
     }
 
-    function fallbackCopy(text) {
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.select();
+    function fallbackCopy(val) {
+      const ta = document.createElement('textarea');
+      ta.value = val;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
       try {
         document.execCommand('copy');
         sound.click();
-        showToast('ENLACE COPIADO', text, 'cyan');
-      } catch (err) {
-        showToast('ERROR', 'No se pudo copiar automáticamente', 'danger');
+        showToast('COPIADO AL HUD', val, 'cyan');
+      } catch (e) {
+        showToast('AVISO', 'No se pudo copiar automáticamente', 'danger');
       }
-      document.body.removeChild(textarea);
+      document.body.removeChild(ta);
     }
 
-    // --- Event Listeners ---
+    // --- Event Listeners Setup ---
     function setupEventListeners() {
-      // Toggle Audio
+      // Audio toggle
       document.getElementById('btn-toggle-sound').addEventListener('click', () => {
         const isEnabled = sound.toggle();
-        updateAudioButtonUI();
+        updateAudioIcon();
         if (isEnabled) sound.success();
-        showToast('AUDIO HUD', isEnabled ? 'Sintetizador SFX Activado' : 'Sintetizador SFX Silenciado', isEnabled ? 'yellow' : 'cyan');
+        showToast('AUDIO HUD', isEnabled ? 'Sintetizador SFX Activado' : 'Sintetizador Silenciado', isEnabled ? 'yellow' : 'cyan');
       });
 
-      // Filter tabs click
-      document.querySelectorAll('.filter-tab').forEach(tab => {
+      // Navigation Tabs
+      document.querySelectorAll('.nav-tab').forEach(tab => {
         tab.addEventListener('click', () => {
           sound.click();
-          currentFilter = tab.getAttribute('data-filter');
-          updateFilterTabsBadges();
-          renderModsGrid();
+          document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentMainTab = tab.getAttribute('data-tab');
+          currentSubcategoryFilter = 'all';
+          renderApp();
         });
       });
 
-      // Search input live filter
-      const searchInput = document.getElementById('search-input');
-      const clearSearchBtn = document.getElementById('btn-clear-search');
-      
-      searchInput.addEventListener('input', (e) => {
-        searchQuery = e.target.value;
-        if (searchQuery.length > 0) {
-          clearSearchBtn.classList.remove('hidden');
-        } else {
-          clearSearchBtn.classList.add('hidden');
+      // Jump buttons in Dashboard
+      document.addEventListener('click', (e) => {
+        const jumpBtn = e.target.closest('.jump-tab');
+        if (jumpBtn) {
+          sound.click();
+          const target = jumpBtn.getAttribute('data-target-tab');
+          const navTarget = document.querySelector(`.nav-tab[data-tab="${target}"]`);
+          if (navTarget) {
+            navTarget.click();
+          }
         }
-        renderModsGrid();
       });
 
-      clearSearchBtn.addEventListener('click', () => {
+      // Global Search
+      const searchInput = document.getElementById('global-search');
+      const clearSearch = document.getElementById('btn-clear-search');
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        if (searchQuery.length > 0) clearSearch.classList.remove('hidden');
+        else clearSearch.classList.add('hidden');
+        renderApp();
+      });
+      clearSearch.addEventListener('click', () => {
         sound.click();
         searchInput.value = '';
         searchQuery = '';
-        clearSearchBtn.classList.add('hidden');
-        renderModsGrid();
+        clearSearch.classList.add('hidden');
+        renderApp();
         searchInput.focus();
       });
 
-      // Sort Select
-      document.getElementById('select-sort').addEventListener('change', (e) => {
+      // Category Sort Select
+      document.getElementById('select-category-sort').addEventListener('change', (e) => {
         sound.click();
         currentSort = e.target.value;
-        renderModsGrid();
+        renderCategoryView();
       });
 
-      // Add Mod Modal Open & Close
-      document.getElementById('btn-open-add-modal').addEventListener('click', openAddModal);
-      document.getElementById('btn-empty-add').addEventListener('click', openAddModal);
+      // Add Mod Modal
+      document.getElementById('btn-open-add-modal').addEventListener('click', () => openAddModal());
       document.getElementById('btn-close-modal').addEventListener('click', closeModal);
       document.getElementById('btn-cancel-modal').addEventListener('click', closeModal);
 
-      // Source type tabs inside modal
+      // Quick add button in empty category view
+      document.addEventListener('click', (e) => {
+        if (e.target.closest('.btn-quick-add-in-category')) {
+          openAddModal(currentMainTab);
+        }
+      });
+
+      // Source type toggle tabs inside modal
       document.getElementById('tab-src-url').addEventListener('click', () => {
         sound.click();
-        setSourceTab('url');
+        setSourceType('url');
       });
       document.getElementById('tab-src-path').addEventListener('click', () => {
         sound.click();
-        setSourceTab('path');
+        setSourceType('archivo');
+      });
+
+      // Category select inside modal
+      document.getElementById('form-mod-categoria').addEventListener('change', (e) => {
+        sound.click();
+        populateSubcategoriesDropdown(e.target.value);
+        updateConditionalFields(e.target.value);
       });
 
       // Paste from clipboard button
       document.getElementById('btn-paste-source').addEventListener('click', async () => {
         try {
           if (navigator.clipboard && navigator.clipboard.readText) {
-            const text = await navigator.clipboard.readText();
-            if (text) {
-              document.getElementById('input-mod-source').value = text;
-              if (text.startsWith('http')) {
-                setSourceTab('url');
-              }
+            const txt = await navigator.clipboard.readText();
+            if (txt) {
+              document.getElementById('form-mod-origen').value = txt;
+              if (txt.startsWith('http')) setSourceType('url');
               sound.click();
-              showToast('PEGADO', 'Texto insertado desde portapapeles', 'cyan');
+              showToast('PORTAPAPELES', 'Texto pegado en el campo de origen', 'cyan');
             }
           }
         } catch (e) {
@@ -1370,165 +2309,172 @@
         }
       });
 
-      // Quick dependency badges
+      // Quick dep buttons
       document.querySelectorAll('.btn-quick-dep').forEach(btn => {
         btn.addEventListener('click', () => {
           sound.click();
-          const depText = btn.textContent.replace('+', '').trim();
-          const notesInput = document.getElementById('input-mod-notes');
-          if (notesInput.value.trim() === '') {
-            notesInput.value = `Requiere ${depText}.`;
-          } else if (!notesInput.value.includes(depText)) {
-            notesInput.value = `${notesInput.value.trim()} Requiere ${depText}.`;
+          const dep = btn.textContent.replace('+', '').trim();
+          const notas = document.getElementById('form-mod-notas');
+          if (!notas.value.includes(dep)) {
+            notas.value = notas.value.trim() ? `${notas.value.trim()} Requiere ${dep}.` : `Requiere ${dep}.`;
           }
         });
       });
 
-      // Form Submit (Save / Update)
+      // Form Submit (Save / Edit)
       document.getElementById('form-mod').addEventListener('submit', (e) => {
         e.preventDefault();
-        const modId = document.getElementById('input-mod-id').value;
-        const name = document.getElementById('input-mod-name').value.trim();
-        const source = document.getElementById('input-mod-source').value.trim();
-        const category = document.getElementById('select-mod-category').value;
-        const notes = document.getElementById('input-mod-notes').value.trim();
-        const enabled = document.getElementById('input-mod-enabled').checked;
-        const sourceType = document.getElementById('input-mod-source').dataset.sourceType || 
-          (source.startsWith('http://') || source.startsWith('https://') ? 'url' : 'path');
+        const id = document.getElementById('form-mod-id').value;
+        const nombre = document.getElementById('form-mod-nombre').value.trim();
+        const categoria_principal = document.getElementById('form-mod-categoria').value;
+        const subcategoria = document.getElementById('form-mod-subcategoria').value;
+        const origen_valor = document.getElementById('form-mod-origen').value.trim();
+        const origen_tipo = document.getElementById('form-mod-origen').dataset.sourceType || 
+          (origen_valor.startsWith('http') ? 'url' : 'archivo');
+        const atelier_shop_ref = document.getElementById('form-mod-atelier-shop').value.trim();
+        const atelier_shop_url = document.getElementById('form-mod-atelier-url').value.trim();
+        const requisitos_notas = document.getElementById('form-mod-notas').value.trim();
+        const prescindible = categoria_principal === 'core' ? false : document.getElementById('form-mod-prescindible').checked;
+        const activo = document.getElementById('form-mod-activo').checked;
 
-        if (!name || !source) return;
+        // Performance impact
+        let rendimiento_impacto = 'bajo';
+        const perfChecked = document.querySelector('input[name="perf-impact"]:checked');
+        if (perfChecked) rendimiento_impacto = perfChecked.value;
 
-        if (modId) {
-          // Edit existing
-          const index = mods.findIndex(m => m.id === modId);
-          if (index !== -1) {
-            mods[index] = {
-              ...mods[index],
-              name,
-              sourceType,
-              source,
-              category,
-              notes,
-              enabled
+        if (!nombre || !origen_valor) return;
+
+        if (id) {
+          // Edit
+          const idx = mods.findIndex(m => m.id === id);
+          if (idx !== -1) {
+            mods[idx] = {
+              ...mods[idx],
+              nombre,
+              categoria_principal,
+              subcategoria,
+              origen_tipo,
+              origen_valor,
+              atelier_shop_ref,
+              atelier_shop_url,
+              rendimiento_impacto,
+              requisitos_notas,
+              prescindible,
+              activo
             };
-            showToast('MOD ACTUALIZADO', `${name} guardado correctamente.`, 'cyan');
+            showToast('MOD ACTUALIZADO', `${nombre} reconfigurado con éxito`, 'cyan');
           }
         } else {
-          // Create new
+          // New
           const newMod = {
             id: `cp-mod-${Date.now()}`,
-            name,
-            sourceType,
-            source,
-            category,
-            notes,
-            enabled,
-            dateAdded: new Date().toISOString()
+            nombre,
+            categoria_principal,
+            subcategoria,
+            origen_tipo,
+            origen_valor,
+            atelier_shop_ref,
+            atelier_shop_url,
+            rendimiento_impacto,
+            requisitos_notas,
+            prescindible,
+            activo,
+            fecha_registro: new Date().toISOString()
           };
           mods.unshift(newMod);
-          showToast('MOD INYECTADO', `${name} añadido al load order.`, 'yellow');
+          showToast('MOD INYECTADO', `${nombre} añadido al load order`, 'yellow');
         }
 
         sound.success();
-        saveModsToStorage();
+        saveMods();
         closeModal();
         renderApp();
       });
 
-      // Delete confirmation modal actions
+      // Delete Modal Actions
       document.getElementById('btn-cancel-delete').addEventListener('click', closeDeleteModal);
       document.getElementById('btn-confirm-delete').addEventListener('click', confirmDelete);
 
-      // Export / Import
+      // Export Backup
       document.getElementById('btn-export-backup').addEventListener('click', exportBackup);
-      document.getElementById('btn-import-backup').addEventListener('click', () => {
-        sound.click();
-        document.getElementById('file-import-input').click();
-      });
-      document.getElementById('file-import-input').addEventListener('change', importBackup);
 
-      // Seed Starter Data Button
-      document.getElementById('btn-seed-data').addEventListener('click', () => {
-        sound.click();
-        if (confirm('¿Restablecer/añadir la lista de mods recomendados oficiales de Cyberpunk 2077?')) {
-          mods = [...STARTER_MODS];
-          saveModsToStorage();
-          renderApp();
-          sound.success();
-          showToast('MATRIZ RESTABLECIDA', 'Cargados los mods esenciales de Night City.', 'yellow');
-        }
-      });
-      document.getElementById('btn-empty-load-seeds').addEventListener('click', () => {
-        mods = [...STARTER_MODS];
-        saveModsToStorage();
-        renderApp();
-        sound.success();
-        showToast('MATRIZ CARGADA', 'Cargados los mods esenciales.', 'yellow');
-      });
+      // Import Backup Modal
+      document.getElementById('btn-import-backup-open').addEventListener('click', openImportModal);
+      document.getElementById('btn-cancel-import').addEventListener('click', closeImportModal);
+      document.getElementById('btn-execute-import').addEventListener('click', executeImport);
 
-      // Event delegation for dynamically generated grid elements
-      document.getElementById('mods-grid').addEventListener('click', (e) => {
+      // Card action delegation
+      document.addEventListener('click', (e) => {
         // Copy button
-        const copyBtn = e.target.closest('.btn-copy-source');
+        const copyBtn = e.target.closest('.btn-copy-source, .btn-copy-link');
         if (copyBtn) {
-          const textToCopy = copyBtn.getAttribute('data-source');
-          copyToClipboard(textToCopy);
+          copyText(copyBtn.getAttribute('data-val'));
           return;
         }
 
         // Edit button
-        const editBtn = e.target.closest('.btn-edit-mod');
+        const editBtn = e.target.closest('.btn-card-edit, .btn-edit-mod-fast');
         if (editBtn) {
-          const id = editBtn.getAttribute('data-id');
-          openEditModal(id);
+          openEditModal(editBtn.getAttribute('data-id'));
           return;
         }
 
         // Delete button
-        const deleteBtn = e.target.closest('.btn-delete-mod');
-        if (deleteBtn) {
-          const id = deleteBtn.getAttribute('data-id');
-          const name = deleteBtn.getAttribute('data-name');
-          openDeleteModal(id, name);
+        const delBtn = e.target.closest('.btn-card-delete');
+        if (delBtn) {
+          openDeleteModal(delBtn.getAttribute('data-id'), delBtn.getAttribute('data-name'));
+          return;
+        }
+
+        // Atelier bind new clothing button
+        const addShopBtn = e.target.closest('.btn-add-item-to-shop');
+        if (addShopBtn) {
+          const shopName = addShopBtn.getAttribute('data-shop');
+          openAddModal('fem_v', shopName);
+          return;
+        }
+
+        // Assign unassigned to shop
+        const assignBtn = e.target.closest('.btn-assign-shop');
+        if (assignBtn) {
+          openEditModal(assignBtn.getAttribute('data-id'));
           return;
         }
       });
 
       // Toggle mod enabled switch
-      document.getElementById('mods-grid').addEventListener('change', (e) => {
+      document.addEventListener('change', (e) => {
         if (e.target.classList.contains('toggle-mod-status')) {
           sound.click();
           const id = e.target.getAttribute('data-id');
-          const isEnabled = e.target.checked;
+          const isActivo = e.target.checked;
           const mod = mods.find(m => m.id === id);
           if (mod) {
-            mod.enabled = isEnabled;
-            saveModsToStorage();
-            renderStats();
-            // Re-render only card status indicators without disrupting user flow
+            mod.activo = isActivo;
+            saveMods();
+            updateNavBadges();
+            renderDashboardKPIs();
             const card = e.target.closest('.mod-card');
             if (card) {
-              if (isEnabled) {
-                card.classList.remove('opacity-70');
-              } else {
-                card.classList.add('opacity-70');
-              }
+              if (isActivo) card.classList.remove('opacity-70');
+              else card.classList.add('opacity-70');
             }
-            showToast(isEnabled ? 'MOD ACTIVADO' : 'MOD DESACTIVADO', mod.name, isEnabled ? 'yellow' : 'cyan');
+            showToast(isActivo ? 'ACTIVADO' : 'DESACTIVADO', mod.nombre, isActivo ? 'yellow' : 'cyan');
           }
         }
       });
 
-      // Close modal on Escape
+      // Escape key to close any modal
       window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           closeModal();
           closeDeleteModal();
+          closeImportModal();
         }
       });
     }
 
-    // Launch application on DOM Ready
+    // Launch application
     document.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
